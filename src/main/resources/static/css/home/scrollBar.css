@@ -1,0 +1,108 @@
+
+
+#nav {
+    /*position: fixed;*/
+    /*right: 17px;*/
+    /*top: 35%;*/
+    /*z-index: 100;*/
+    /*/*margin: -220px 0 0 0;*/
+    /*/*background: url("") 0 0 no-repeat;*/
+
+    position: fixed;
+    z-index: 100;
+    margin-top: -32px;
+    top: 50%;
+    opacity: 1;
+
+}
+
+
+#nav.right {
+    right: 17px;
+}
+#nav.left {
+    left: 17px;
+}
+
+
+
+
+#nav ul li{
+    /*display: block;*/
+    /*right: 15px;*/
+    /*width: 0px;*/
+    /*height: 20px;*/
+    /*margin: 0px 0px 0px 0px;*/
+    /*position: relative;*/
+
+    display: block;
+    width: 14px;
+    height: 13px;
+    margin: 7px;
+    position:relative;
+}
+
+#nav li a {
+    display: block;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#nav ul li a span {
+    border-radius: 50%;
+    position: absolute;
+    z-index: 1;
+    height: 5px;
+    width: 5px;
+    border: 0;
+    background: #333;
+    left: 50%;
+    top: 50%;
+    margin: -2px 0 0 -2px;
+
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
+
+#nav ul li:hover a span {
+    height: 12px;
+    width: 12px;
+    margin: -6px 0 0 -6px;
+    border-radius: 100%;
+}
+
+
+#nav ul li .tooltip {
+    position: absolute;
+    top: -2px;
+    color: #fff;
+    font-size: 14px;
+    font-family: arial, helvetica, sans-serif;
+    white-space: nowrap;
+    max-width: 220px;
+    overflow: hidden;
+    display: block;
+    opacity: 0;
+    width: 0;
+}
+
+#nav ul li:hover .tooltip,
+#nav.fp-show-active a.active + .tooltip{
+    -webkit-transition: opacity 0.2s ease-in;
+    transition: opacity 0.2s ease-in;
+    width: auto;
+    opacity: 1;
+}
+#nav ul li .tooltip.right {
+    right: 20px;
+}
+#nav ul li .tooltip.left {
+    left: 20px;
+}

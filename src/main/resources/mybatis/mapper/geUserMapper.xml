@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ptlu.join.mybatis.mapper.geUserMapper.xml">
+    <select id="readGeUser" parameterType="String" resultType="org.ptlu.join.domain.GeUser_info">
+        SELECT * FROM ge_user_info WHERE geUserId= #{geUserId}
+    </select>
+
+    <select id="readAuthority" parameterType="String" resultType="org.springframework.security.core.authority.SimpleGrantedAuthority">
+        SELECT role FROM authority WHERE aId = #{geUserId}
+    </select>
+
+    <insert id="createUser" parameterType="org.ptlu.join.domain.GeUser_info">
+        INSERT INTO ge_user_info (geUserId,
+          geUserPw, geUserAddr,geUserCellInfo,geUserEmail, isAccountNonExpired, isAccountNonLocked,
+          isCredentialsNonExpired, isEnabled) VALUES (#{geUserId}, #{geUserPw},#{geUserAddr},#{geUserCellInfo},#{geUserEmail},
+          #{isAccountNonExpired}, #{isAccountNonLocked}, #{isCredentialsNonExpired}, #{isEnabled})
+   </insert>
+
+    <insert id="createAuthority" parameterType="org.springframework.security.core.GrantedAuthority">
+        INSERT INTO authority (aId, role) VALUES
+        <foreach item="authority" index="index" collection="authorities" separator=",">
+            (#{geUserId}, #{role}) </foreach>
+    </insert>
+
+    <delete id="deleteUser" parameterType="String">
+        DELETE FROM ge_user_info WHERE geUserId=#{geUserId}
+    </delete>
+
+    <delete id="deleteAuthority" parameterType="String">
+        DELETE FROM authority WHERE aId = #{geUserId}
+    </delete>
+
+
+</mapper>
+

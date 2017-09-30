@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+    <!--<script src='http://tinymce.cachefly.net/4.0/tinymce.min.js'/>-->
+    <script src="../../js/tinymce/tinymce.min.js"/>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"/>
+    <!--<script src="../../js/tinymce/custom/tinymceInlite.js"/>-->
+    <script src="../../js/tinymce/custom/customSetting2.js"/>
+
+</head>
+<body>
+<form id="uploadForm" method="post" th:action="@{/insertMceContent}" th:object="${content}">
+    <div class="contentTitle" id="contentTitle">
+        제목을 입력하세요
+        <textarea th:field="*{title}"/>
+    </div>
+
+    <textarea id="my_editor" th:field="*{content}"/>
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <button id="send" onclick="sendTinyMceContent()" >
+        전송
+    </button>
+</form>
+
+
+<script>
+    $.videoBG()
+</script>
+<script src="../../js/tinymce/custom/drive.js"/>
+</body>
+</html>

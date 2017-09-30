@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"/>
+</head>
+<body>
+    <div th:fragment="header">
+        <div class="logo">
+        </div>
+        <div class="logIn" th:if="${#httpServletRequest.remoteUser}==null">
+            <form th:action="@{/login}" th:method="get">
+                <input type="submit" value="로그인"/>
+            </form>
+        </div>
+        <div class="logIn" th:if="${#httpServletRequest.remoteUser}!=null">
+            <p th:text="${logIn}"></p>
+            <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" value="Sign Out"/>
+            </form>
+
+        </div>
+    </div>
+</body>
+</html>

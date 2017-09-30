@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+
+
+</head>
+<body>
+
+    <div>
+        <form th:action="@{/joinUser}" th:method="post" th:object="${userForm}">
+            <table>
+                <thead></thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            아이디
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{geUserId}"/>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            패스워드
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{geUserPw}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            주소
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{geUserAddr}"/>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            핸드폰
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{geUserCellInfo}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            E-mail
+                        </td>
+                        <td>
+                            <input type="text" th:field="*{geUserEmail}"/>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <input type="submit" value="등록"/>
+        </form>
+    </div>
+
+</body>
+</html>

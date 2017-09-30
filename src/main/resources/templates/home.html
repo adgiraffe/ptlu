@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"/>
+    <title>공공운수노조</title>
+    <link rel="stylesheet" href="../../css/home/basic.css"/>
+    <link rel="stylesheet" href="../../css/home/section.css"/>
+    <!--<link rel="stylesheet" href="../../css/scrollBar.css"/>-->
+    <link rel="stylesheet" href="../../css/home/fullScroll.css"/>
+    <link rel="stylesheet" href="../../css/home/container.css"/>
+    <link rel="stylesheet" href="../../css/home/onePage.css"/>
+    <link rel="stylesheet" href="../../css/keyFrame/keyFrames.css"/>
+    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+
+</head>
+
+<body>
+<div id="page" class="wrapper">
+    <div class="container" id="scrollBody">
+        <!--<section id="section01" class="section active">-->
+        <section id="section01" class="section">
+            <div class="background">
+                <div class="bgInner"></div>
+                <div class="bgOverlay"></div>
+            </div>
+            <div class="container">
+                <div class="outer">
+                    <div class="inner">
+                        <div class="centered">
+
+                            <span class="headSpan titleH1" >바람에게 묻는다</span>
+                            <div class="aniDiv divBtoU">
+                                <span class="empty"/>
+                                <span class="headSpan">
+                                    바람에게 묻는다<br/>
+                                    지금 그 곳에는 여전히<br/>
+                                    꽃이 피었던가 달이 떳던가<br/>
+                                </span>
+                            </div>
+                            <span class="empty"/>
+                            <div class="aniDiv divBtoU">
+                                <span class="headSpan">
+                                    바람에게 듣는다<br/>
+                                    내 그리운 사람 못 잊을 사람<br/>
+                                    아직도 나를 기다려<br/>
+                                    그 곳에서 서성이고 있떤가<br/>
+                                </span>
+                            </div>
+                            <span class="empty"/>
+                            <!--<div class="aniDiv">-->
+                                <!--<span class="headSpan">-->
+                                    <!--내게 불러줬던 노래<br/>-->
+                                    <!--아직도 혼자 부르며<br/>-->
+                                    <!--울고 있던가<br/>-->
+                                <!--</span>-->
+                            <!--</div>-->
+                            <span class="empty"/>
+                            <span class="empty"/>
+                            <span class="empty"/>
+                            <div class="aniBtn divAlphaIn">
+                                <span class="spanBlock">
+                                    <button class="btn-circle">바람에게 묻는다</button>
+                                </span>
+                                <span class="clear"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section02" class="section" >
+            <div>
+                <h1>fullPage.js</h1>
+                <p>두번 째</p>
+            </div>
+        </section>
+        <section id="section03" class="section">
+            <div>
+                <h1>fullPage.js</h1>
+                <p>세번째 </p>
+            </div>
+        </section>
+        <section id="section04" class="section">
+            <div>
+                <h1>fullPage.js</h1>
+                <p>네번째 </p>
+            </div>
+        </section>
+        <section id="section05" class="section">
+            <div>
+                <h1>fullPage.js</h1>
+                <p>다섯번 째 </p>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!--<script src="../../js/fullPage1.js"/>-->
+<!--<script src="../../js/javascript.fullPage.js"/>-->
+<script type="text/javascript" src="../../js/onePage/fullPage.js"/>
+<script type="text/javascript">
+    fullpage.initialize('#scrollBody', {
+        anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+//        anchors: ['1', '2', '3', '4', '5'],
+        menu: '#menu',
+        'navigation': true,
+        'navigationPosition': 'right',
+        'navigationTooltips': ['fullPage.js', 'Powerful', 'Amazing', 'Simple'],
+        css3:true
+    });
+</script>
+<script src="../../js/ani/aniJS.js"/>
+
+</body>
+</html>

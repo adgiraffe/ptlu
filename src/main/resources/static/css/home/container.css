@@ -1,0 +1,16 @@
+.container{
+   height: 100%;
+}
+
+.wrapper{
+    height: 100%;
+    margin: 0 auto;
+    /*overflow-y: hidden;*/
+    /*overflow:내용이 더 길 때 어떻게 보일지 선택하는 속성 */
+    /*hidden: 내용이 넘치면 자른다*/
+    /*auto:내용이 잘릴 때 스크롤바가 보인다*/
+}
+
+.wheel{
+
+}

@@ -1,0 +1,209 @@
+.section{
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: relative;
+    display: table;
+    table-layout: fixed;
+
+}
+
+
+#section01{
+    position: relative;
+
+
+
+}
+
+#section02{
+    position: relative;
+    background:#6FF;
+}
+
+#section03{
+    position: relative;
+    background:#9F0;
+}
+
+#section04{
+    position: relative;
+    background:#F33;
+}
+
+#section05{
+    position: relative;
+    background:#FC0;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    position:relative;
+    border: 0;
+}
+
+.background{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.bgInner{
+    background: url(http://www.kakao.com/kakaopay/wp-content/uploads/2016/09/samuel-zeller-74718_tiny.jpg);
+    background-color: #2C3E50;
+    /*background-image: url(../../images/a/aa.jpg);*/
+    background-position-x: 50%;
+    background-position-y: 50%;
+    background-repeat-x: no-repeat;
+    background-repeat-y:no-repeat;
+    background-size: cover;
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.async-blurred {
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -ms-filter: blur(10px);
+    filter: blur(10px);
+    -webkit-transition: -webkit-filter 0.3s ease-out;
+    -moz-transition: -moz-filter 0.3s ease-out;
+    -o-transition: filter 0.3s ease-out;
+    transition: -webkit-filter 0.3s ease-out,-moz-filter 0.3s ease-out,-o-filter 0.3s ease-out,filter 0.3s ease-out;
+}
+.async-blurred.async-done {
+    -webkit-filter: blur(0px);
+    -moz-filter: blur(0px);
+    -ms-filter: blur(0px);
+    filter: blur(0px);
+}
+
+
+.bgOverlay{
+    background-color: black;
+    opacity: 0.35;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.outer{
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+.inner{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.centered{
+    position:relative;
+    display: inline-block;
+
+    width: 50%;
+    padding: 1em;
+    color:white;
+}
+
+.headSpan{
+    display: block;
+    text-align: left;
+    position:relative;
+    opacity: 1;
+}
+
+.empty{
+    display: block;
+    position: relative;
+    /*margin-top: 0px; !important;*/
+    padding-top:20px;
+}
+
+.btn-circle{
+    font-size: 15px;
+    letter-spacing: -0.02em;
+    border: none;
+    border-radius: 10em;
+    display: inline-block;
+    color:black;
+    outline-style: none;
+    background-color:#ffed00;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: center;
+}
+
+.spanBlock{
+    float: left;
+    position: relative;
+    display: block;
+}
+
+.clear{
+    float: none;
+}
+
+.titleH1{
+    font-size: 38px;
+}
+
+.titleH2{
+    font-size: 20px;
+}
+
+.titleH3{
+    font-size: 22px;
+}
+
+.titleH4{
+    font-size: 13px;
+}
+
+.titleH5{
+    font-size: 8px;
+}
+
+.aniDiv{
+    opacity: 0;
+}
+
+.divBtoU{
+    animation-name: anim_btt;
+    backface-visibility: hidden;
+    animation-duration: 2s;
+    /*animation-delay: 2s;*/
+    -webkit-font-smoothing:antialiased;
+    perspective: 1000px;
+    backface-visibility: hidden;
+    opacity: 1;
+}
+
+.divBtoUdelay{
+    opacity: 0;
+    animation-name: anim_btt;
+    backface-visibility: hidden;
+    animation-duration: 0.6s;
+    -webkit-font-smoothing:antialiased;
+    perspective: 1000px;
+    backface-visibility: hidden;
+}
+
+
+
+.divAlphaIn{
+    opacity: 1;
+    animation-duration: 1.6s;
+    animation-name: alpha-in;
+    backface-visibility: hidden;
+}

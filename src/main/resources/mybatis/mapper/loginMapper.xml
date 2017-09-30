@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ptlu.join.mybatis.mapper.loginMapper.xml">
+    <select id="loginGeUser" parameterType="String" resultType="org.ptlu.join.domain.GeUser_info">
+            SELECT u.geUserId UserId, u.geUserPw UserPw, a.authority_name role FROM
+        ge_user_info u INNER JOIN authority a on u.geUserId=a.username WHERE u.isEnabled =1 and u.geUserId = #{geUserId};
+    </select>
+
+</mapper>
+

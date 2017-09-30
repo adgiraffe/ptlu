@@ -1,0 +1,8 @@
+ul {
+    display:inline-block; *display:inline; zoom:1;
+    list-style: none;
+}
+
+ul li{
+    float:left; margin-left:-1px; z-index:1;
+}

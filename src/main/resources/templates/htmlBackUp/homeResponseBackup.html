@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"/>
+    <title>공공운수노조</title>
+    <link rel="stylesheet" href="../../css/basic.css"/>
+    <link rel="stylesheet" href="../../css/section.css"/>
+    <link rel="stylesheet" href="../../css/scrollBar.css"/>
+    <link rel="stylesheet" href="../../css/container.css"/>
+    <link rel="stylesheet" href="../../css/onePage.css"/>
+    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+</head>
+
+<body>
+<div id="page" class="wrapper">
+    <div class="container" id="scrollBody">
+        <section id="section01" class="section">
+            <div>
+                <h1>fullPage.js</h1>
+                <p>첫번 째</p>
+            </div>
+        </section>
+
+        <section id="section02" class="section" >
+            <div>
+                <h1>fullPage.js</h1>
+                <p>두번 째</p>
+            </div>
+        </section>
+        <section id="section03" class="section">
+            <div>
+                <h1>fullPage.js</h1>
+                <p>세번째 </p>
+            </div>
+        </section>
+        <section id="section04" class="section">
+            <div>
+                <h1>fullPage.js</h1>
+                <p>네번째 </p>
+            </div>
+        </section>
+        <section id="section05" class="section">
+            <div>
+                <h1>fullPage.js</h1>
+                <p>다섯번 째 </p>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!--<nav id="nav" class="">-->
+<!--<ul id="menu-nav">-->
+<!--<li>-->
+<!--<a href="#section01">-->
+<!--<span></span>-->
+<!--</a>-->
+<!--</li>-->
+
+<!--<li>-->
+<!--<a href="#section02">-->
+<!--<span></span>-->
+<!--</a>-->
+<!--</li>-->
+
+<!--<li>-->
+<!--<a href="#section03">-->
+<!--<span></span>-->
+<!--</a>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</nav>-->
+<!--<script src="../../js/fullPage1.js"/>-->
+<!--<script src="../../js/javascript.fullPage.js"/>-->
+<script type="text/javascript" src="../../js/fullPage.js"></script>
+<script type="text/javascript">
+    fullpage.initialize('#scrollBody', {
+//        anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+        anchors: ['1', '2', '3', '4', '5'],
+//        menu: '#menu',
+        'navigation': true,
+        'navigationPosition': 'right',
+        'navigationTooltips': ['fullPage.js', 'Powerful', 'Amazing', 'Simple'],
+        css3:true
+    });
+</script>
+
+
+</body>
+</html>
