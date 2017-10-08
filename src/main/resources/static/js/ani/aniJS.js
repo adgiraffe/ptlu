@@ -14,42 +14,34 @@ var bgImgUrl= {
 //     // }
 // }
 //
-styleBackgorundImge();
+// styleBackgorundImge();
+
 
 window.onload=function () {
+    console.log("온로");
+    insertBgImgSrc();
     appendTextContainer();
+
 }
 
+
+
 function insertBgImgSrc() {
-    var bgInner=document.querySelectorAll('.bgInner');
-    var sectionArr=[];
+    var bgParents=document.querySelectorAll('.section');
+    for(var i=0; i<bgParents.length; i++){
+       var background=document.createElement('div');
+       var bgInner=document.createElement('div');
+       var bgOverlay=document.createElement('div');
 
-    for(var section in bgImgUrl){
-        var src=bgImgUrl[section];
-        sectionArr.push(src);
+       background.className='background';
+       bgInner.className="bgInner";
+       bgOverlay.className='bgOverlay';
+
+       background.appendChild(bgInner);
+       background.appendChild(bgOverlay);
+
+       bgParents[i].appendChild(background);
     }
-
-    for(var i=0;i<bgInner.length;i++){
-        console.log(sectionArr[i]);
-        bgInner[i].style.backgroundImage='url('+sectionArr[i]+')';
-    }
-
-    // for(var i=0;i<bgImaUrl.length;i++){
-    //     img.src=bgImaUrl.;
-    //     imgArray[i]=img;
-    //     console.log(img[i].src);
-    // }
-
-    // console.log(imgArray);
-    //
-    // if(img.complete==true){
-    //     console.log("이프문",img.complete);
-    //
-    //     for (var i=0;i<bgInner.length;i++){
-    //         bgInner[i].style.backgroundImage='url('+img[i].src+')';
-    //     }
-    // }
-    // documnet.style.onload
 }
 
 
@@ -57,8 +49,12 @@ function insertBgImgSrc() {
 
 function appendTextContainer() {
     var parent=document.querySelector("#section01");
-    var outeDiv=document.createElement('div');
-    outeDiv.className="outer";
+
+    var container=document.createElement('div');
+    container.className='container';
+
+    var outerDiv=document.createElement('div');
+    outerDiv.className="outer";
 
     var innerDiv=document.createElement('div');
     innerDiv.className="inner";
@@ -67,8 +63,11 @@ function appendTextContainer() {
     centeredDiv.className="centered";
 
     innerDiv.appendChild(centeredDiv);
-    outeDiv.appendChild(innerDiv);
-    parent.appendChild(outeDiv);
+    outerDiv.appendChild(innerDiv);
+    container.appendChild(outerDiv);
+    parent.appendChild(container);
+
+
     addAniBtn(centeredDiv);
 }
 

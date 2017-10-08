@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<div th:fragment="mainSection" class="secWrap">
+    <div class="background">
+
+        <div class="bgInner00">
+            <video id="video" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
+                <source src="../../video/source1.mp4" type="video/mp4"/>
+            </video>
+        </div>
+        <div class="bgOverlay"></div>
+    </div>
+
+    <div class="container">
+
+        <div class="outer">
+            <div class="inner">
+                <div class="centered">
+                    <div class="mainContentBg">
+                        <div class="mainContent">공공운수노조</div>
+                    </div>
+                    <!--<div class="bgOverlaySmall"></div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

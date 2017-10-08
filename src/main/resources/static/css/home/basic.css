@@ -1,4 +1,5 @@
-/*@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);*/
+@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
+@import url(//fonts.googleapis.com/earlyaccess/kopubbatang.css);
 
 * {
     -webkit-box-sizing: border-box;
@@ -41,13 +42,13 @@ body {
 }
 
 
-ul{
-    position: relative;
-    list-style: none;
-}
+/*ul{*/
+    /*position: relative;*/
+    /*list-style: none;*/
+/*}*/
 
 
 ::selection {
-    background: #ffc61c;
-    color: black;
+    background: #2a48aa;
+    color: #fb430f;
 }

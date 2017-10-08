@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_join" default="compile.module.join">
+  <dirname property="module.join.basedir" file="${ant.file.module_join}"/>
+  
+  <property name="module.jdk.home.join" value="${jdk.home.1.8}"/>
+  <property name="module.jdk.bin.join" value="${jdk.bin.1.8}"/>
+  <property name="module.jdk.classpath.join" value="jdk.classpath.1.8"/>
+  
+  <property name="compiler.args.join" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="join.output.dir" value="${module.join.basedir}/out/production/join"/>
+  <property name="join.testoutput.dir" value="${module.join.basedir}/out/test/join"/>
+  
+  <path id="join.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="join.module.production.classpath">
+    <path refid="${module.jdk.classpath.join}"/>
+  </path>
+  
+  <path id="join.runtime.production.module.classpath">
+    <pathelement location="${join.output.dir}"/>
+  </path>
+  
+  <path id="join.module.classpath">
+    <path refid="${module.jdk.classpath.join}"/>
+    <pathelement location="${join.output.dir}"/>
+  </path>
+  
+  <path id="join.runtime.module.classpath">
+    <pathelement location="${join.testoutput.dir}"/>
+    <pathelement location="${join.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.join">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.join">
+    <patternset refid="excluded.from.module.join"/>
+  </patternset>
+  
+  
+  <target name="compile.module.join" depends="compile.module.join.production,compile.module.join.tests" description="Compile module join"/>
+  
+  <target name="compile.module.join.production" depends="register.custom.compilers" description="Compile module join; production classes"/>
+  
+  <target name="compile.module.join.tests" depends="register.custom.compilers,compile.module.join.production" description="compile module join; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.join" description="cleanup module">
+    <delete dir="${join.output.dir}"/>
+    <delete dir="${join.testoutput.dir}"/>
+  </target>
+</project>
