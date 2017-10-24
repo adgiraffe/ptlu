@@ -5,6 +5,8 @@
  *
  * Copyright (C) 2013 alvarotrigo.com - A project by Alvaro Trigo
  */
+
+
 (function( root, window, document, factory, undefined ) {
     if( typeof define === 'function' && define.amd ) {
         // AMD. Register as an anonymous module.
@@ -92,6 +94,8 @@
     var activeAnimation;
     var originals;
     var container;
+    var curVal=0;
+
 
     //easeInOutCubic animation included in the plugin
     Math.easeInOutCubic = function (t, b, c, d) {
@@ -157,7 +161,9 @@
     function init(callback){
         removeClass(container, DESTROYED); //in case it was destroyed before initilizing it again
         displayWarnings();
-
+        if(isTouchDevice){
+            createUpDownNav();
+        }
         //if css3 is not supported, it will use jQuery animations
         if(options.css3){
             options.css3 = support3d();
@@ -281,6 +287,7 @@
 
         var activeSlide = $(SLIDE_ACTIVE_SEL, activeSection);
         var activeSectionIndex = getNodeIndex($(SECTION_ACTIVE_SEL));
+        console.log("활성화 페이지",activeSectionIndex);
 
         //the active section isn't the first one? Is not the first slide of the first section? Then we load that section/slide by default.
         if( activeSlide &&  (activeSectionIndex !==0 || (activeSectionIndex === 0 &&  getNodeIndex(activeSlide) !== 0))){
@@ -289,8 +296,6 @@
 
         //vertical centered of the navigation + first bullet active
         if(options.navigation){
-            console.log("afterRommReady nav:");
-            console.log(nav)
             setCss(nav, 'margin-top', '-' + (nav.offsetHeight/2) + 'px');
             var activeLi = $$('li', nav)[getNodeIndex($(SECTION_ACTIVE_SEL))];
             addClass( $('a', activeLi), ACTIVE);
@@ -331,7 +336,6 @@
 
         //setting the class for the body element
         setBodyClass();
-        console.log("activeectionIndex",activeSectionIndex);
         //support for IE > 8
         addHandler(document, scrollToAnchor, 'DOMContentLoaded', 'DOMContentLoaded', 'DOMContentLoaded');
     }
@@ -382,7 +386,6 @@
 
     function $(selector, context){
         context = context || document;
-        console.log(context);
         return context.querySelector(selector);
     }
 
@@ -392,13 +395,16 @@
     }
 
     function getNodeIndex(node) {
+        // console.log("getNodeIndex",node);
         var index = 0;
         while ( (node = node.previousSibling) ) {
+            console.log('previous node',node.previousSibling);
             if (node.nodeType != 3 || !/^\s*$/.test(node.data)) {
+                // console.log('노드타입',node.nodeType);
+                // console.log('노드데이터',node.data);
                 index++;
             }
         }
-
 
         return index;
     }
@@ -495,7 +501,6 @@
      */
     function scrollTo(element, to, duration, callback) {
         //scrollTo 작동
-        console.log("scrollTo 작동");
         var start = getScrolledPosition(element);
         var change = to - start;
         var currentTime = 0;
@@ -788,8 +793,8 @@
 
 
         var activeSection = $(SECTION_ACTIVE_SEL);
-
         //isn't it the first section?
+
         if(getNodeIndex(activeSection)){
             //adjusting the position for the current section
             silentScroll(activeSection.offsetTop);
@@ -813,8 +818,8 @@
         var slides = $(SLIDES_WRAPPER_SEL, section);
 
         if(options.controlArrowColor != '#fff'){
-            //setCss(next, 'border-color', 'transparent transparent transparent '+options.controlArrowColor);
-            //setCss(prev, 'border-color', 'transparent '+ options.controlArrowColor + ' transparent transparent');
+            setCss(next, 'border-color', 'transparent transparent transparent '+options.controlArrowColor);
+            setCss(prev, 'border-color', 'transparent '+ options.controlArrowColor + ' transparent transparent');
         }
 
         slides.parentNode.appendChild(prev);
@@ -871,18 +876,17 @@
         //creating the event listener
         var links = $$(SLIDES_NAV_LINK_SEL);
 
-        console.log("links :");
-        console.log(links);
-        // for(var l = 0; l<links.length; l++){
-        //     console.log(links[l]);
-        //     addListenerMulti(links[l], 'click onclick touchstart', function(e){
-        //         e = window.event || e || e.originalEvent;
-        //         preventDefault(e);
-        //         var index = getNodeIndex(this.parentNode);
-        //         console.log("for문 index="+index);
-        //         scrollPage($$(SECTION_SEL)[index], null, false);
-        //     });
-        // }
+
+        for(var l = 0; l<links.length; l++){
+            console.log(links[l]);
+            addListenerMulti(links[l], 'click onclick touchstart', function(e){
+                e = window.event || e || e.originalEvent;
+                preventDefault(e);
+                var index = getNodeIndex(this.parentNode);
+                console.log("for문 index="+index);
+                scrollPage($$(SECTION_SEL)[index], null, false);
+            });
+        }
 
     }
 
@@ -908,6 +912,8 @@
         if(!options.autoScrolling || options.scrollBar){
             var currentScroll = getScrollTop();
             var visibleSectionIndex = 0;
+
+
             var initial = Math.abs(currentScroll - $$(SECTION_SEL)[0].offsetTop);
 
             //taking the section which is showing more content in the viewport
@@ -1068,10 +1074,10 @@
      * As IE >= 10 fires both touch and mouse events when using a mouse in a touchscreen
      * this way we make sure that is really a touch event what IE is detecting.
      */
-    function isReallyTouch(e){
-        //if is not IE   ||  IE is detecting `touch` or `pen`
-        return typeof e.pointerType === 'undefined' || e.pointerType != 'mouse';
-    }
+        function isReallyTouch(e){
+            //if is not IE   ||  IE is detecting `touch` or `pen`
+            return typeof e.pointerType === 'undefined' || e.pointerType != 'mouse';
+        }
 
     /**
      * Handler for the touch start event.
@@ -1231,7 +1237,6 @@
      */
     function scrollPage(element, callback, isMovementUp){
 
-        console.log("스크롤페이지 진입");
         if(element === null){ return; } //there's no element to scroll, leaving the function
         //local variables
         var v = {
@@ -1274,6 +1279,15 @@
 
         //callback (onLeave) if the site is not just resizing and readjusting the slides
         isFunction(options.onLeave) && !v.localIsResizing && options.onLeave.call(v.activeSection, v.leavingSection, (v.sectionIndex + 1), v.yMovement);
+
+        curVal=v.sectionIndex;
+
+
+        if (isTouchDevice){
+            console.log('모바일');
+            findActiveIndex(v);
+
+        }
 
 
         performMovement(v);
@@ -1659,8 +1673,6 @@
      */
     function activateNavDots(name, sectionIndex){
         if(options.navigation){
-            console.log("선택 된 nav는");
-            console.log(nav);
             removeClass( $(ACTIVE_SEL, nav), ACTIVE);
 
             if(name){
@@ -2204,6 +2216,12 @@
      */
     function showError(type, text){
         console && console[type] && console[type]('fullPage: ' + text);
+    }
+
+
+    function returnIndex() {
+        var num=curVal;
+        return num;
     }
 
     //API

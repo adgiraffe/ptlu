@@ -1,0 +1,367 @@
+@media screen and (min-width:410px ) and (max-width: 420px) {
+    .section{
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        position: relative;
+        display: table;
+        table-layout: fixed;
+
+    }
+
+
+    #section01{
+        position: relative;
+    }
+
+    #section02{
+        position: relative;
+    }
+
+    #section03{
+        position: relative;
+    }
+
+    #section04{
+        position: relative;
+        /*background:#F33;*/
+    }
+
+    #section05{
+        position: relative;
+        /*background:#FC0;*/
+    }
+
+    .container{
+        width: 100%;
+        height: 100%;
+        position:relative;
+        border: 0;
+    }
+
+    .background{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+    .bgInner{
+        /*background: url(http://www.kakao.com/kakaopay/wp-content/uploads/2016/09/samuel-zeller-74718_tiny.jpg);*/
+        /*background: url(../../../../images/bgImg/trumpet.jpg);*/
+        background-position-x: 50%;
+        background-position-y: 50%;
+        background-repeat-x: no-repeat;
+        background-repeat-y:no-repeat;
+        background-size: cover;
+        position: absolute;
+        display: block;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .async-blurred {
+        -webkit-filter: blur(10px);
+        -moz-filter: blur(10px);
+        -ms-filter: blur(10px);
+        filter: blur(10px);
+        -webkit-transition: -webkit-filter 0.3s ease-out;
+        -moz-transition: -moz-filter 0.3s ease-out;
+        -o-transition: filter 0.3s ease-out;
+        transition: -webkit-filter 0.3s ease-out,-moz-filter 0.3s ease-out,-o-filter 0.3s ease-out,filter 0.3s ease-out;
+    }
+    .async-blurred.async-done {
+        -webkit-filter: blur(0px);
+        -moz-filter: blur(0px);
+        -ms-filter: blur(0px);
+        filter: blur(0px);
+    }
+
+
+    .bgOverlay{
+        /*background-color: black;*/
+        /*background-color: white;*/
+        /*opacity: 0.35;*/
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 100%;
+    }
+
+    .outer{
+        display: table;
+        width: 100%;
+        height: 100%;
+    }
+
+    .inner{
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .centered{
+        position:relative;
+        display: inline-block;
+        /*width: 50%;*/
+        padding: 1em;
+        color:white;
+        /*color:#2a48aa;*/
+    }
+
+    .headSpan{
+        font-size: 15px;
+        display: block;
+        text-align: center;
+        position:relative;
+        opacity: 1;
+    }
+
+    .empty{
+        display:none;
+        position: relative;
+        /*margin-top: 0px; !important;*/
+        padding-top:20px;
+    }
+
+    .btn-circle{
+        display: none;
+        font-size: 15px;
+        letter-spacing: -0.02em;
+        border: none;
+        border-radius: 10em;
+        /*color:#2a48aa;*/
+        color:black;
+        outline-style: none;
+        background-color:#ffc700;
+        /*background-color:#fb430f;*/
+        padding-top: 13px;
+        padding-bottom: 13px;
+        padding-left: 30px;
+        padding-right: 30px;
+        text-align: center;
+    }
+
+    .spanBlock{
+        float: left;
+        position: relative;
+        display: block;
+    }
+
+    .clear{
+        float: none;
+    }
+
+    .titleH1{
+        margin-bottom: 15px;
+        font-size: 39px;
+        letter-spacing: -3px;
+    }
+
+    .titleH2{
+        font-size: 20px;
+    }
+
+    .titleH3{
+        letter-spacing: -1px;
+        font-size: 22px;
+    }
+
+    .titleH4{
+        font-size: 13px;
+    }
+
+    .titleH5{
+        font-size: 8px;
+    }
+
+    .aniDiv{
+        opacity: 0;
+    }
+
+    .divBtoU{
+        animation-name: anim_btt;
+        backface-visibility: hidden;
+        animation-duration: 2s;
+        /*animation-delay: 2s;*/
+        -webkit-font-smoothing:antialiased;
+        perspective: 1000px;
+        backface-visibility: hidden;
+        opacity: 1;
+    }
+
+
+
+
+    .divBtoUdelay{
+        opacity: 0;
+        animation-name: anim_btt;
+        backface-visibility: hidden;
+        animation-duration: 0.6s;
+        -webkit-font-smoothing:antialiased;
+        perspective: 1000px;
+        backface-visibility: hidden;
+    }
+
+
+
+    .divAlphaIn{
+        opacity: 1;
+        animation-duration: 1.6s;
+        animation-name: alpha-in;
+        backface-visibility: hidden;
+    }
+
+    .textDiv{
+        /*margin-bottom: 30px;*/
+        display: inherit;
+        vertical-align: middle;
+        width: 100%;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .circleImg.left{
+        display: inline-flex;
+        vertical-align: middle;
+        width: 80%;
+        margin-bottom: 30px;
+
+    }
+
+    .circleImg.right{
+        position: relative;
+        display: inline-flex;
+        vertical-align: middle;
+        width: 100%;
+        padding-left: 30px;
+        padding-right: 30px;
+        /*top: 30px;*/
+    }
+
+    .circleImg > img
+    {
+        border-radius:200px;
+        width: 100%;
+        border: 3px solid #fb430f;
+
+    }
+
+
+    .circleImg > img
+    {
+        border-radius:200px;
+        width: 100%;
+        border: 3px solid #fb430f;
+
+    }
+
+
+    iframe.fSize{
+        width: 100%;
+        /*height: 171px;*/
+    }
+
+    video {
+        position: fixed;
+        top: 0;
+        left: 0;
+        /*min-width: 100%;*/
+        /*min-height: 100%;*/
+        /*width: auto;*/
+        /*height: auto;*/
+        width: 100%;
+        z-index: -1;
+    }
+
+    .mainContent{
+        font-size: 28px; !important;
+        /*font-family: 'KoPub Batang', serif;*/
+        font-family: 'Nanum Barun Gothic', sans-serif;
+        font-weight: bold;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+
+    .titleBold{
+        font-size: 50px;
+        font-weight: bold;
+    }
+
+    .titleSmall{
+        font-size: 50px;
+        font-weight: 200
+    }
+
+
+    .mainHead.small {
+        padding-top: 40px;
+        font-size: 25px;
+    }
+
+    .textDiv-inner-right {
+        width: 100%;
+        display: inline-block;
+    }
+
+    .headDiv{
+        padding-bottom: 30px;
+    }
+
+    .thumbnail {
+        width: 100%;
+        filter: blur(0px);
+        /* margin: -10px -10px -10px -10px; */
+        /* transition: filter 0.6s; */
+    }
+
+    .thumbnail-div {
+        /* width: 1080px; */
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .headSpan.left{
+        font-size: 18px;
+        display: none;
+    }
+
+
+
+    .interviewHead {
+        display: inline-block;
+        text-align: left;
+        position: relative;
+        padding-bottom: 10px;
+    }
+
+    .interview-title {
+        display: inline-block;
+        text-align: left;
+        position: relative;
+        padding-bottom: 10px;
+    }
+
+    #phone{
+        position: fixed;
+        z-index: 1;
+        /* display: block; */
+        top: 5%;
+        left: 12%;
+        color: #ffc61c;
+        display: block;
+        font-family: 'Nanum Barun Gothic', sans-serif;
+        font-weight: bold;
+    }
+
+    #phone a:link{
+        color: #ffc61c;
+        text-decoration: none;
+    }
+
+    .headSpan{
+        display: none;
+    }
+}

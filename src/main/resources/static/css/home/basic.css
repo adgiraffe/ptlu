@@ -1,5 +1,6 @@
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css);
 @import url(//fonts.googleapis.com/earlyaccess/kopubbatang.css);
+@import url(https://cdn.rawgit.com/openhiun/hangul/14c0f6faa2941116bb53001d6a7dcd5e82300c3f/nanumbarungothic.css);
 
 * {
     -webkit-box-sizing: border-box;
@@ -20,7 +21,7 @@ html{
     padding: 0;
     width: 100%;
     height: 100%;
-    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
+    /*font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';*/
 }
 
 body {
@@ -36,7 +37,7 @@ body {
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
     font-weight: 400;
-    font-family: Spoqa Han Sans;
+    /*font-family: Spoqa Han Sans;*/
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
 
 }

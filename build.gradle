@@ -119,17 +119,17 @@ dependencies {
 
 
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
+
+
+
+
+
+
+
+
+
+
 //buildscript {
 //	ext {
 //		springBootVersion = '1.5.7.RELEASE'
@@ -195,6 +195,5 @@ dependencies {
 //
 //    compile 'org.imgscalr:imgscalr-lib:4.2'
 //    runtime('mysql:mysql-connector-java')
-//
 //
 //}

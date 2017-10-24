@@ -1,184 +1,201 @@
-.menuHeader{
-    width: 100%;
-    display: block;
-    position: fixed;
-    opacity: 1;
-    overflow: hidden;
-    background-color: #333b46;
-    -webkit-transition: all 0.4s ease;
-    -moz-transition: all 0.4s ease;
-    -o-transition: all 0.4s ease;
-    transition: all 0.4s ease;
-    height: 45px;
-    z-index: 1;
+@media screen and (max-width: 1090px) {
+    .menuHeader {
+        font-family: 'Nanum Barun Gothic', sans-serif;
+        width: 100%;
+        display: block;
+        position: fixed;
+        opacity: 1;
+        overflow: hidden;
+        /*background-color: white;*/
+        -webkit-transition: all 0.4s ease;
+        -moz-transition: all 0.4s ease;
+        -o-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+        height: 45px;
+        z-index: 1;
+    }
+
+
+
+    .menuLi {
+        background: ghostwhite;
+        opacity: 0.6;
+        color: black;
+        text-align: left;
+        list-style: none;
+        display: block;
+        padding: 10px 10%;
+        line-height: 1;
+        font-size: 1.1rem;
+        /*text-align: left;*/
+        /*color: #fff;*/
+        font-weight: bold;
+        border-top: 1px solid #565c64;
+    }
+
+    .menuNav a {
+        color: #fff;
+        /*float: left;*/
+        display: block;
+        /*color: #f2f2f2;*/
+        text-align: center;
+        /*padding: 14px 16px;*/
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+    .menuNav a:hover {
+        background-color: #ffc61c;
+        text-decoration: none;
+        color: black;
+    }
+
+    .menuNav .icon {
+        display: none;
+    }
+
+    .brandDiv {
+        /*height: 40px;*/
+        color: white;
+        background: oldlace;
+        font-size: 18px;
+        text-align: left;
+        padding-left: 10%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .sendPhone{
+        left: 8%;
+        font-size: medium;
+        position: relative;
+        display: inline-block;
+
+    }
+
+    .menuTitle {
+        vertical-align: middle;
+        display: inline;
+        font-size: 20px;
+        /*color: white;*/
+        vertical-align: middle;
+        /*height: 200px;*/
+        font-weight: bold;
+
+    }
+
+    .logoImg {
+        width: 10%;
+        display: none;
+        vertical-align: middle;
+    }
+
+
+
+    .brandDiv a:link {
+        color: black;
+        text-decoration: none;
+    }
+
+    .brandDiv a:visited {
+        color: black;
+        text-decoration: none;
+    }
+
+    .brandDiv a:hover {
+        /*color: blue;*/
+        text-decoration: none;
+    }
+
+    .icon {
+        /*cursor: pointer;*/
+        float: right;
+        width: 90px;
+        position: relative;
+
+        height: 20px;
+    }
+
+    .icon div {
+        position: absolute;
+
+        left: 50%;
+        top: 50%;
+
+        width: 18px;
+        height: 2px;
+
+        background: black;
+
+        /*display: block;*/
+        z-index: 999;
+        /*-webkit-transform: translateX(-50%) translateY(-6px);*/
+        /*transform: translateX(-50%) translateY(-6px);*/
+    }
+
+    .icon div:before {
+        top: -6px;
+
+        content: "";
+        position: absolute;
+
+        width: 18px;
+        height: 2px;
+
+        background: black;
+
+        -webkit-transition: all 0.4s ease;
+        -moz-transition: all 0.4s ease;
+        -o-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+    }
+
+    .icon div:after {
+        top: 6px;
+        content: "";
+        position: absolute;
+
+        width: 18px;
+        height: 2px;
+        -webkit-transition: all 0.4s ease;
+        -moz-transition: all 0.4s ease;
+        -o-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+        background: black;
+
+    }
+
+    .icon div.open {
+        background: none;
+    }
+
+    .icon div.open:before {
+        top: 0px;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+    }
+
+    .icon div.open:after {
+        top: 0px;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+    .siteMenu {
+        /*width: 17px;*/
+        /*height: 17px;*/
+        /*position: absolute;*/
+        top: 58px;
+        left: 0;
+        width: 100%;
+        display: inline;
+
+        margin-bottom: 0px;
+        padding-left: 0px;
+        margin-top: 0px;
+    }
+
+    .siteMenu > ul {
+        display: block;
+    }
 }
-
-.menuUl{
-    list-style: none;
-}
-
-.menuLi {
-    display: block;
-    padding: 10px 10%;
-    line-height: 1;
-    font-size: 1.1rem;
-    /*text-align: left;*/
-    color: #fff;
-    font-weight: bold;
-    border-top: 1px solid #565c64;
-}
-
-
-.menuNav a {
-    /*float: left;*/
-    display: block;
-    /*color: #f2f2f2;*/
-    text-align: center;
-    /*padding: 14px 16px;*/
-    text-decoration: none;
-    font-size: 17px;
-}
-
-.menuNav a:hover {
-    background-color: #ffc61c;
-    color: black;
-}
-
-.menuNav .icon {
-    display: none;
-}
-
-
-.brandDiv{
-    /*height: 40px;*/
-    color: white;
-
-    font-size: 18px;
-    text-align: left;
-    padding-left: 10%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
-
-.menuTitle{
-    display: inline;
-    font-size: 22px;
-    color: white;
-    vertical-align: middle;
-    height: 200px;
-
-}
-
-.logoImg{
-    width: 10%;
-    vertical-align: middle;
-}
-
-a:link { color: red; text-decoration: none;}
-a:visited { color: black; text-decoration: none;}
-a:hover { color: blue; text-decoration: underline;}
-
-
-
-.icon {
-    /*cursor: pointer;*/
-    float: right;
-    width: 61px;
-    position: relative;
-
-    height: 20px;
-}
-
-.icon div{
-    position: absolute;
-
-    left: 50%;
-    top: 50%;
-
-    width: 18px;
-    height: 2px;
-
-    background: #fff;
-
-    /*display: block;*/
-    z-index: 999;
-    /*-webkit-transform: translateX(-50%) translateY(-6px);*/
-    /*transform: translateX(-50%) translateY(-6px);*/
-}
-
-.icon div:before {
-    top:-6px;
-
-    content:"";
-    position:absolute;
-
-
-    width: 18px;
-    height: 2px;
-
-    background: #fff;
-
-
-    -webkit-transition: all 0.4s ease;
-    -moz-transition: all 0.4s ease;
-    -o-transition: all 0.4s ease;
-    transition: all 0.4s ease;
-}
-
-
-.icon div:after {
-    top:6px;
-    content:"";
-    position:absolute;
-
-    width: 18px;
-    height: 2px;
-    -webkit-transition: all 0.4s ease;
-    -moz-transition: all 0.4s ease;
-    -o-transition: all 0.4s ease;
-    transition: all 0.4s ease;
-    background: #fff;
-
-}
-
-
-
-.icon div.open{
-    background: none;
-}
-
-.icon div.open:before{
-    top:0px;
-    -webkit-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-}
-.icon div.open:after{
-    top:0px;
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-}
-
-
-
-
-
-
-.siteMenu{
-    /*width: 17px;*/
-    /*height: 17px;*/
-    /*position: absolute;*/
-    top: 58px;
-    left: 0;
-    width: 100%;
-    display: inline;
-
-    margin-bottom: 0px;
-    padding-left: 0px;
-    margin-top: 0px;
-}
-
-.siteMenu> ul{
-    display: block;
-}
-

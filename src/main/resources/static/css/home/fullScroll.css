@@ -72,7 +72,7 @@ html.enabled,
     border-style: solid;
     margin-top: -38px;
 }
-.controlArrow.fp-prev {
+.controlArrow.prev {
     left: 15px;
     width: 0;
     border-width: 38.5px 34px 38.5px 0;

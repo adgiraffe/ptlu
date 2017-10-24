@@ -2,11 +2,11 @@
 var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playbook|silk|BlackBerry|BB10|Windows Phone|Tizen|Bada|webOS|IEMobile|Opera Mini)/);
 
 var branding={
-    logoLink:"../../../../images/logo/logo.png",
-    menuName:['페이지1','페이지2','페이지3','페이지4','페이지5'],
-    menuLink:['http://ozzznet.cafe24.com/#firstPage','http://ozzznet.cafe24.com/#secondPage','http://ozzznet.cafe24.com/#3rdPage','http://ozzznet.cafe24.com/#4thpage','http://ozzznet.cafe24.com/#lastPage'],
-    localHost:'http://ozzznet.cafe24.com',
-    menuCount:5,
+    logoLink:"../../../../images/logo/logo1.png",
+    menuName:['홈','변영주 감독 인터뷰','왜 공공운수노조인가?','페이지4','페이지5','페이지6'],
+    menuLink:['http://so-kptu.net/#firstPage','http://so-kptu.net/#secondPage','http://so-kptu.net/#3rdPage','http://so-kptu.net/#4thpage','http://so-kptu.net/#lastPage'],
+    localHost:'http://so-kptu.net',
+    menuCount:3,
     originHeaderHeight:0,
     tansHeaderHeight:0,
 }
@@ -18,11 +18,27 @@ var aAttr={
 
 
 if(isTouchDevice){
+    console.log(isTouchDevice)
+    var video=document.querySelector('.video');
+    console.log(video);
+    var source=document.createElement('source');
+    source.setAttribute('src','../../video/verticalMain.m4v');
+    source.setAttribute('class','video-bg-vertical');
+    video.appendChild(source);
+    // createMobileMenu();
+    // iniMenuHeight();
+    // openEvent();
 
-createMobileMenu();
-iniMenuHeight();
-openEvent();
+}
 
+else {
+    var video=document.querySelector('.video');
+    console.log(video);
+    var source=document.createElement('source');
+    source.setAttribute('src','../../video/homepage.m4v');
+    source.setAttribute('class','video-bg-horizon')
+    video.appendChild(source);
+    createDeskTopMenu();
 }
 
 
@@ -40,11 +56,8 @@ function createMobileMenu() {
     var bodyArr=document.getElementsByTagName('body');
     var body=bodyArr[0];
     var firstChild=next(body.firstChild);
-
-
     var header=document.createElement("header");
     header.className='menuHeader';
-
     createBasicMenu(header);
     body.insertBefore(header,firstChild);
 
@@ -52,11 +65,35 @@ function createMobileMenu() {
 }
 
 
-function createBasicMenu(parent) {
+function createDeskTopMenu() {
 
+    var bodyArr=document.getElementsByTagName('body');
+    var body=bodyArr[0];
+    var firstChild=next(body.firstChild);
+
+
+    var header=document.createElement("header");
+    header.className='menuHeader';
+
+    createDeskTopBasicMenu(header)
+    body.insertBefore(header,firstChild);
+
+
+}
+function createDeskTopBasicMenu(parent) {
     createBrandDiv(parent);
     createMenuListDiv(parent);
 }
+
+
+
+
+function createBasicMenu(parent) {
+    createBrandDiv(parent);
+    createMenuListDiv(parent);
+}
+
+
 
 
 function createBrandDiv(parent) {
@@ -65,7 +102,14 @@ function createBrandDiv(parent) {
 
     var titleDiv=document.createElement('div');
     titleDiv.className="menuTitle";
-    titleDiv.innerHTML='공공운수노조';
+    titleDiv.innerHTML='그러니까, 공공운수';
+
+    var phone=document.createElement('div');
+    phone.className='sendPhone';
+    phone.innerHTML='&#9742 상담전화'
+    var aPhone=document.createElement('a');
+    aPhone.appendChild(phone);
+    aPhone.setAttribute('href','tel:1661-5557');
 
 
     var a=createAtagLink(branding.localHost);
@@ -75,12 +119,12 @@ function createBrandDiv(parent) {
 
     parent.appendChild(brandDiv);
     brandDiv.appendChild(a);
+    brandDiv.appendChild(aPhone);
     brandDiv.appendChild(icon);
     a.appendChild(logo);
     a.appendChild(titleDiv);
-
-
 }
+
 
 function createMenuListDiv(parent) {
 

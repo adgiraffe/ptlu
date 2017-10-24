@@ -1,4 +1,4 @@
-@media screen and (max-width: 360px) {
+@media screen and (min-width: 355px) and (max-width: 365px) {
     .section{
         width: 100%;
         height: 100%;
@@ -13,9 +13,6 @@
 
     #section01{
         position: relative;
-
-
-
     }
 
     #section02{
@@ -52,7 +49,7 @@
     }
     .bgInner{
         /*background: url(http://www.kakao.com/kakaopay/wp-content/uploads/2016/09/samuel-zeller-74718_tiny.jpg);*/
-        background: url(../../../../images/bgImg/trumpet.jpg);
+        /*background: url(../../../../images/bgImg/trumpet.jpg);*/
         background-position-x: 50%;
         background-position-y: 50%;
         background-repeat-x: no-repeat;
@@ -115,12 +112,39 @@
         /*color:#2a48aa;*/
     }
 
-    .headSpan{
+    .headSpan.left{
+        line-height: 19.6px;
+        font-size: 15px;
+        display: block;
+        /*text-align: center;*/
+        position:relative;
+        opacity: 1;
+    }
+
+    .headSpan.right{
+        line-height: 19.6px;
         font-size: 15px;
         display: block;
         text-align: center;
         position:relative;
         opacity: 1;
+    }
+
+
+    .headDiv{
+        padding-bottom: 30px;
+    }
+
+    .left.titleH1{
+        font-family: 'KoPub Batang', serif;
+        margin-bottom: 30px;
+        font-size: 30px;
+    }
+
+    .right.titleH1{
+        font-family: 'KoPub Batang', serif;
+        margin-bottom: 30px;
+        font-size: 30px;
     }
 
     .empty{
@@ -159,8 +183,9 @@
     }
 
     .titleH1{
-        margin-bottom: 15px;
-        font-size: 30px;
+        /*margin-bottom: 5px;*/
+        font-size: 35px;
+        letter-spacing: -3px;
     }
 
     .titleH2{
@@ -168,7 +193,8 @@
     }
 
     .titleH3{
-        font-size: 22px;
+        font-size: 20px;
+        letter-spacing: -1px;
     }
 
     .titleH4{
@@ -220,29 +246,43 @@
         margin-bottom: 30px;
         display: inherit;
         vertical-align: middle;
-        width: 90%;
+        width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .row-space-right {
+        /* padding-top: 1em; */
+        display: none;
+        /* width: 50%; */
+    }
+
+    .textDiv-inner-right {
+        width: 100%;
+        display: inline-block;
+    }
+
+    .under-line {
+        padding-top: 10px;
     }
 
     .circleImg.left{
+        position: relative;
         display: inline-flex;
         vertical-align: middle;
-        width: 80%;
+        width: 100%;
         margin-bottom: 30px;
 
     }
 
     .circleImg.right{
+        position: relative;
         display: inline-flex;
         vertical-align: middle;
-        width: 80%;
-    }
-
-    .circleImg > img
-    {
-        border-radius:200px;
         width: 100%;
-        border: 3px solid #fb430f;
-
+        padding-left: 15px;
+        padding-right: 15px;
+        top:20px;
     }
 
     .circleImg > img
@@ -256,21 +296,83 @@
 
     iframe.fSize{
         width: 100%;
-        height: 147px;
+        height: 100%;
     }
 
 
+    #nav.right {
+        right: 0px;
+    }
+    #nav.left {
+        left: 17px;
+    }
 
 
+    .mainContentBg{
+        width: 100%;
+        height: 100%;
 
-    #survey{
+    }
+
+    .bgOverlaySmall{
+        background-color: #ffc700;
+        /*background-color: white;*/
+        opacity: 0.35;
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 100%;
+    }
+
+
+    .mainContent{
+        font-size: 28px; !important;
+        /*font-family: 'KoPub Batang', serif;*/
+        font-family: 'Nanum Barun Gothic', sans-serif;
+        font-weight: bold;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    video {
         position: fixed;
-        z-index: 100;
-        margin-top: -32px;
-        top: 97%;
-        opacity: 1;
-        right: 37%;
-        text-align: center;
-        width: 100px;
+        top: 0;
+        left: 0;
+        /*min-width: 100%;*/
+        /*min-height: 100%;*/
+        /*width: auto;*/
+        /*height: auto;*/
+        width: 100%;
+        z-index: -1;
+    }
+
+    .thumbnail-div {
+        /* width: 1080px; */
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .thumbnail {
+        width: 100%;
+        filter: blur(0px);
+        /* margin: -10px -10px -10px -10px; */
+        /* transition: filter 0.6s; */
+    }
+
+
+    .titleBold{
+        font-size: 50px;
+        font-weight: bold;
+    }
+
+    .titleSmall{
+        font-size: 50px;
+        font-weight: 200
+    }
+
+
+    .mainHead.small {
+        padding-top: 40px;
+        font-size: 25px;
     }
 }

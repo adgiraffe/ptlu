@@ -55,6 +55,7 @@ function chzBackgroundColor(ele) {
 
     ele.style.backgroundColor=color;
     color="#";
+
 }
 
 

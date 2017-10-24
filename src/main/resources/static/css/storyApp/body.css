@@ -1,0 +1,15 @@
+html,body{
+    height: 100%;
+    overflow: hidden;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+}
+
+.wrap{
+    height: 100%;
+}
+.basic{
+    height: 100%;
+}

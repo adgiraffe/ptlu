@@ -1,4 +1,4 @@
-@media screen and (max-width: 480px) {
+@media screen and (min-width: 370px) and (max-width: 380px) {
     .section{
         width: 100%;
         height: 100%;
@@ -13,29 +13,26 @@
 
     #section01{
         position: relative;
-
-
-
     }
 
     #section02{
         position: relative;
-        background:#6FF;
+        /*background:#6FF;*/
     }
 
     #section03{
         position: relative;
-        background:#9F0;
+        /*background:#9F0;*/
     }
 
     #section04{
         position: relative;
-        background:#F33;
+        /*background:#F33;*/
     }
 
     #section05{
         position: relative;
-        background:#FC0;
+        /*background:#FC0;*/
     }
 
     .container{
@@ -118,10 +115,11 @@
     .headSpan.left{
         line-height: 19.6px;
         font-size: 15px;
-        display: block;
-        text-align: center;
+        display: none;
+        /*text-align: center;*/
         position:relative;
         opacity: 1;
+        padding-bottom: 5px;
     }
 
     .headSpan.right{
@@ -134,11 +132,15 @@
     }
 
 
+    .headDiv{
+        padding-bottom: 30px;
+    }
 
     .left.titleH1{
         font-family: 'KoPub Batang', serif;
         margin-bottom: 30px;
         font-size: 30px;
+
     }
 
     .right.titleH1{
@@ -183,8 +185,10 @@
     }
 
     .titleH1{
-        margin-bottom: 15px;
+        /*margin-bottom: 5px;*/
+
         font-size: 30px;
+        letter-spacing: -2px;
     }
 
     .titleH2{
@@ -192,7 +196,9 @@
     }
 
     .titleH3{
-        font-size: 22px;
+        font-family: 'Nanum Barun Gothic', sans-serif;
+        font-size: 21px;
+        letter-spacing: -1px;
     }
 
     .titleH4{
@@ -241,26 +247,47 @@
     }
 
     .textDiv{
-        margin-bottom: 30px;
+        /*margin-bottom: 30px;*/
         display: inherit;
         vertical-align: middle;
-        width: 90%;
+        width: 100%;
+        padding-left: 30px;
+        padding-right: 30px;
     }
 
+    .row-space-right {
+        /* padding-top: 1em; */
+        display: none;
+        /* width: 50%; */
+    }
 
+    .textDiv-inner-right {
+        width: 100%;
+        display: inline-block;
+    }
+
+    .under-line {
+        padding-top: 10px;
+    }
 
     .circleImg.left{
+        position: relative;
         display: inline-flex;
         vertical-align: middle;
-        width: 80%;
+        width: 100%;
         margin-bottom: 30px;
 
     }
 
     .circleImg.right{
-        display: inline-flex;
+        position: relative;
+        /*display: inline-flex;*/
+        display: inline-block;
         vertical-align: middle;
-        width: 80%;
+        width: 100%;
+        padding-left: 30px;
+        padding-right: 30px;
+        /*top:30px;*/
     }
 
     .circleImg > img
@@ -274,22 +301,9 @@
 
     iframe.fSize{
         width: 100%;
-        height: 116px;
-    }
-
-
-
-
-
-    #survey{
-        position: fixed;
-        z-index: 100;
-        margin-top: -32px;
-        top: 97%;
-        opacity: 1;
-        right: 37%;
-        text-align: center;
-        width: 100px;
+        /*height: 100%;*/
+        /*width: 280px;*/
+        /*height: 100%;*/
     }
 
 
@@ -318,10 +332,94 @@
 
 
     .mainContent{
-        writing-mode:tb-rl;
-        font-size: 28px;
-        font-family: 'KoPub Batang', serif;
+        /*font-size: 28px; !important;*/
+        /*font-family: 'KoPub Batang', serif;*/
+        font-family: 'Nanum Barun Gothic', sans-serif;
         font-weight: bold;
+
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    video {
+        position: fixed;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        min-height: 100%;
+        /*width: auto;*/
+        /*height: auto;*/
+        width: 100%;
+        z-index: -1000;
+    }
+
+    .thumbnail-div {
+        /* width: 1080px; */
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .thumbnail {
+        width: 100%;
+         filter: blur(0px);
+        /* margin: -10px -10px -10px -10px; */
+        /* transition: filter 0.6s; */
+    }
+
+    .titleBold{
+        font-size: 50px;
+        font-weight: bold;
+    }
+
+    .titleSmall{
+        font-size: 50px;
+        font-weight: 200
+    }
+
+
+    .mainHead.small {
+        padding-top: 40px;
+        font-size: 25px;
+    }
+
+    .interviewHead {
+        display: inline-block;
+        text-align: left;
+        position: relative;
+        padding-bottom: 10px;
+    }
+
+    .interview-title {
+        display: inline-block;
+        text-align: left;
+        position: relative;
+        padding-bottom: 10px;
+    }
+
+    #phone{
+        position: fixed;
+        z-index: 1;
+        /* display: block; */
+        top: 5%;
+        left: 12%;
+        color: #ffc61c;
+        display: block;
+        font-family: 'Nanum Barun Gothic', sans-serif;
+        font-weight: bold;
+    }
+
+    #phone a:link{
+        color: #ffc61c;
+        text-decoration: none;
+    }
+
+    .headSpan{
+        display: none;
+        font-size: 20px;
+        font-family: 'KoPub Batang', serif;
+        /*font-family: 'Nanum Barun Gothic', sans-serif;*/
+        line-height: 27px;
+        letter-spacing: -0.5px;
     }
 
 

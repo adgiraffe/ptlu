@@ -1,0 +1,77 @@
+.up-down-nav{
+    position: fixed;
+    display: block;
+    /*left: 50%;*/
+    /*top: 92%*/
+}
+
+
+
+.up-arrow{
+    transition: opacity 0.5s;
+    opacity: 0;
+    position: fixed;
+    left: 50%;
+    top: 5%;
+}
+
+.up-arrow:before {
+    transform-origin: top right;
+    transform: translate(-15px, 0px) rotate(-45deg);
+    position: absolute;
+    top: 0px;
+    content: "";
+    width: 15px;
+    height: 2px;
+    background: white;
+}
+
+.up-arrow:after {
+    transform-origin: top left;
+    transform: translate(1px, 0px) rotate(45deg);
+    position: absolute;
+    top: 0px;
+    content: "";
+    width: 15px;
+    height: 2px;
+    background: white;
+}
+
+
+
+
+.down-arrow{
+    transition: opacity 0.5s;
+    position: fixed;
+    left: 50%;
+    top: 95%;
+}
+
+.down-arrow:before {
+    transform-origin: top right;
+    transform: translate(-13px, 0px) rotate(45deg);
+    position: absolute;
+    top: 0px;
+    content: "";
+    width: 15px;
+    height: 2px;
+    background: white;
+}
+
+.down-arrow:after {
+    transform-origin: top left;
+    transform: translate(0px, 0px) rotate(-45deg);
+    position: absolute;
+    top: 0px;
+    content: "";
+    width: 15px;
+    height: 2px;
+    background: white;
+}
+
+
+
+
+.up-down-arrow-up{
+    transform: rotate(90deg);
+}

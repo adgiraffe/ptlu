@@ -5,62 +5,89 @@
 
     <title>공공운수노조</title>
     <link rel="stylesheet" href="../../css/home/basic.css"/>
-    <link rel="stylesheet" href="../../css/home/section.css"/>
-    <!--<link rel="stylesheet" href="../../css/scrollBar.css"/>-->
     <link rel="stylesheet" href="../../css/home/fullScroll.css"/>
     <link rel="stylesheet" href="../../css/home/container.css"/>
     <link rel="stylesheet" href="../../css/home/onePage.css"/>
+
 
     <link rel="stylesheet" href="../../css/keyFrame/keyFrames.css"/>
 
     <link rel="stylesheet" href="../../css/home/survey.css"/>
     <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
 
-    <link rel="stylesheet" href="../../css/home/mobile/menu/moMenu.css"/>
 
-    <link rel="stylesheet" href="../../css/home/mobile/iPhone6.css"/>
-    <link rel="stylesheet" href="../../css/home/mobile/iPhone6S.css"/>
-    <link rel="stylesheet" href="../../css/home/mobile/galaxy.css"/>
+
+    <link rel="stylesheet" href="../../css/home/slider/slider.css"/>
+    <link rel="stylesheet" media="screen and (min-width:315px) and (max-width:325px)" href="../../css/home/slider/iPhone5Slider.css"/>
+    <link rel="stylesheet" media="screen and (min-width:355px) and (max-width:365px)" href="../../css/home/slider/galaxyS5Slider.css"/>
+    <link rel="stylesheet" media="screen and (min-width:360px) and (max-width:390px)" href="../../css/home/slider/iPhone6Slider.css"/>
+    <link rel="stylesheet" media="screen and (min-width: 400px) and (max-width: 416px)" href="../../css/home/slider/iPhone6PlusSlider.css"/>
+    <link rel="stylesheet" media="screen and (min-width: 100px) and (max-width: 1000px)" href="../../css/home//mobile/menu/upDownNav.css"/>
+
+
+    <link rel="stylesheet" href="../../css/home/mobile/menu/moMenu.css"/>
+    <link rel="stylesheet" href="../../css/home/mobile/menu/deskTop.css"/>
+    <link rel="stylesheet" href="../../css/home/menuBar.css"/>
+
+    <link rel="stylesheet" href="../../css/home/section.css"/>
+
+
+    <link rel="stylesheet" media="screen and (min-width: 315px) and (max-width: 325px)" href="../../css/home/mobile/iPhone5.css"/>
+    <link rel="stylesheet" media="screen and (min-width: 355px) and (max-width: 365px)" href="../../css/home/mobile/galaxy.css"/>
+    <link rel="stylesheet" media="screen and (min-width: 370px) and (max-width: 380px)" href="../../css/home/mobile/iPhone6.css"/>
+    <link rel="stylesheet" media="screen and (min-width: 410px) and (max-width: 420px)" href="../../css/home/mobile/iPhone6Plus.css"/>
+
+
 </head>
 
 <body id="total">
 <div id="page" class="wrapper">
     <div class="container" id="scrollBody">
-        <section id="section01" class="section active">
+        <section id="section00" class="section active">
+            <div th:replace="sectionPage/mainSection::mainSection"/>
+        </section>
+        <section id="section01" class="section">
             <div th:replace="sectionPage/section01::section01"/>
         </section>
-
         <section id="section02" class="section">
-            <div th:replace="sectionPage/section02::section02"/>
+            <div th:replace="sectionPage/slider/slider::sliderPage"/>
         </section>
-        <section id="section03" class="section">
-            <div th:replace="sectionPage/section03::section03"/>
-        </section>
-        <section id="section04" class="section">
-            <div th:replace="sectionPage/section04::section04"/>
-        </section>
-        <section id="section05" class="section">
-            <div th:replace="sectionPage/section05::section05"/>
-        </section>
+        <!--<section id="section02" class="section">-->
+            <!--<div th:replace="sectionPage/section02::section02"/>-->
+        <!--</section>-->
+
+        <!--<section id="section04" class="section">-->
+            <!--<div th:replace="sectionPage/section04::section04"/>-->
+        <!--</section>-->
+        <!--<section id="section05" class="section">-->
+            <!--<div th:replace="sectionPage/section05::section05"/>-->
+        <!--</section>-->
     </div>
 </div>
-<nav id="survey">
-    <div class="surveyPaper">
-        <span class="spanAni">서베이 위치</span>
-    </div>
+<!--<nav id="survey">-->
+    <!--<div class="surveyPaper">-->
+        <!--<img src="../../../../images/survey/icon.png"/>-->
+    <!--</div>-->
+<!--</nav>-->
+
+<nav id="phone">
+    <a href="tel:1661-5557">
+        <div class="moPhone">&#9742; 상담전화</div>
+    </a>
 </nav>
 
 <script src="../../js/mobile/mobile.js"/>
-
+<script src="../../js/mobile/upDownNav.js"/>
+<script src="../../js/slider/sliderPage.js"/>
 <script type="text/javascript" src="../../js/onePage/fullPage.js"/>
 <script type="text/javascript">
     fullpage.initialize('#scrollBody', {
-        anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+        anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', '5Page','lastPage'],
 //        anchors: ['1', '2', '3', '4', '5'],
         menu: '#menu',
         'navigation': true,
         'navigationPosition': 'right',
-        'navigationTooltips': ['', '', '', '',''],
+        'navigationTooltips': ['', '', '', '','',''],
         css3:true
     });
 </script>

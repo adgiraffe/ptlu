@@ -1,0 +1,209 @@
+@media screen and (min-width: 370px) and (max-width: 380px) {
+    #slider {
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .slider-header {
+        display: block;
+        padding-top: 30px;
+    }
+
+    .slider-content {
+        padding-left: 10px;
+        padding-right: 10px;
+        text-align: left    ;
+        letter-spacing: -1px;
+
+    }
+
+    .slider-contentWrap {
+        position: relative;
+        display: block;
+    }
+
+    .slider-contentWrap > ol {
+        display: block;
+        overflow: hidden;
+    }
+
+    .slider-contentWrap > ol > li {
+        float: left;
+        display: block;
+        width: 330px;
+        /*width: 3.33%;*/
+    }
+
+    .slides {
+        width: 1000%;
+        padding-left: 0px;
+        margin-bottom: 0px;
+        /*transition: all 0.0s ease;*/
+        /*transform: translate3d(0px, 0px, 0px);*/
+    }
+
+    .arrow-nav {
+        list-style: none;
+        position: absolute;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        top: 50%;
+        left: 0px;
+        right: 0px;
+        padding-left: 0px;
+        z-index: 100;
+    }
+
+    /*.arrow-nav>a>li{*/
+    /*display: inline-block;*/
+    /*position: absolute;*/
+    /*}*/
+    .li-arrow-left {
+        position: absolute;
+        display: inline-block;
+        cursor: pointer;
+        left: -10%;
+    }
+
+    .li-arrow-right {
+        position: absolute;
+        display: inline-block;
+        cursor: pointer;
+        right: -10%;
+    }
+
+    /*.left-arrow{*/
+    /*width: 30px;*/
+    /*height: 2px;*/
+    /*background: none;*/
+    /*}*/
+    .left-arrow:before {
+        transform: translate(-20px, 0px) rotate(-45deg);
+        position: absolute;
+        top: -10px;
+        content: "";
+        width: 30px;
+        height: 2px;
+        background: black;
+
+    }
+
+    .left-arrow:after {
+        transform: translate(-20px, 0px) rotate(45deg);
+        position: absolute;
+        top: 10px;
+        content: "";
+        width: 30px;
+        height: 2px;
+        background: black;
+
+    }
+
+    /*.right-arrow{*/
+    /*position: absolute;*/
+    /*width: 30px;*/
+    /*height: 2px;*/
+    /*background: none;*/
+    /*}*/
+    .right-arrow:before {
+        transform: translate(-40px, 0px) rotate(-45deg);
+        position: absolute;
+        top: 10px;
+        content: "";
+        width: 30px;
+        height: 2px;
+        background: black;
+    }
+
+    .right-arrow:after {
+        transform: translate(-40px, 0px) rotate(45deg);
+        position: absolute;
+        top: -10px;
+        content: "";
+        width: 30px;
+        height: 2px;
+        background: black;
+
+    }
+
+    .dot-nav {
+        padding-left: 0px;
+        text-align: center;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+
+    .dot-nav > li {
+        display: inline-block;
+        list-style: none;
+        margin: 0 3px;
+    }
+
+    .dot-nav > li > a.active {
+        background-color: #474747;
+        cursor: default;
+    }
+
+    .dot-nav > li > a {
+        display: block;
+        text-indent: -9999px;
+        width: 15px;
+        height: 15px;
+        border: 1px solid #474747;
+        border-radius: 100px;
+        cursor: pointer;
+    }
+
+    .spanLeft {
+        position: absolute;
+        display: inline-block;
+        width: 30px;
+        height: 40px;
+        transform: translate(-15px, -20px);
+        z-index: 10;
+    }
+
+    .spanRight {
+        position: absolute;
+        display: inline-block;
+        width: 30px;
+        height: 40px;
+        transform: translate(-40px, -20px);
+        z-index: 10;
+    }
+
+
+    .cList{
+        padding-left: 10px;
+        font-size: 15px;
+    }
+
+    .slider-content-title figure{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .slider-content-title figure>img{
+        width: 70%;
+
+    }
+
+    .slider-content-title em{
+        display:none ;
+    }
+
+    .slider-main-title{
+        margin-bottom: 0px;
+    }
+
+    .slide-main-content{
+        margin-bottom: 0px;
+    }
+
+    .slider-header p{
+        display: none;
+    }
+
+}
