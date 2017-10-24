@@ -65,18 +65,42 @@ function addBasicDiv (dataAttr){
     var direction=dataAttr;
 
     var divWrap=$('.wrap');
-    var div=document.createElement('div');
+    var basic=document.createElement('div');
 
-    div.className=('basic');
+    basic.className=('basic');
 
     var divSection=document.createElement('section');
     divSection.className="content";
-
-
+    var lrContent=document.createElement('div');
+    lrContent.className="lrContent";
     console.log("direction :"+direction);
-    divSection=addButtonDiv(divSection,direction);
-    div.appendChild(divSection);
-    chzBackgroundColor(div);
+
+
+    var ol=document.createElement('ol');
+    ol.className='story-slider';
+    var li=document.createElement('li');
+    var li1=document.createElement('li');
+    li.className='liDiv';
+    li1.className='liDiv';
+    ol.appendChild(li);
+    ol.appendChild(li1);
+    lrContent.appendChild(ol);
+    divSection.appendChild(lrContent);
+    var resultDiv=document.createElement('div');
+    var resultDiv2=document.createElement('div');
+
+    resultDiv.className='result-div';
+    resultDiv2.className='result-div';
+    addButtonDiv(resultDiv,direction);
+    addButtonDiv(resultDiv2,direction);
+
+    li.appendChild(resultDiv);
+    li1.appendChild(resultDiv2);
+
+    //divSection=addButtonDiv(divSection,direction);
+    basic.appendChild(divSection);
+    // basic.appendChild(divSection2);
+    chzBackgroundColor(basic);
     // div.style.backgroundColor=color;
 
     if (dataAttr=='up'){
@@ -85,7 +109,7 @@ function addBasicDiv (dataAttr){
         clickHandler(".selBtn");
 
     }else if(dataAttr=='down'){
-        divWrap.appendChild(div);
+        divWrap.appendChild(basic);
         clickHandler(".selBtn");
 
     }else if(dataAttr=='null'){
@@ -100,16 +124,16 @@ function addBasicDiv (dataAttr){
         divSection.appendChild(empty);
         divSection.appendChild(btn2);
 
-        div.appendChild(divSection);
-        divWrap.appendChild(div);
+        basic.appendChild(divSection);
+        divWrap.appendChild(basic);
         clickHandler(".selBtn");
     }
 
 }
 
-function addButtonDiv(element,dataAttr) {
+function addButtonDiv(parent,dataAttr) {
     var moveDirection=dataAttr;
-    var ele=element;
+    var parent=parent;
     var btn1=document.createElement('button');
     var empty=document.createTextNode(' ');
     var btn2=document.createElement('button');
@@ -130,11 +154,9 @@ function addButtonDiv(element,dataAttr) {
         addDataMove(btn1,randomDirection(moveDirection));
     }
 
-    ele.appendChild(btn1);
-    ele.appendChild(empty);
-    ele.appendChild(btn2);
-
-    return ele;
+    parent.appendChild(btn1);
+    parent.appendChild(empty);
+    parent.appendChild(btn2);
 }
 
 
@@ -224,6 +246,7 @@ function  clickHandler() {
             event.stopImmediatePropagation();
             var dataAttr=event.srcElement.getAttribute('data-move');
 
+            console.log("방향", dataAttr);
             switch (dataAttr){
                 case 'null':
                     memoryDiv();
