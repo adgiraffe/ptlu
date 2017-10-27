@@ -32,6 +32,7 @@ var dataMoveName={
 var letters=['f6c9cc', 'a8c0c0', 'FEBF36', 'FF7238',
     '6475A0', 'acc7bf', '5e5f67', 'c37070',
     'eae160', 'bf7aa3', 'd7d967'];
+
 var color='#';
 
 var startDiv=document.querySelector('.wrap');
@@ -45,25 +46,19 @@ function start() {
 }
 
 function chzBackgroundColor(ele) {
-    console.log("랜덤 색상 실행");
     var ranNum=Math.random()*10;
-    console.log("ransNum+"+ranNum);
     var lettersNum=Math.floor(Math.random()*10);
-    console.log("lettersNum"+lettersNum);
     color+=letters[lettersNum];
-    console.log("color : "+color);
-
     ele.style.backgroundColor=color;
     color="#";
-
 }
 
 
 function addBasicDiv (dataAttr){
     preventDefault(event);
-    console.log(memory.divBasic );
-    var direction=dataAttr;
+    fq(0);
 
+    var direction=dataAttr;
     var divWrap=$('.wrap');
     var basic=document.createElement('div');
 
@@ -73,45 +68,35 @@ function addBasicDiv (dataAttr){
     divSection.className="content";
     var lrContent=document.createElement('div');
     lrContent.className="lrContent";
-    console.log("direction :"+direction);
-
-
     var ol=document.createElement('ol');
     ol.className='story-slider';
-    var li=document.createElement('li');
-    var li1=document.createElement('li');
-    li.className='liDiv';
-    li1.className='liDiv';
-    ol.appendChild(li);
-    ol.appendChild(li1);
+
+
+    createLiDiv(ol,direction);
     lrContent.appendChild(ol);
     divSection.appendChild(lrContent);
-    var resultDiv=document.createElement('div');
-    var resultDiv2=document.createElement('div');
-
-    resultDiv.className='result-div';
-    resultDiv2.className='result-div';
-    addButtonDiv(resultDiv,direction);
-    addButtonDiv(resultDiv2,direction);
-
-    li.appendChild(resultDiv);
-    li1.appendChild(resultDiv2);
-
-    //divSection=addButtonDiv(divSection,direction);
     basic.appendChild(divSection);
-    // basic.appendChild(divSection2);
+
     chzBackgroundColor(basic);
-    // div.style.backgroundColor=color;
+
 
     if (dataAttr=='up'){
-        var firstChildNode=divWrap.firstChild;
-        divWrap.insertBefore(div,firstChildNode);
+        var firstChildNode=divWrap.firstElementChild;
+        console.log("펄스트 차일드",firstChildNode);
+        console.log(basic);
+        divWrap.insertBefore(basic,firstChildNode);
         clickHandler(".selBtn");
-
+        console.log();
     }else if(dataAttr=='down'){
+        alert('클릭핸들러'+dataAttr);
         divWrap.appendChild(basic);
         clickHandler(".selBtn");
-
+    }else if(dataAttr=='right'){
+        alert('클릭핸들러'+dataAttr);
+        clickHandler(".selBtn");
+    }else if(dataAttr=='left'){
+        alert('클릭핸들러'+dataAttr);
+        clickHandler(".selBtn");
     }else if(dataAttr=='null'){
 
         addDataMove(btn1,moveDirection);
@@ -127,9 +112,53 @@ function addBasicDiv (dataAttr){
         basic.appendChild(divSection);
         divWrap.appendChild(basic);
         clickHandler(".selBtn");
+    }else{
+        console.log("nothins");
     }
 
 }
+
+
+function hiddenSection(dataArr,target) {
+    if(dataArr=='left'){
+        var parent=findParentClass(target,"story-slider");
+        console.log("찾은 부모",parent);
+        var firstElChild=parent.firstElementChild;
+        var div=document.createElement('div');
+
+        insertLiDiv(parent,firstElChild,dataArr)
+    }
+
+    clickHandler('.selBtn');
+
+}
+
+
+
+function insertLiDiv(parent,firstElchild,direction) {
+    var li=document.createElement('li');
+    li.className='liDiv';
+    var resultDiv=document.createElement('div');
+    resultDiv.className='result-div';
+    addButtonDiv(resultDiv,direction);
+    li.appendChild(resultDiv);
+    chzBackgroundColor(li);
+    parent.insertBefore(li,firstElchild);
+}
+
+
+
+function createLiDiv(parent,direction) {
+    var li=document.createElement('li');
+    li.className='liDiv';
+    var resultDiv=document.createElement('div');
+    resultDiv.className='result-div';
+    addButtonDiv(resultDiv,direction);
+    li.appendChild(resultDiv);
+    parent.appendChild(li);
+}
+
+
 
 function addButtonDiv(parent,dataAttr) {
     var moveDirection=dataAttr;
@@ -145,11 +174,13 @@ function addButtonDiv(parent,dataAttr) {
     btn2.innerHTML="B";
 
     var randomNum=Math.round(Math.random()*10);
-    console.log("addButtonDiv : "+randomNum);
+
     if(randomNum<5){
         addDataMove(btn1,moveDirection);
         addDataMove(btn2,randomDirection(moveDirection));
+
     }else{
+
         addDataMove(btn2,moveDirection);
         addDataMove(btn1,randomDirection(moveDirection));
     }
@@ -162,16 +193,17 @@ function addButtonDiv(parent,dataAttr) {
 
 
 
+
+
+
 function memoryDiv(){
     var memoryDiv=$$(".basic");
     memory.divBasic=memoryDiv;
 }
 
 
-function removeFisrtDiv(elementName) {
+function removeFirstDiv(elementName) {
     var elArray=$$(elementName);
-    console.log("length : "+elArray.length);
-
     var flag=false;
     if(elArray.length>=3){
         var parentNode=elArray[0].parentNode;
@@ -189,6 +221,27 @@ function removeFisrtDiv(elementName) {
 
     return flag;
 }
+
+
+function removeFirstDiv(elementName) {
+    var elArray=$$(elementName);
+    var flag=false;
+    if(elArray.length>=3){
+        var parentNode=elArray[0].parentNode;
+        var selRemoveDiv=parentNode.firstChild;
+
+        while (selRemoveDiv&&selRemoveDiv.nodeType!=1){
+            selRemoveDiv=selRemoveDiv.nextSibling;
+        }
+        console.log("selRemoveDiv");
+        console.log(selRemoveDiv);
+        parentNode.removeChild(selRemoveDiv);
+
+        flag=true;
+    }
+    return flag;
+}
+
 
 function removeLastDiv(elementName) {
     var elArray=$$(elementName);
@@ -244,40 +297,46 @@ function  clickHandler() {
             event.preventDefault();
             event.stopPropagation();
             event.stopImmediatePropagation();
+            var e = window.event || event || event.originalEvent;
+            var target=e.target;
             var dataAttr=event.srcElement.getAttribute('data-move');
 
             console.log("방향", dataAttr);
+
             switch (dataAttr){
                 case 'null':
                     memoryDiv();
                     addBasicDiv(dataAttr);
-                    removeFisrtDiv('.basic')
-                    alert(dataAttr)
+                    removeFirstDiv('.basic')
                     break;
 
                 case 'up':
                     memoryDiv();
                     addBasicDiv(dataAttr);
                     upMovement();
-                    alert(dataAttr)
+                    // removeLastDiv('.basic');
+                    // fixBrowser(removeLastDiv('.basic'));
+
                     break;
 
                 case 'down':
                     memoryDiv();
                     addBasicDiv(dataAttr);
-                    fixBrowser(removeFisrtDiv('.basic'));
+                    fixBrowser(removeFirstDiv('.basic'));
                     downMovement();
                     // alert(dataAttr)
                     break;
 
                 case 'left':
                     memoryDiv();
-                    // alert(dataAttr)
+                    alert(dataAttr);
+                    hiddenSection(dataAttr,target);
+                    leftMovement(target);
                     break;
 
                 case 'right':
                     memoryDiv();
-                    // alert(dataAttr)
+                    alert(dataAttr)
                     break;
             }
 
@@ -287,7 +346,17 @@ function  clickHandler() {
 
 }
 
+function findParentClass(target,parentClsname) {
+    var parentName=parentClsname;
+    var getClass=target.getAttribute('class');
+    var parent=target.parentNode;
+    while (getClass==null||getClass!=parentName){
+        parent=parent.parentNode;
+        getClass=parent.getAttribute('class');
+    }
 
+    return parent;
+}
 
 function addDataMove(element,dataName) {
     if(element && !hasDataAttr(element,dataName) ){
@@ -329,16 +398,28 @@ function upMovement() {
     var wrap=$('.wrap');
     var currentBasic=next($('.basic'));
     var cHeight=currentBasic.offsetTop;
-    var basic=wrap.firstChild;
+    var basic=wrap.firstElementChild;
 
+
+    console.log('업 베이직',basic);
     console.log("현재높이 기억"+cHeight);
 
     var height=basic.offsetTop;
-    window.scrollTo(0,cHeight);
+    window.scrollTo(0,-cHeight);
     console.log("추가높이 기억"+height);
-    var translate3d = 'translate3d(0px, -' + height + 'px, 0px)';
 
+    var translate3d = 'translate3d(0px, -' + cHeight + 'px, 0px)';
     console.log(translate3d);
+    // wrap.style.transform=translate3d;
+    // wrap.style.transition='all 700ms ease';
+
+
+    var translate3d = 'translate3d(0px, ' + height + 'px, 0px)';
+    console.log(translate3d);
+    wrap.style.transform=translate3d;
+    wrap.style.transition='all 700ms ease';
+
+
 }
 
 function downMovement() {
@@ -361,8 +442,31 @@ function downMovement() {
     wrap.style.transition='all 700ms ease';
 }
 
-function preventTranslated3d() {
-    
+function leftMovement(target) {
+    var target=target;
+    var storySldier=findParentClass(target,'story-slider')
+    var firstChild=storySldier.firstElementChild;
+    var lastChild=storySldier.lastElementChild;
+    while(lastChild && lastChild.nodeType != 1) {
+        lastChild = lastChild.previousSibling;
+    }
+    var cOffsetLeft=lastChild.offsetLeft;
+    var leftOffsetLeft=firstChild.offsetLeft;
+
+    console.log('현위치',cOffsetLeft);
+    console.log('옮길 위치',leftOffsetLeft);
+
+
+    // window.scrollTo(cOffsetLeft,0);
+    var translate3d = 'translate3d('+'-'+cOffsetLeft+'px, 0px, 0px)';
+    storySldier.style.transform=translate3d;
+    storySldier.style.transition='all 0ms ease';
+
+    var translate3d = 'translate3d('+'-'+leftOffsetLeft+'px, 0px, 0px)';
+    storySldier.style.transform=translate3d;
+    storySldier.style.transition='all 700ms ease';
+
+
 }
 
 

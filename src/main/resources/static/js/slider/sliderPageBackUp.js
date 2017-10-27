@@ -11,7 +11,7 @@ var sliderContent={
     sectionCount:5,
     sectionTitle:['가장 큽니다','함께합니다','든든합니다','강력합니다','‘민주’노조입니다',],
     sectionContent:[secctionContent0,secctionContent1,secctionContent2,secctionContent3,secctionContent4],
-    sectionImgSrc:[imgSrc+'1.jpg',imgSrc+'2.jpg',imgSrc+'3.jpg',imgSrc+'4.jpg',imgSrc+'05.jpg'],
+    sectionImgSrc:[imgSrc+'1.jpg',imgSrc+'2.jpg',imgSrc+'3.jpg',imgSrc+'4.jpg',imgSrc+'5.jpg'],
 }
 
 var initSliderCount=0;
@@ -417,14 +417,12 @@ var touchStart=0;
 var touchEnd=0;
 //누적
 var distance=0;
-var distance2=0;
-var original=0;
 
-//
+
 var cList=document.querySelector('.cList');
 var width=cList.offsetWidth;
 
-var halfWidth=width/3;
+var halfWidth=width/2;
 
 console.log(halfWidth);
 
@@ -434,126 +432,75 @@ var origin=0;
 var moveValue=0;
 
 
+function touchMoveEvent(event) {
+        var e = window.event || event || event.originalEvent;
+        e.preventDefault();
+        var slides = document.querySelector('.slides');
+        var touchMoveValue= Math.ceil(e.touches[0].pageX);
 
-//스타트 값 시작점 가져오기
+        moveValue=Math.ceil((touchStart - touchMoveValue));
+        distance=touchEnd+(Math.ceil((touchStart - touchMoveValue)));
+
+        slides.style.transition='all 0.0s';
+        slides.style.transform = 'translate3d(' +(-distance)+'px, 0px, 0px)';;
+        var target=e.target;
+
+    if(moveValue<0){
+        moveValue=Math.abs(moveValue);
+        if(moveValue>halfWidth-100){
+            console.log('슬라이더 움직임 이동 ',moveValue);
+            distance=prevSiblingWidth;
+            slides.style.transition='all 0.6s'
+            slides.style.transform = 'translate3d(' +(-distance)+'px, 0px, 0px)';
+            getEmInnerHtmlLeft(target,'cList');
+        }
+    }
+
+    else if(moveValue>0) {
+        moveValue = Math.abs(moveValue-100);
+        if (moveValue > halfWidth) {
+            console.log('슬라이더 움직임 이동 ',moveValue);
+            distance = nextSiblingWidth;
+            slides.style.transition = 'all 0.6s'
+            slides.style.transform = 'translate3d(' + (-distance) + 'px, 0px, 0px)';
+            getEmInnerHtmlRight(target,'cList');
+            activeMobileDotNav();
+        }
+    }
+
+
+}
 
 function touchStartEvent(event) {
     var e = window.event || event || event.originalEvent;
+    console.log('터치시',e);
     touchStart=e.touches[0].pageX;
+    console.log('터치지점',touchStart);
     var target=e.target;
-    parentLi(target,'cList');
-    console.log(e);
-    console.log("스타트 값",touchStart);
-    // findNextParentLi(target,'cList');
-    // findPrevParentLi(target,'cList');
-}
 
-
-function touchMoveEvent(event) {
-    var e = window.event || event || event.originalEvent;
-    e.preventDefault();
-
-    var slides = document.querySelector('.slides');
-    var touchMoveValue= Math.ceil(e.touches[0].pageX);
-
-    console.log("터치 무브 벨류 ",touchMoveValue);
-
-    moveValue=Math.ceil((touchStart - touchMoveValue));
-    var di=distance2+(Math.ceil(moveValue));
-    // distance=touchEnd+(Math.ceil((touchStart - touchMoveValue)));
-    // distance=(Math.ceil((touchStart - touchMoveValue)));
-
-    slides.style.transition='all 0.0s';
-    // slides.style.transform = 'translate3d(' +(-distance)+'px, 0px, 0px)';
-    slides.style.transform = 'translate3d(' +(-di)+'px, 0px, 0px)';
-
+    console.log("타겟 ",target);
+    findNextParentLi(target,'cList');
+    findPrevParentLi(target,'cList');
 }
 
 
 function touchEndEvent(event) {
     var e = window.event || event || event.originalEvent;
-    // touchEnd=distance;
-    touchEnd=e.changedTouches[0].pageX;
-    console.log("터치엔드",touchEnd);
+    touchEnd=distance;
 
-    var target=e.target;
-    findNextParentLi(target,'cList');
-    findPrevParentLi(target,'cList');
-
-    var distance=touchStart-touchEnd;
+    console.log('터치 끝 지점',touchEnd);
     var slides = document.querySelector('.slides');
 
-
-    console.log('디스턴스 값',distance);
-    // if(distance<halfWidth) {
-    //     distance=origin;
-    //     slides.style.transition = 'all 0.6s'
-    //     slides.style.transform = 'translate3d(' + (-distance) + 'px, 0px, 0px)';
-    //     console.log('오리진', origin);
-    //     console.log('이동거리', moveValue);
-    //     touchEnd=distance;
-    // }
-
-    var target=e.target;
-
-    //오른쪽 방향 이동
-    if(distance<0){
-        moveValue=Math.abs(distance);
-        //moveValue =start지점-end지점을 뺴서 그 거리만큼 하는게 감도
-
-        if(moveValue>halfWidth){
-            console.log('슬라이더 움직임 이동 ',moveValue);
-
-            distance2=prevSiblingWidth;
-            slides.style.transition='all 0.6s'
-            slides.style.transform = 'translate3d(' +(-distance2)+'px, 0px, 0px)';
-            getEmInnerHtmlLeft(target,'cList');
-        }
-        else{
-            slides.style.transition = 'all 0.6s'
-            slides.style.transform = 'translate3d(' + (-original) + 'px, 0px, 0px)';
-        }
+    if(moveValue<halfWidth) {
+        distance=origin;
+        slides.style.transition = 'all 0.6s'
+        slides.style.transform = 'translate3d(' + (-distance) + 'px, 0px, 0px)';
+        console.log('오리진', origin);
+        console.log('이동거리', moveValue);
+        touchEnd=distance;
     }
-
-    //moveValue =start지점-end지점을 뺴서 그 거리만큼 하는게 감도
-    //왼쪽 방향 이동
-    else if(distance>0) {
-
-        moveValue = Math.abs(distance);
-
-        //moveValue =start지점-end지점을 뺴서 그 거리만큼 하는게 감도
-        if (moveValue > halfWidth) {
-            distance2 = nextSiblingWidth;
-            slides.style.transition = 'all 0.6s'
-            slides.style.transform = 'translate3d(' + (-distance2) + 'px, 0px, 0px)';
-            getEmInnerHtmlRight(target,'cList');
-            activeMobileDotNav();
-        }
-
-        else{
-
-            slides.style.transition = 'all 0.6s'
-            slides.style.transform = 'translate3d(' + (-original) + 'px, 0px, 0px)';
-        }
-    }
-
-
     var target=e.target;
 }
-
-function parentLi(target,parentClsName) {
-    var parentName=parentClsName;
-    var getClass=target.getAttribute('class');
-    var parent=target.parentNode;
-    while(getClass==null||getClass!=parentName){
-        parent=parent.parentNode;
-        getClass=parent.getAttribute('class');
-    }
-    original=parent.offsetLeft;
-}
-
-
-
 
 function findNextParentLi(target,parentClsName) {
     var parentName=parentClsName;
@@ -593,7 +540,7 @@ function findPrevParentLi(target,parentClsName) {
 
     if(prevSibling==null)
     {
-        prevSiblingWidth=parent.offsetWidth;ƒ
+        prevSiblingWidth=parent.offsetWidth;
         console.log('왼쪽 형제 null',prevSibling);
         console.log(parent.parentNode.lastChild);
         prevSiblingWidth=parent.parentNode.lastElementChild.offsetLeft;

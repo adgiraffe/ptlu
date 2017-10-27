@@ -2,14 +2,27 @@
     display: block;
     width: 1055px;
     overflow: hidden;
+
 }
 
+.content{
+    height: 100%;
+}
+.lrContent{
+    height: 100%;
+}
 .story-slider{
     width: 1000%;
+    height: 100%;
 }
 
 .liDiv{
     float: left;
     display: block;
     width: 50%;
+    height: 100%;
 }
+
+/*.result-div{*/
+    /*height: 100%;*/
+/*}*/
