@@ -467,6 +467,29 @@ function touchMoveEvent(event) {
     // slides.style.transform = 'translate3d(' +(-distance)+'px, 0px, 0px)';
     slides.style.transform = 'translate3d(' +(-di)+'px, 0px, 0px)';
 
+
+    if(moveValue<0){
+        moveValue=Math.abs(moveValue);
+        if(moveValue>halfWidth-100){
+            console.log('슬라이더 움직임 이동 ',moveValue);
+            distance=prevSiblingWidth;
+            slides.style.transition='all 0.6s'
+            slides.style.transform = 'translate3d(' +(-distance)+'px, 0px, 0px)';
+            getEmInnerHtmlLeft(target,'cList');
+        }
+    }
+
+    else if(moveValue>0) {
+        moveValue = Math.abs(moveValue-100);
+        if (moveValue > halfWidth) {
+            console.log('슬라이더 움직임 이동 ',moveValue);
+            distance = nextSiblingWidth;
+            slides.style.transition = 'all 0.6s'
+            slides.style.transform = 'translate3d(' + (-distance) + 'px, 0px, 0px)';
+            getEmInnerHtmlRight(target,'cList');
+            activeMobileDotNav();
+        }
+    }
 }
 
 
@@ -483,8 +506,8 @@ function touchEndEvent(event) {
     var distance=touchStart-touchEnd;
     var slides = document.querySelector('.slides');
 
-
     console.log('디스턴스 값',distance);
+
     // if(distance<halfWidth) {
     //     distance=origin;
     //     slides.style.transition = 'all 0.6s'
@@ -593,7 +616,7 @@ function findPrevParentLi(target,parentClsName) {
 
     if(prevSibling==null)
     {
-        prevSiblingWidth=parent.offsetWidth;ƒ
+        prevSiblingWidth=parent.offsetWidth;
         console.log('왼쪽 형제 null',prevSibling);
         console.log(parent.parentNode.lastChild);
         prevSiblingWidth=parent.parentNode.lastElementChild.offsetLeft;

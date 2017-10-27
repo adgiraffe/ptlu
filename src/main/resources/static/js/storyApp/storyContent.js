@@ -1,9 +1,14 @@
+
+
 var state=0;
 
-function fq(state) {
- var oneArr=textArr[state];
- var b=oneArr.split(',');
- console.log(b);
+function releaseData(state) {
+    var oneArr=textArr[state];
+    var dataArr=oneArr.split(',');
+    state=state+1;
+    console.log("B는",b);
+
+    return b;
 }
 
 // 문자열의 형식 질문번호-질문내용-다음갈번호-다음갈번호
@@ -24,4 +29,4 @@ var textArr=['0,당신은 정규직인가요?,1,2',
     '14,당당신에겐 공공운수노조가 필요합니다/지금바로 전화하세요/1661-5557,link10',
     '15,당신은 자랑스런 공공부문 노동조합 조합원입니다/비정규직조직화에 함께 해주세요,link10',
     '16,당신에겐 민주노조가 필요합니다/지금바로 전화하세요/1661-5557,link10',
-]
+];

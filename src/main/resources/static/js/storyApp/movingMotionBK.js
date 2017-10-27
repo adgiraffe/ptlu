@@ -37,6 +37,7 @@ var color='#';
 
 var startDiv=document.querySelector('.wrap');
 
+
 start();
 
 function start() {
@@ -55,6 +56,8 @@ function chzBackgroundColor(ele) {
 
 function addBasicDiv (dataAttr){
     preventDefault(event);
+    fq(0);
+
     var direction=dataAttr;
     var divWrap=$('.wrap');
     var basic=document.createElement('div');
@@ -85,22 +88,22 @@ function addBasicDiv (dataAttr){
         clickHandler(".selBtn");
         console.log();
     }else if(dataAttr=='down'){
-        // alert('클릭핸들러'+dataAttr);
+        alert('클릭핸들러'+dataAttr);
         divWrap.appendChild(basic);
         clickHandler(".selBtn");
-    // }else if(dataAttr=='right'){
-    //     alert('클릭핸들러'+dataAttr);
-    //     clickHandler(".selBtn");
-    // }else if(dataAttr=='left'){
-    //     alert('클릭핸들러'+dataAttr);
-    //     clickHandler(".selBtn");
+    }else if(dataAttr=='right'){
+        alert('클릭핸들러'+dataAttr);
+        clickHandler(".selBtn");
+    }else if(dataAttr=='left'){
+        alert('클릭핸들러'+dataAttr);
+        clickHandler(".selBtn");
     }else if(dataAttr=='null'){
 
         addDataMove(btn1,moveDirection);
         addDataMove(btn2,moveDirection);
 
-        btn1.innerHTML="YES";
-        btn2.innerHTML="NO";
+        btn1.innerHTML="A";
+        btn2.innerHTML="B";
 
         divSection.appendChild(btn1);
         divSection.appendChild(empty);
@@ -119,24 +122,13 @@ function addBasicDiv (dataAttr){
 function hiddenSection(dataArr,target) {
     if(dataArr=='left'){
         var parent=findParentClass(target,"story-slider");
+        console.log("찾은 부모",parent);
         var firstElChild=parent.firstElementChild;
-        // var div=document.createElement('div');
+        var div=document.createElement('div');
 
         insertLiDiv(parent,firstElChild,dataArr)
     }
-    else if(dataArr=='right'){
-        var parent=findParentClass(target,"story-slider");
-        var li=document.createElement('li');
-        li.className='liDiv';
-        var resultDiv=document.createElement('div');
-        resultDiv.className='result-div';
-        addButtonDiv(resultDiv,dataArr);
-        li.appendChild(resultDiv);
-        chzBackgroundColor(li);
 
-        parent.appendChild(li);
-
-    }
     clickHandler('.selBtn');
 
 }
@@ -178,23 +170,8 @@ function addButtonDiv(parent,dataAttr) {
     btn1.className=className.btn;
     btn2.className=className.btn;
 
-    btn1.innerHTML="YES";
-    btn2.innerHTML="NO";
-
-    var yesDiv=document.createElement('div');
-    var noDiv=document.createElement('div');
-
-
-    var em=document.createElement('em');
-    var em1=document.createElement('em');
-    em.className='em-link';
-    em1.className='em-link';
-
-    var a=document.createElement('a');
-    var a1=document.createElement('a');
-
-    yesDiv.className='yes-div';
-    noDiv.className='no-div';
+    btn1.innerHTML="A";
+    btn2.innerHTML="B";
 
     var randomNum=Math.round(Math.random()*10);
 
@@ -208,26 +185,9 @@ function addButtonDiv(parent,dataAttr) {
         addDataMove(btn1,randomDirection(moveDirection));
     }
 
-    // parent.appendChild(btn1);
-    // parent.appendChild(empty);
-    // parent.appendChild(btn2);
-
-
-
-    a.appendChild(btn1);
-    a1.appendChild(btn2);
-
-
-    yesDiv.appendChild(em);
-    yesDiv.appendChild(a);
-
-    noDiv.appendChild(em1);
-    noDiv.appendChild(a1);
-
-    parent.appendChild(yesDiv);
+    parent.appendChild(btn1);
     parent.appendChild(empty);
-    parent.appendChild(noDiv);
-
+    parent.appendChild(btn2);
 }
 
 
@@ -266,10 +226,7 @@ function removeFirstDiv(elementName) {
 function removeFirstDiv(elementName) {
     var elArray=$$(elementName);
     var flag=false;
-
-    console.log("리무브",elArray);
     if(elArray.length>=3){
-        console.log('렝스길이',elArray.length);
         var parentNode=elArray[0].parentNode;
         var selRemoveDiv=parentNode.firstChild;
 
@@ -284,80 +241,19 @@ function removeFirstDiv(elementName) {
     }
     return flag;
 }
-
-
-function removeFirstDivA(target,elementName,removeDivName) {
-    var dot=".";
-    var parent=findParentClass(target,elementName);
-    var elArray=parent.querySelectorAll(dot+removeDivName);
-    var flag=false;
-
-    console.log("리무브",elArray);
-    if(elArray.length>=3){
-        console.log('렝스길이',elArray.length);
-        var parentNode=elArray[0].parentNode;
-        var selRemoveDiv=parentNode.firstChild;
-
-        while (selRemoveDiv&&selRemoveDiv.nodeType!=1){
-            selRemoveDiv=selRemoveDiv.nextSibling;
-        }
-        console.log("selRemoveDiv");
-        console.log(selRemoveDiv);
-        parentNode.removeChild(selRemoveDiv);
-
-        flag=true;
-    }
-    return flag;
-}
-
 
 
 function removeLastDiv(elementName) {
     var elArray=$$(elementName);
-    var flag=false;
-    if(elArray.length>=3){
-        var parentNode=elArray[0].parentNode;
-        var selRemoveDiv=parentNode.lastChild;
+    var parentNode=elArray[0].parentNode;
+    var selRemoveDiv=parentNode.lastChild;
 
-        while (selRemoveDiv&&selRemoveDiv.nodeType!=1){
-            selRemoveDiv=selRemoveDiv.previousSibling;
-        }
-        console.log(selRemoveDiv);
-        parentNode.removeChild(selRemoveDiv);
-        flag=true;
+    while (selRemoveDiv&&selRemoveDiv.nodeType!=1){
+        selRemoveDiv=selRemoveDiv.previousSibling;
     }
-    return flag;
+    console.log(selRemoveDiv);
+    parentNode.removeChild(selRemoveDiv);
 }
-
-
-function removeLastDivA(target,elementName,removeDivName) {
-    var dot=".";
-    var parent=findParentClass(target,elementName);
-    var elArray=parent.querySelectorAll(dot+removeDivName);
-    var flag=false;
-
-    console.log("리무브",elArray);
-    if(elArray.length>=3){
-        console.log('렝스길이',elArray.length);
-        var parentNode=elArray[0].parentNode;
-        var selRemoveDiv=parentNode.lastChild;
-
-        while (selRemoveDiv&&selRemoveDiv.nodeType!=1){
-            selRemoveDiv=selRemoveDiv.previousSibling;
-        }
-        console.log("selRemoveDiv");
-        console.log(selRemoveDiv);
-        parentNode.removeChild(selRemoveDiv);
-
-        flag=true;
-    }
-    return flag;
-}
-
-
-
-
-
 
 function fixBrowser(flag) {
     if(flag==true){
@@ -404,28 +300,28 @@ function  clickHandler() {
             var e = window.event || event || event.originalEvent;
             var target=e.target;
             var dataAttr=event.srcElement.getAttribute('data-move');
-            var emNum=getEmNum(target);
+
             console.log("방향", dataAttr);
 
             switch (dataAttr){
                 case 'null':
                     memoryDiv();
-                    addBasicDiv(dataAttr,emNum);
-                    removeFirstDiv('.basic');
+                    addBasicDiv(dataAttr);
+                    removeFirstDiv('.basic')
                     break;
 
                 case 'up':
                     memoryDiv();
-                    addBasicDiv(dataAttr,emNum);
-                    // fixBrowser(removeLastDivA(target,'basic','basic'));
-                    removeLastDiv('.basic')
+                    addBasicDiv(dataAttr);
                     upMovement();
+                    // removeLastDiv('.basic');
+                    // fixBrowser(removeLastDiv('.basic'));
+
                     break;
 
                 case 'down':
                     memoryDiv();
-                    addBasicDiv(dataAttr,emNum);
-                    // fixBrowser(removeFirstDivA(target,'basic','basic'));
+                    addBasicDiv(dataAttr);
                     fixBrowser(removeFirstDiv('.basic'));
                     downMovement();
                     // alert(dataAttr)
@@ -433,37 +329,22 @@ function  clickHandler() {
 
                 case 'left':
                     memoryDiv();
-                    hiddenSection(dataAttr,target,emNum);
+                    alert(dataAttr);
+                    hiddenSection(dataAttr,target);
                     leftMovement(target);
-                    removeLastDivA(target,'basic','liDiv');
                     break;
 
                 case 'right':
                     memoryDiv();
-                    hiddenSection(dataAttr,target,emNum);
-                    rightMovement(target);
-                    // fixBrowser(removeFirstDiv('.liDiv'));
-                    removeFirstDivA(target,'basic','liDiv');
+                    alert(dataAttr)
                     break;
             }
 
         },false)
     }
 
-}
-
-
-function getEmNum(target) {
-    var a=target.parentNode;
-    var div=a.parentNode;
-    var em=div.querySelector('em');
-    console.log("EM",em);
-    var num=em.innerHTML;
-    console.log("EM 숫자 ",num);
 
 }
-
-
 
 function findParentClass(target,parentClsname) {
     var parentName=parentClsname;
@@ -494,7 +375,7 @@ function randomDirection(dataName) {
     var direction="";
     if(dataName=="up"||dataName=="down"){
         var numDirection=Math.round(Math.random()*10);
-        if(numDirection<=5){
+        if(numDirection<5){
             direction='left';
         }else if(numDirection>5){
             direction='right';
@@ -502,7 +383,7 @@ function randomDirection(dataName) {
     }
     else if(dataName=="left"||dataName=="right"){
         var numDirection=Math.round(Math.random()*10);
-        if(numDirection<=5){
+        if(numDirection<5){
             direction='up';
         }else if(numDirection>5){
             direction='down';
@@ -516,8 +397,6 @@ function randomDirection(dataName) {
 function upMovement() {
     var wrap=$('.wrap');
     var currentBasic=next($('.basic'));
-    console.log("배이직 섹션",currentBasic);
-
     var cHeight=currentBasic.offsetTop;
     var basic=wrap.firstElementChild;
 
@@ -526,23 +405,21 @@ function upMovement() {
     console.log("현재높이 기억"+cHeight);
 
     var height=basic.offsetTop;
-
-
-    window.scrollTo(0,cHeight);
+    window.scrollTo(0,-cHeight);
     console.log("추가높이 기억"+height);
 
     var translate3d = 'translate3d(0px, -' + cHeight + 'px, 0px)';
     console.log(translate3d);
-    wrap.style.transform=translate3d;
-    wrap.style.transition='all 00ms ease';
+    // wrap.style.transform=translate3d;
+    // wrap.style.transition='all 700ms ease';
 
-    setTimeout(moveDirection,1);
-    function moveDirection() {
-        var translate3d = 'translate3d(0px, -' + height + 'px, 0px)';
-        console.log(translate3d);
-        wrap.style.transform=translate3d;
-        wrap.style.transition='all 700ms ease';
-    }
+
+    var translate3d = 'translate3d(0px, ' + height + 'px, 0px)';
+    console.log(translate3d);
+    wrap.style.transform=translate3d;
+    wrap.style.transition='all 700ms ease';
+
+
 }
 
 function downMovement() {
@@ -567,59 +444,30 @@ function downMovement() {
 
 function leftMovement(target) {
     var target=target;
-    var storySlider=findParentClass(target,'story-slider');
-
-    var firstChild=storySlider.firstElementChild;
-
-    var brotherChild=firstChild.nextElementSibling;
-    var cOffsetLeft=brotherChild.offsetLeft;
-    var leftOffsetLeft=firstChild.offsetLeft;
-
-
-    var translate3d = 'translate3d('+'-'+cOffsetLeft+'px, 0px, 0px)';
-    storySlider.style.transform=translate3d;
-    storySlider.style.transition='all 0ms ease';
-
-
-    setTimeout(moveDirection,1);
-    function moveDirection() {
-        var translate3d = 'translate3d('+'-'+leftOffsetLeft+'px, 0px, 0px)';
-        storySlider.style.transform=translate3d;
-        storySlider.style.transition='all 700ms ease';
+    var storySldier=findParentClass(target,'story-slider')
+    var firstChild=storySldier.firstElementChild;
+    var lastChild=storySldier.lastElementChild;
+    while(lastChild && lastChild.nodeType != 1) {
+        lastChild = lastChild.previousSibling;
     }
-}
-
-function rightMovement(target) {
-    var target=target;
-    var storySlider=findParentClass(target,'story-slider');
-
-    var firstChild=storySlider.firstElementChild;
-    var brotherChild=firstChild.nextElementSibling;
-
-
-    var cOffsetLeft=brotherChild.offsetLeft;
+    var cOffsetLeft=lastChild.offsetLeft;
     var leftOffsetLeft=firstChild.offsetLeft;
-    console.log("원 점",leftOffsetLeft);
-    console.log('이동 ',cOffsetLeft);
 
+    console.log('현위치',cOffsetLeft);
+    console.log('옮길 위치',leftOffsetLeft);
+
+
+    // window.scrollTo(cOffsetLeft,0);
+    var translate3d = 'translate3d('+'-'+cOffsetLeft+'px, 0px, 0px)';
+    storySldier.style.transform=translate3d;
+    storySldier.style.transition='all 0ms ease';
 
     var translate3d = 'translate3d('+'-'+leftOffsetLeft+'px, 0px, 0px)';
-    storySlider.style.transform=translate3d;
-    storySlider.style.transition='all 0ms ease';
+    storySldier.style.transform=translate3d;
+    storySldier.style.transition='all 700ms ease';
 
-    setTimeout(moveDirection,1);
-    function moveDirection() {
-        var translate3d = 'translate3d('+'-'+cOffsetLeft+'px, 0px, 0px)';
-        storySlider.style.transform=translate3d;
-        storySlider.style.transition='all 700ms ease';
-    }
 
 }
-
-
-
-
-
 
 
 function prev(element){
