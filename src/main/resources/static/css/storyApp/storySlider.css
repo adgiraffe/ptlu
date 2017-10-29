@@ -12,7 +12,7 @@
     height: 100%;
 }
 .story-slider{
-    width: 1000%;
+    width: 200%;
     height: 100%;
     padding-left: 0px;
     margin-top: 0px;
@@ -22,21 +22,111 @@
 .liDiv{
     float: left;
     display: block;
-    width: 30%;
+    /*width: 30%;*/
+    width: 50%;
     height: 100%;
 }
 
+.result-div{
+    height: 100%;
+}
 
 .yes-div{
     position: relative;
     display: inline-block;
+    /*width: 16.5%;*/
+    width: 50%;
+    height: 100%;
+    background-position: center center;
 }
 
 .no-div{
     position: relative;
     display: inline-block;
+    width: 49%;
+    height: 100%;
+    background-position: center center;
+}
+
+.unknow-div{
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    background-position: center center;
+}
+
+.link-div{
+    position: relative;
+    display: inline-block;
+    height: 100%;
 }
 
 .em-link{
     display: none;
+}
+
+.q-title{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform:translateX(-50%);
+}
+
+/*.selBtn{*/
+    /*position: relative;*/
+    /*left: 50%;*/
+    /*top: 50%;*/
+    /*!*transform:translateX(-50%);*!*/
+
+/*}*/
+
+.yes-div .selBtn{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.no-div .selBtn{
+    background-color: #555555;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.unknow-div .selBtn{
+    background-color: #e7e7e7;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.link-div .selBtn{
+    background-color: #f44336;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.btn-aTag{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform:translateX(-50%);
 }

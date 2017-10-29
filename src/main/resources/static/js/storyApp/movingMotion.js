@@ -36,7 +36,9 @@ var letters=['f6c9cc', 'a8c0c0', 'FEBF36', 'FF7238',
 var color='#';
 
 var startDiv=document.querySelector('.wrap');
+var qTitle=document.querySelector('.q-title');
 
+console.log(qTitle);
 start();
 
 function start() {
@@ -53,7 +55,7 @@ function chzBackgroundColor(ele) {
 }
 
 
-function addBasicDiv (dataAttr){
+function addBasicDiv (dataAttr,emNum){
     preventDefault(event);
     var direction=dataAttr;
     var divWrap=$('.wrap');
@@ -65,11 +67,13 @@ function addBasicDiv (dataAttr){
     divSection.className="content";
     var lrContent=document.createElement('div');
     lrContent.className="lrContent";
+
     var ol=document.createElement('ol');
     ol.className='story-slider';
 
 
-    createLiDiv(ol,direction);
+
+    createLiDiv(ol,direction,emNum);
     lrContent.appendChild(ol);
     divSection.appendChild(lrContent);
     basic.appendChild(divSection);
@@ -79,13 +83,9 @@ function addBasicDiv (dataAttr){
 
     if (dataAttr=='up'){
         var firstChildNode=divWrap.firstElementChild;
-        console.log("펄스트 차일드",firstChildNode);
-        console.log(basic);
         divWrap.insertBefore(basic,firstChildNode);
         clickHandler(".selBtn");
-        console.log();
     }else if(dataAttr=='down'){
-        // alert('클릭핸들러'+dataAttr);
         divWrap.appendChild(basic);
         clickHandler(".selBtn");
     // }else if(dataAttr=='right'){
@@ -116,13 +116,13 @@ function addBasicDiv (dataAttr){
 }
 
 
-function hiddenSection(dataArr,target) {
+function hiddenSection(dataArr,target,emNum) {
     if(dataArr=='left'){
         var parent=findParentClass(target,"story-slider");
         var firstElChild=parent.firstElementChild;
         // var div=document.createElement('div');
 
-        insertLiDiv(parent,firstElChild,dataArr)
+        insertLiDiv(parent,firstElChild,dataArr,emNum)
     }
     else if(dataArr=='right'){
         var parent=findParentClass(target,"story-slider");
@@ -130,7 +130,7 @@ function hiddenSection(dataArr,target) {
         li.className='liDiv';
         var resultDiv=document.createElement('div');
         resultDiv.className='result-div';
-        addButtonDiv(resultDiv,dataArr);
+        addButtonDiv(resultDiv,dataArr,emNum);
         li.appendChild(resultDiv);
         chzBackgroundColor(li);
 
@@ -143,12 +143,12 @@ function hiddenSection(dataArr,target) {
 
 
 
-function insertLiDiv(parent,firstElchild,direction) {
+function insertLiDiv(parent,firstElchild,direction,emNum) {
     var li=document.createElement('li');
     li.className='liDiv';
     var resultDiv=document.createElement('div');
     resultDiv.className='result-div';
-    addButtonDiv(resultDiv,direction);
+    addButtonDiv(resultDiv,direction,emNum);
     li.appendChild(resultDiv);
     chzBackgroundColor(li);
     parent.insertBefore(li,firstElchild);
@@ -156,67 +156,117 @@ function insertLiDiv(parent,firstElchild,direction) {
 
 
 
-function createLiDiv(parent,direction) {
+function createLiDiv(parent,direction,emNum) {
     var li=document.createElement('li');
     li.className='liDiv';
     var resultDiv=document.createElement('div');
     resultDiv.className='result-div';
-    addButtonDiv(resultDiv,direction);
+
+    addButtonDiv(resultDiv,direction,emNum);
     li.appendChild(resultDiv);
     parent.appendChild(li);
 }
 
 
 
-function addButtonDiv(parent,dataAttr) {
+function addButtonDiv(parent,dataAttr,emNum) {
+
+    console.log(emNum);
+    var dataArray=releaseData(emNum);
+
+    console.log(dataArray);
+
+    var title=dataArray[1];
+
+    console.log('title',title);
+    qTitle.innerHTML=title;
     var moveDirection=dataAttr;
     var parent=parent;
+
+    if(dataArray[4]==''){
+        addTwoBtnDiv(parent,moveDirection,dataArray);
+
+    }
+    else if(dataArray[4]!=''){
+        addThreeBtnDiv(parent,moveDirection,dataArray);
+    }
+}
+
+
+function addThreeBtnDiv(parent,moveDirection,dataArray) {
+    qTitle.style.top='20%';
     var btn1=document.createElement('button');
     var empty=document.createTextNode(' ');
     var btn2=document.createElement('button');
+    var empty=document.createTextNode(' ');
+    var btn3=document.createElement('button');
+
+    // var btn1=document.createElement('div');
+    // var btn2=document.createElement('div');
+    // var btn3=document.createElement('div');
 
     btn1.className=className.btn;
     btn2.className=className.btn;
+    btn3.className=className.btn;
 
     btn1.innerHTML="YES";
     btn2.innerHTML="NO";
+    btn3.innerHTML="모름";
 
     var yesDiv=document.createElement('div');
     var noDiv=document.createElement('div');
-
+    var unKnowDiv=document.createElement('div');
 
     var em=document.createElement('em');
     var em1=document.createElement('em');
+    var em2=document.createElement('em');
+
     em.className='em-link';
     em1.className='em-link';
+    em2.className='em-link';
+
+    em.innerHTML=dataArray[2];
+    em1.innerHTML=dataArray[3];
+    em2.innerHTML=dataArray[4];
+
 
     var a=document.createElement('a');
     var a1=document.createElement('a');
+    var a2=document.createElement('a');
+
 
     yesDiv.className='yes-div';
     noDiv.className='no-div';
+    unKnowDiv.className='unknow-div';
+    yesDiv.style.width='33%';
+    noDiv.style.width='33%';
+    unKnowDiv.style.width='33%';
+
+    yesDiv.style.backgroundImage='url('+dataArray[5]+')';
+    noDiv.style.backgroundImage='url('+dataArray[6]+')';
+    unKnowDiv.style.backgroundImage='url('+dataArray[7]+')';
 
     var randomNum=Math.round(Math.random()*10);
 
     if(randomNum<5){
         addDataMove(btn1,moveDirection);
         addDataMove(btn2,randomDirection(moveDirection));
+        addDataMove(btn3,randomDirection(moveDirection));
 
     }else{
 
         addDataMove(btn2,moveDirection);
         addDataMove(btn1,randomDirection(moveDirection));
+        addDataMove(btn3,randomDirection(moveDirection));
+
     }
 
-    // parent.appendChild(btn1);
-    // parent.appendChild(empty);
-    // parent.appendChild(btn2);
-
-
-
     a.appendChild(btn1);
+    a.className='btn-aTag';
     a1.appendChild(btn2);
-
+    a1.className='btn-aTag';
+    a2.appendChild(btn3)
+    a2.className='btn-aTag';
 
     yesDiv.appendChild(em);
     yesDiv.appendChild(a);
@@ -224,16 +274,117 @@ function addButtonDiv(parent,dataAttr) {
     noDiv.appendChild(em1);
     noDiv.appendChild(a1);
 
-    parent.appendChild(yesDiv);
-    parent.appendChild(empty);
-    parent.appendChild(noDiv);
+    unKnowDiv.appendChild(em2);
+    unKnowDiv.appendChild(a2);
 
+    parent.appendChild(yesDiv);
+    parent.appendChild(noDiv);
+    parent.appendChild(unKnowDiv);
 }
 
+function addTwoBtnDiv(parent,moveDirection,dataArray) {
+    qTitle.style.top='50%';
+    if(dataArray[2]==''){
+        var linkDiv=document.createElement('div');
+        linkDiv.className='link-div';
+        linkDiv.style.width='100%'
+        // var btn1=document.createElement('button');
+        var btn1=document.createElement('div');
+        btn1.className=className.btn;
+
+        var a=document.createElement('a');
+        a.className='btn-aTag';
+
+        if(dataArray[8]==''){
+            qTitle.style.top='20%';
+            // btn1.setAttribute('onclick','location.href='+'"'+dataArray[9]+'"');
+            a.setAttribute('target','_blank')
+            btn1.innerHTML='공공운수노조 가입하기'
+            a.setAttribute('href',dataArray[9]);
+            a.appendChild(btn1);
+            // btn1.setAttribute('type','button');
 
 
+        }else if(dataArray[8]!=''){
+            qTitle.style.top='20%';
+            // btn1.setAttribute('onclick','location.href='+'"'+dataArray[8]+'"');
+            btn1.innerHTML='10억기금 링크'
+            a.setAttribute('href',dataArray[8]);
+            a.appendChild(btn1);
+
+            // btn1.setAttribute('type','button');
+
+        }
+
+        a.appendChild(btn1);
+        linkDiv.appendChild(a);
+        parent.appendChild(linkDiv);
 
 
+    } else{
+        // var btn1=document.createElement('button');
+        // var empty=document.createTextNode(' ');
+        // var btn2=document.createElement('button');
+
+        var btn1=document.createElement('div');
+        var empty=document.createTextNode(' ');
+        var btn2=document.createElement('div');
+
+        btn1.className=className.btn;
+        btn2.className=className.btn;
+
+        btn1.innerHTML="YES";
+        btn2.innerHTML="NO";
+
+        var yesDiv=document.createElement('div');
+        var noDiv=document.createElement('div');
+
+        yesDiv.style.backgroundImage='url('+dataArray[6]+')';
+        noDiv.style.backgroundImage='url('+dataArray[7]+')';
+
+        var em=document.createElement('em');
+        var em1=document.createElement('em');
+        em.className='em-link';
+        em1.className='em-link';
+
+        em.innerHTML=dataArray[2];
+        em1.innerHTML=dataArray[3];
+
+
+        var a=document.createElement('a');
+        var a1=document.createElement('a');
+
+        yesDiv.className='yes-div';
+        noDiv.className='no-div';
+
+        var randomNum=Math.round(Math.random()*10);
+
+        if(randomNum<5){
+            addDataMove(btn1,moveDirection);
+            addDataMove(btn2,randomDirection(moveDirection));
+
+        }else{
+
+            addDataMove(btn2,moveDirection);
+            addDataMove(btn1,randomDirection(moveDirection));
+        }
+        a.appendChild(btn1);
+        a.className='btn-aTag';
+        a1.appendChild(btn2);
+        a1.className='btn-aTag';
+
+
+        yesDiv.appendChild(em);
+        yesDiv.appendChild(a);
+
+        noDiv.appendChild(em1);
+        noDiv.appendChild(a1);
+
+        parent.appendChild(yesDiv);
+        parent.appendChild(empty);
+        parent.appendChild(noDiv);
+    }
+}
 
 
 function memoryDiv(){
@@ -405,8 +556,9 @@ function  clickHandler() {
             var target=e.target;
             var dataAttr=event.srcElement.getAttribute('data-move');
             var emNum=getEmNum(target);
-            console.log("방향", dataAttr);
 
+
+            console.log(emNum);
             switch (dataAttr){
                 case 'null':
                     memoryDiv();
@@ -458,9 +610,11 @@ function getEmNum(target) {
     var div=a.parentNode;
     var em=div.querySelector('em');
     console.log("EM",em);
-    var num=em.innerHTML;
     console.log("EM 숫자 ",num);
-
+    if(em!=null){
+        var num=em.innerHTML;
+        return num;
+    }
 }
 
 
