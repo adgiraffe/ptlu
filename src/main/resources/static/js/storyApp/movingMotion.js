@@ -144,6 +144,7 @@ function hiddenSection(dataArr,target,emNum) {
 
 
 function insertLiDiv(parent,firstElchild,direction,emNum) {
+
     var li=document.createElement('li');
     li.className='liDiv';
     var resultDiv=document.createElement('div');
@@ -152,11 +153,13 @@ function insertLiDiv(parent,firstElchild,direction,emNum) {
     li.appendChild(resultDiv);
     chzBackgroundColor(li);
     parent.insertBefore(li,firstElchild);
+
 }
 
 
 
 function createLiDiv(parent,direction,emNum) {
+
     var li=document.createElement('li');
     li.className='liDiv';
     var resultDiv=document.createElement('div');
@@ -165,6 +168,7 @@ function createLiDiv(parent,direction,emNum) {
     addButtonDiv(resultDiv,direction,emNum);
     li.appendChild(resultDiv);
     parent.appendChild(li);
+
 }
 
 

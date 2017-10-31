@@ -17,6 +17,12 @@
         text-align: left;
     }
 
+
+    .slider-header>p{
+        display: none;
+    }
+
+
     .slider-contentWrap {
         position: relative;
         display: block;
@@ -177,4 +183,7 @@
         transform: translate(-40px, -20px);
         z-index: 10;
     }
+
+
+
 }

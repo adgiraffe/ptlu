@@ -3,10 +3,10 @@ var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playboo
 
 var branding={
     logoLink:"../../../../images/logo/logo1.png",
-    menuName:['홈','변영주 감독 인터뷰','왜 공공운수노조인가?','페이지4','페이지5','페이지6'],
+    menuName:['홈','변영주 감독 인터뷰','권해효 배우 인터뷰','왜 공공운수노조인가?','페이지5','페이지6'],
     menuLink:['http://so-kptu.net/#firstPage','http://so-kptu.net/#secondPage','http://so-kptu.net/#3rdPage','http://so-kptu.net/#4thpage','http://so-kptu.net/#lastPage'],
     localHost:'http://so-kptu.net',
-    menuCount:3,
+    menuCount:4,
     originHeaderHeight:0,
     tansHeaderHeight:0,
 }

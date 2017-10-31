@@ -19,6 +19,11 @@
 
     }
 
+    .slider-header>p{
+        display: none;
+    }
+
+
     .slider-contentWrap {
         position: relative;
         display: block;

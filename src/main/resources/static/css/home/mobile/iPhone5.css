@@ -417,5 +417,38 @@
         text-decoration: none;
     }
 
+    .textDiv-inner-right-sec02 {
+        width: 100%;
+        display: inline-block;
+        padding-top: 30px;
+    }
+
+    .textDiv-right {
+        display: inherit;
+        /* vertical-align: middle; */
+        width: 100%;
+        padding-left: 0px ;
+    }
+
+    .titleH1.sec02{
+        font-size: 33px;
+        /*font-family: 'KoPub Batang', serif;*/
+        font-family: 'Nanum Barun Gothic', sans-serif;
+        font-weight: bold;
+    }
+
+    .titleH3.sec02{
+        font-size: 20px;
+        /*font-family: 'KoPub Batang', serif;*/
+        font-family: 'Nanum Barun Gothic', sans-serif;
+        font-weight: bold;
+        padding-bottom: 30px;
+
+    }
+
+    .headDiv.sec02{
+        padding-bottom: 15px;
+        padding-top: 15px;
+    }
 
 }
