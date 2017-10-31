@@ -250,20 +250,26 @@ function addThreeBtnDiv(parent,moveDirection,dataArray) {
     noDiv.style.backgroundImage='url('+dataArray[6]+')';
     unKnowDiv.style.backgroundImage='url('+dataArray[7]+')';
 
-    var randomNum=Math.round(Math.random()*10);
+    // var randomNum=Math.round(Math.random()*10);
 
-    if(randomNum<5){
-        addDataMove(btn1,moveDirection);
-        addDataMove(btn2,randomDirection(moveDirection));
-        addDataMove(btn3,randomDirection(moveDirection));
+    // if(randomNum<5){
+    //     addDataMove(btn1,moveDirection);
+    //     addDataMove(btn2,randomDirection(moveDirection));
+    //     addDataMove(btn3,randomDirection(moveDirection));
+    //
+    // }else{
+    //
+    //     addDataMove(btn2,moveDirection);
+    //     addDataMove(btn1,randomDirection(moveDirection));
+    //     addDataMove(btn3,randomDirection(moveDirection));
+    //
+    // }
 
-    }else{
 
-        addDataMove(btn2,moveDirection);
-        addDataMove(btn1,randomDirection(moveDirection));
-        addDataMove(btn3,randomDirection(moveDirection));
+    addDataMove(btn1,'up');
+    addDataMove(btn2,'down');
+    addDataMove(btn3,'right');
 
-    }
 
     a.appendChild(btn1);
     a.className='btn-aTag';
@@ -361,17 +367,23 @@ function addTwoBtnDiv(parent,moveDirection,dataArray) {
         yesDiv.className='yes-div';
         noDiv.className='no-div';
 
-        var randomNum=Math.round(Math.random()*10);
+        // var randomNum=Math.round(Math.random()*10);
+        // if(moveDirection=='up'){
+        //     addDataMove(btn1,moveDirection);
+        // }
+        // if(randomNum<5){
+        //     addDataMove(btn1,moveDirection);
+        //     addDataMove(btn2,randomDirection(moveDirection));
+        //
+        // }else{
+        //
+        //     addDataMove(btn2,moveDirection);
+        //     addDataMove(btn1,randomDirection(moveDirection));
+        // }
 
-        if(randomNum<5){
-            addDataMove(btn1,moveDirection);
-            addDataMove(btn2,randomDirection(moveDirection));
+            addDataMove(btn1,'up');
+            addDataMove(btn2,'down');
 
-        }else{
-
-            addDataMove(btn2,moveDirection);
-            addDataMove(btn1,randomDirection(moveDirection));
-        }
         a.appendChild(btn1);
         a.className='btn-aTag';
         a1.appendChild(btn2);
@@ -397,47 +409,70 @@ function memoryDiv(){
 }
 
 
+// function removeFirstDiv(elementName) {
+//     var elArray=$$(elementName);
+//     var flag=false;
+//     if(elArray.length>=3){
+//         var parentNode=elArray[0].parentNode;
+//         var selRemoveDiv=parentNode.firstChild;
+//
+//         while (selRemoveDiv&&selRemoveDiv.nodeType!=1){
+//             selRemoveDiv=selRemoveDiv.nextSibling;
+//         }
+//         console.log("selRemoveDiv");
+//         console.log(selRemoveDiv);
+//         parentNode.removeChild(selRemoveDiv);
+//
+//         flag=true;
+//     }
+//
+//     return flag;
+// }
+
+
 function removeFirstDiv(elementName) {
-    var elArray=$$(elementName);
-    var flag=false;
-    if(elArray.length>=3){
-        var parentNode=elArray[0].parentNode;
-        var selRemoveDiv=parentNode.firstChild;
+    setTimeout(remove,700)
+    function remove() {
+        var elArray=$$(elementName);
+        var flag=false;
 
-        while (selRemoveDiv&&selRemoveDiv.nodeType!=1){
-            selRemoveDiv=selRemoveDiv.nextSibling;
+        console.log("리무브",elArray);
+        if(elArray.length>=2){
+            console.log('렝스길이',elArray.length);
+            var parentNode=elArray[0].parentNode;
+            var selRemoveDiv=parentNode.firstChild;
+
+            while (selRemoveDiv&&selRemoveDiv.nodeType!=1){
+                selRemoveDiv=selRemoveDiv.nextSibling;
+            }
+            console.log("selRemoveDiv");
+            console.log(selRemoveDiv);
+            parentNode.removeChild(selRemoveDiv);
+            fixZeroPoint();
+            flag=true;
         }
-        console.log("selRemoveDiv");
-        console.log(selRemoveDiv);
-        parentNode.removeChild(selRemoveDiv);
-
-        flag=true;
+        return flag;
     }
-
-    return flag;
 }
 
 
-function removeFirstDiv(elementName) {
-    var elArray=$$(elementName);
-    var flag=false;
+function fixZeroPoint() {
+    var currentBasic=$('.basic');
+    var cHeight=currentBasic.offsetTop;
 
-    console.log("리무브",elArray);
-    if(elArray.length>=3){
-        console.log('렝스길이',elArray.length);
-        var parentNode=elArray[0].parentNode;
-        var selRemoveDiv=parentNode.firstChild;
+    var translate3d = 'translate3d(0px, -' + cHeight + 'px, 0px)';
+    console.log(translate3d);
+    var wrap=$('.wrap');
+    wrap.style.transform=translate3d;
+    wrap.style.transition='all 00ms ease';
 
-        while (selRemoveDiv&&selRemoveDiv.nodeType!=1){
-            selRemoveDiv=selRemoveDiv.nextSibling;
-        }
-        console.log("selRemoveDiv");
-        console.log(selRemoveDiv);
-        parentNode.removeChild(selRemoveDiv);
-
-        flag=true;
-    }
-    return flag;
+    // setTimeout(moveDirection,1);
+    // function moveDirection() {
+    //     var translate3d = 'translate3d(0px, -' + height + 'px, 0px)';
+    //     console.log(translate3d);
+    //     wrap.style.transform=translate3d;
+    //     wrap.style.transition='all 700ms ease';
+    // }
 }
 
 
@@ -468,20 +503,23 @@ function removeFirstDivA(target,elementName,removeDivName) {
 
 
 function removeLastDiv(elementName) {
-    var elArray=$$(elementName);
-    var flag=false;
-    if(elArray.length>=3){
-        var parentNode=elArray[0].parentNode;
-        var selRemoveDiv=parentNode.lastChild;
+    setTimeout(remove,700);
+    function remove() {
+        var elArray=$$(elementName);
+        var flag=false;
+        if(elArray.length>=2){
+            var parentNode=elArray[0].parentNode;
+            var selRemoveDiv=parentNode.lastChild;
 
-        while (selRemoveDiv&&selRemoveDiv.nodeType!=1){
-            selRemoveDiv=selRemoveDiv.previousSibling;
+            while (selRemoveDiv&&selRemoveDiv.nodeType!=1){
+                selRemoveDiv=selRemoveDiv.previousSibling;
+            }
+            console.log(selRemoveDiv);
+            parentNode.removeChild(selRemoveDiv);
+            flag=true;
         }
-        console.log(selRemoveDiv);
-        parentNode.removeChild(selRemoveDiv);
-        flag=true;
+        return flag;
     }
-    return flag;
 }
 
 
@@ -573,17 +611,19 @@ function  clickHandler() {
                 case 'up':
                     memoryDiv();
                     addBasicDiv(dataAttr,emNum);
-                    // fixBrowser(removeLastDivA(target,'basic','basic'));
                     removeLastDiv('.basic')
                     upMovement();
+
+                    // fixBrowser(removeLastDivA(target,'basic','basic'));
+
                     break;
 
                 case 'down':
                     memoryDiv();
                     addBasicDiv(dataAttr,emNum);
-                    // fixBrowser(removeFirstDivA(target,'basic','basic'));
-                    fixBrowser(removeFirstDiv('.basic'));
+                    removeFirstDiv('.basic');
                     downMovement();
+
                     // alert(dataAttr)
                     break;
 
@@ -686,9 +726,6 @@ function upMovement() {
     var height=basic.offsetTop;
 
 
-    window.scrollTo(0,cHeight);
-    console.log("추가높이 기억"+height);
-
     var translate3d = 'translate3d(0px, -' + cHeight + 'px, 0px)';
     console.log(translate3d);
     wrap.style.transform=translate3d;
@@ -703,24 +740,47 @@ function upMovement() {
     }
 }
 
+
 function downMovement() {
     var wrap=$('.wrap');
-    // var basic= $('.basic');
-    // var dLevelBasic=next(basic);
-    // console.log("dLevelBasic");
-    // console.log(dLevelBasic);
-    var lastChild=wrap.lastChild;
-    while(lastChild && lastChild.nodeType != 1) {
-        lastChild = lastChild.previousSibling;
-    }
-    var height=lastChild.offsetTop;
-    console.log("오프셋 탑"+height);
 
-    var translate3d = 'translate3d(0px, -' + height + 'px, 0px)';
+    var currentBasic=$('.basic');
+    console.log("배이직 섹션",currentBasic);
+
+    var cHeight=currentBasic.offsetTop;
+    var basic=wrap.lastElementChild;
+
+    var height=basic.offsetTop;
+
+    console.log('현재높이',cHeight);
+
+    console.log("변경높이",height);
+
+    // var translate3d = 'translate3d(0px, +' + height + 'px, 0px)';
+    // console.log(translate3d);
+    // wrap.style.transform=translate3d;
+    // wrap.style.transition='all 00ms ease';
+    //
+    // setTimeout(moveDirection,1);
+    // function moveDirection() {
+    //     var translate3d = 'translate3d(0px, -' + cHeight + 'px, 0px)';
+    //     console.log(translate3d);
+    //     wrap.style.transform=translate3d;
+    //     wrap.style.transition='all 700ms ease';
+    // }
+
+    var translate3d = 'translate3d(0px, -' + cHeight + 'px, 0px)';
     console.log(translate3d);
-    var wrap=$('.wrap');
     wrap.style.transform=translate3d;
-    wrap.style.transition='all 700ms ease';
+    wrap.style.transition='all 00ms ease';
+
+    setTimeout(moveDirection,1);
+    function moveDirection() {
+        var translate3d = 'translate3d(0px, -' + height + 'px, 0px)';
+        console.log(translate3d);
+        wrap.style.transform=translate3d;
+        wrap.style.transition='all 700ms ease';
+    }
 }
 
 function leftMovement(target) {

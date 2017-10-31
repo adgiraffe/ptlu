@@ -36,8 +36,9 @@ var letters=['f6c9cc', 'a8c0c0', 'FEBF36', 'FF7238',
 var color='#';
 
 var startDiv=document.querySelector('.wrap');
+var qTitle=document.querySelector('.q-title');
 
-
+console.log(qTitle);
 start();
 
 function start() {
@@ -54,10 +55,8 @@ function chzBackgroundColor(ele) {
 }
 
 
-function addBasicDiv (dataAttr){
+function addBasicDiv (dataAttr,emNum){
     preventDefault(event);
-    fq(0);
-
     var direction=dataAttr;
     var divWrap=$('.wrap');
     var basic=document.createElement('div');
@@ -68,11 +67,13 @@ function addBasicDiv (dataAttr){
     divSection.className="content";
     var lrContent=document.createElement('div');
     lrContent.className="lrContent";
+
     var ol=document.createElement('ol');
     ol.className='story-slider';
 
 
-    createLiDiv(ol,direction);
+
+    createLiDiv(ol,direction,emNum);
     lrContent.appendChild(ol);
     divSection.appendChild(lrContent);
     basic.appendChild(divSection);
@@ -82,28 +83,24 @@ function addBasicDiv (dataAttr){
 
     if (dataAttr=='up'){
         var firstChildNode=divWrap.firstElementChild;
-        console.log("펄스트 차일드",firstChildNode);
-        console.log(basic);
         divWrap.insertBefore(basic,firstChildNode);
         clickHandler(".selBtn");
-        console.log();
     }else if(dataAttr=='down'){
-        alert('클릭핸들러'+dataAttr);
         divWrap.appendChild(basic);
         clickHandler(".selBtn");
-    }else if(dataAttr=='right'){
-        alert('클릭핸들러'+dataAttr);
-        clickHandler(".selBtn");
-    }else if(dataAttr=='left'){
-        alert('클릭핸들러'+dataAttr);
-        clickHandler(".selBtn");
+    // }else if(dataAttr=='right'){
+    //     alert('클릭핸들러'+dataAttr);
+    //     clickHandler(".selBtn");
+    // }else if(dataAttr=='left'){
+    //     alert('클릭핸들러'+dataAttr);
+    //     clickHandler(".selBtn");
     }else if(dataAttr=='null'){
 
         addDataMove(btn1,moveDirection);
         addDataMove(btn2,moveDirection);
 
-        btn1.innerHTML="A";
-        btn2.innerHTML="B";
+        btn1.innerHTML="YES";
+        btn2.innerHTML="NO";
 
         divSection.appendChild(btn1);
         divSection.appendChild(empty);
@@ -119,81 +116,279 @@ function addBasicDiv (dataAttr){
 }
 
 
-function hiddenSection(dataArr,target) {
+function hiddenSection(dataArr,target,emNum) {
     if(dataArr=='left'){
         var parent=findParentClass(target,"story-slider");
-        console.log("찾은 부모",parent);
         var firstElChild=parent.firstElementChild;
-        var div=document.createElement('div');
+        // var div=document.createElement('div');
 
-        insertLiDiv(parent,firstElChild,dataArr)
+        insertLiDiv(parent,firstElChild,dataArr,emNum)
     }
+    else if(dataArr=='right'){
+        var parent=findParentClass(target,"story-slider");
+        var li=document.createElement('li');
+        li.className='liDiv';
+        var resultDiv=document.createElement('div');
+        resultDiv.className='result-div';
+        addButtonDiv(resultDiv,dataArr,emNum);
+        li.appendChild(resultDiv);
+        chzBackgroundColor(li);
 
+        parent.appendChild(li);
+
+    }
     clickHandler('.selBtn');
 
 }
 
 
 
-function insertLiDiv(parent,firstElchild,direction) {
+function insertLiDiv(parent,firstElchild,direction,emNum) {
+
     var li=document.createElement('li');
     li.className='liDiv';
     var resultDiv=document.createElement('div');
     resultDiv.className='result-div';
-    addButtonDiv(resultDiv,direction);
+    addButtonDiv(resultDiv,direction,emNum);
     li.appendChild(resultDiv);
     chzBackgroundColor(li);
     parent.insertBefore(li,firstElchild);
+
 }
 
 
 
-function createLiDiv(parent,direction) {
+function createLiDiv(parent,direction,emNum) {
+
     var li=document.createElement('li');
     li.className='liDiv';
     var resultDiv=document.createElement('div');
     resultDiv.className='result-div';
-    addButtonDiv(resultDiv,direction);
+
+    addButtonDiv(resultDiv,direction,emNum);
     li.appendChild(resultDiv);
     parent.appendChild(li);
+
 }
 
 
 
-function addButtonDiv(parent,dataAttr) {
+function addButtonDiv(parent,dataAttr,emNum) {
+
+    console.log(emNum);
+    var dataArray=releaseData(emNum);
+
+    console.log(dataArray);
+
+    var title=dataArray[1];
+
+    console.log('title',title);
+    qTitle.innerHTML=title;
     var moveDirection=dataAttr;
     var parent=parent;
+
+    if(dataArray[4]==''){
+        addTwoBtnDiv(parent,moveDirection,dataArray);
+
+    }
+    else if(dataArray[4]!=''){
+        addThreeBtnDiv(parent,moveDirection,dataArray);
+    }
+}
+
+
+function addThreeBtnDiv(parent,moveDirection,dataArray) {
+    qTitle.style.top='20%';
     var btn1=document.createElement('button');
     var empty=document.createTextNode(' ');
     var btn2=document.createElement('button');
+    var empty=document.createTextNode(' ');
+    var btn3=document.createElement('button');
+
+    // var btn1=document.createElement('div');
+    // var btn2=document.createElement('div');
+    // var btn3=document.createElement('div');
 
     btn1.className=className.btn;
     btn2.className=className.btn;
+    btn3.className=className.btn;
 
-    btn1.innerHTML="A";
-    btn2.innerHTML="B";
+    btn1.innerHTML="YES";
+    btn2.innerHTML="NO";
+    btn3.innerHTML="모름";
+
+    var yesDiv=document.createElement('div');
+    var noDiv=document.createElement('div');
+    var unKnowDiv=document.createElement('div');
+
+    var em=document.createElement('em');
+    var em1=document.createElement('em');
+    var em2=document.createElement('em');
+
+    em.className='em-link';
+    em1.className='em-link';
+    em2.className='em-link';
+
+    em.innerHTML=dataArray[2];
+    em1.innerHTML=dataArray[3];
+    em2.innerHTML=dataArray[4];
+
+
+    var a=document.createElement('a');
+    var a1=document.createElement('a');
+    var a2=document.createElement('a');
+
+
+    yesDiv.className='yes-div';
+    noDiv.className='no-div';
+    unKnowDiv.className='unknow-div';
+    yesDiv.style.width='33%';
+    noDiv.style.width='33%';
+    unKnowDiv.style.width='33%';
+
+    yesDiv.style.backgroundImage='url('+dataArray[5]+')';
+    noDiv.style.backgroundImage='url('+dataArray[6]+')';
+    unKnowDiv.style.backgroundImage='url('+dataArray[7]+')';
 
     var randomNum=Math.round(Math.random()*10);
 
     if(randomNum<5){
         addDataMove(btn1,moveDirection);
         addDataMove(btn2,randomDirection(moveDirection));
+        addDataMove(btn3,randomDirection(moveDirection));
 
     }else{
 
         addDataMove(btn2,moveDirection);
         addDataMove(btn1,randomDirection(moveDirection));
+        addDataMove(btn3,randomDirection(moveDirection));
+
     }
 
-    parent.appendChild(btn1);
-    parent.appendChild(empty);
-    parent.appendChild(btn2);
+    a.appendChild(btn1);
+    a.className='btn-aTag';
+    a1.appendChild(btn2);
+    a1.className='btn-aTag';
+    a2.appendChild(btn3)
+    a2.className='btn-aTag';
+
+    yesDiv.appendChild(em);
+    yesDiv.appendChild(a);
+
+    noDiv.appendChild(em1);
+    noDiv.appendChild(a1);
+
+    unKnowDiv.appendChild(em2);
+    unKnowDiv.appendChild(a2);
+
+    parent.appendChild(yesDiv);
+    parent.appendChild(noDiv);
+    parent.appendChild(unKnowDiv);
 }
 
+function addTwoBtnDiv(parent,moveDirection,dataArray) {
+    qTitle.style.top='50%';
+    if(dataArray[2]==''){
+        var linkDiv=document.createElement('div');
+        linkDiv.className='link-div';
+        linkDiv.style.width='100%'
+        // var btn1=document.createElement('button');
+        var btn1=document.createElement('div');
+        btn1.className=className.btn;
+
+        var a=document.createElement('a');
+        a.className='btn-aTag';
+
+        if(dataArray[8]==''){
+            qTitle.style.top='20%';
+            // btn1.setAttribute('onclick','location.href='+'"'+dataArray[9]+'"');
+            a.setAttribute('target','_blank')
+            btn1.innerHTML='공공운수노조 가입하기'
+            a.setAttribute('href',dataArray[9]);
+            a.appendChild(btn1);
+            // btn1.setAttribute('type','button');
 
 
+        }else if(dataArray[8]!=''){
+            qTitle.style.top='20%';
+            // btn1.setAttribute('onclick','location.href='+'"'+dataArray[8]+'"');
+            btn1.innerHTML='10억기금 링크'
+            a.setAttribute('href',dataArray[8]);
+            a.appendChild(btn1);
+
+            // btn1.setAttribute('type','button');
+
+        }
+
+        a.appendChild(btn1);
+        linkDiv.appendChild(a);
+        parent.appendChild(linkDiv);
 
 
+    } else{
+        // var btn1=document.createElement('button');
+        // var empty=document.createTextNode(' ');
+        // var btn2=document.createElement('button');
+
+        var btn1=document.createElement('div');
+        var empty=document.createTextNode(' ');
+        var btn2=document.createElement('div');
+
+        btn1.className=className.btn;
+        btn2.className=className.btn;
+
+        btn1.innerHTML="YES";
+        btn2.innerHTML="NO";
+
+        var yesDiv=document.createElement('div');
+        var noDiv=document.createElement('div');
+
+        yesDiv.style.backgroundImage='url('+dataArray[6]+')';
+        noDiv.style.backgroundImage='url('+dataArray[7]+')';
+
+        var em=document.createElement('em');
+        var em1=document.createElement('em');
+        em.className='em-link';
+        em1.className='em-link';
+
+        em.innerHTML=dataArray[2];
+        em1.innerHTML=dataArray[3];
+
+
+        var a=document.createElement('a');
+        var a1=document.createElement('a');
+
+        yesDiv.className='yes-div';
+        noDiv.className='no-div';
+
+        var randomNum=Math.round(Math.random()*10);
+
+        if(randomNum<5){
+            addDataMove(btn1,moveDirection);
+            addDataMove(btn2,randomDirection(moveDirection));
+
+        }else{
+
+            addDataMove(btn2,moveDirection);
+            addDataMove(btn1,randomDirection(moveDirection));
+        }
+        a.appendChild(btn1);
+        a.className='btn-aTag';
+        a1.appendChild(btn2);
+        a1.className='btn-aTag';
+
+
+        yesDiv.appendChild(em);
+        yesDiv.appendChild(a);
+
+        noDiv.appendChild(em1);
+        noDiv.appendChild(a1);
+
+        parent.appendChild(yesDiv);
+        parent.appendChild(empty);
+        parent.appendChild(noDiv);
+    }
+}
 
 
 function memoryDiv(){
@@ -226,7 +421,10 @@ function removeFirstDiv(elementName) {
 function removeFirstDiv(elementName) {
     var elArray=$$(elementName);
     var flag=false;
+
+    console.log("리무브",elArray);
     if(elArray.length>=3){
+        console.log('렝스길이',elArray.length);
         var parentNode=elArray[0].parentNode;
         var selRemoveDiv=parentNode.firstChild;
 
@@ -243,17 +441,78 @@ function removeFirstDiv(elementName) {
 }
 
 
+function removeFirstDivA(target,elementName,removeDivName) {
+    var dot=".";
+    var parent=findParentClass(target,elementName);
+    var elArray=parent.querySelectorAll(dot+removeDivName);
+    var flag=false;
+
+    console.log("리무브",elArray);
+    if(elArray.length>=3){
+        console.log('렝스길이',elArray.length);
+        var parentNode=elArray[0].parentNode;
+        var selRemoveDiv=parentNode.firstChild;
+
+        while (selRemoveDiv&&selRemoveDiv.nodeType!=1){
+            selRemoveDiv=selRemoveDiv.nextSibling;
+        }
+        console.log("selRemoveDiv");
+        console.log(selRemoveDiv);
+        parentNode.removeChild(selRemoveDiv);
+
+        flag=true;
+    }
+    return flag;
+}
+
+
+
 function removeLastDiv(elementName) {
     var elArray=$$(elementName);
-    var parentNode=elArray[0].parentNode;
-    var selRemoveDiv=parentNode.lastChild;
+    var flag=false;
+    if(elArray.length>=3){
+        var parentNode=elArray[0].parentNode;
+        var selRemoveDiv=parentNode.lastChild;
 
-    while (selRemoveDiv&&selRemoveDiv.nodeType!=1){
-        selRemoveDiv=selRemoveDiv.previousSibling;
+        while (selRemoveDiv&&selRemoveDiv.nodeType!=1){
+            selRemoveDiv=selRemoveDiv.previousSibling;
+        }
+        console.log(selRemoveDiv);
+        parentNode.removeChild(selRemoveDiv);
+        flag=true;
     }
-    console.log(selRemoveDiv);
-    parentNode.removeChild(selRemoveDiv);
+    return flag;
 }
+
+
+function removeLastDivA(target,elementName,removeDivName) {
+    var dot=".";
+    var parent=findParentClass(target,elementName);
+    var elArray=parent.querySelectorAll(dot+removeDivName);
+    var flag=false;
+
+    console.log("리무브",elArray);
+    if(elArray.length>=3){
+        console.log('렝스길이',elArray.length);
+        var parentNode=elArray[0].parentNode;
+        var selRemoveDiv=parentNode.lastChild;
+
+        while (selRemoveDiv&&selRemoveDiv.nodeType!=1){
+            selRemoveDiv=selRemoveDiv.previousSibling;
+        }
+        console.log("selRemoveDiv");
+        console.log(selRemoveDiv);
+        parentNode.removeChild(selRemoveDiv);
+
+        flag=true;
+    }
+    return flag;
+}
+
+
+
+
+
 
 function fixBrowser(flag) {
     if(flag==true){
@@ -300,28 +559,29 @@ function  clickHandler() {
             var e = window.event || event || event.originalEvent;
             var target=e.target;
             var dataAttr=event.srcElement.getAttribute('data-move');
+            var emNum=getEmNum(target);
 
-            console.log("방향", dataAttr);
 
+            console.log(emNum);
             switch (dataAttr){
                 case 'null':
                     memoryDiv();
-                    addBasicDiv(dataAttr);
-                    removeFirstDiv('.basic')
+                    addBasicDiv(dataAttr,emNum);
+                    removeFirstDiv('.basic');
                     break;
 
                 case 'up':
                     memoryDiv();
-                    addBasicDiv(dataAttr);
+                    addBasicDiv(dataAttr,emNum);
+                    // fixBrowser(removeLastDivA(target,'basic','basic'));
+                    removeLastDiv('.basic')
                     upMovement();
-                    // removeLastDiv('.basic');
-                    // fixBrowser(removeLastDiv('.basic'));
-
                     break;
 
                 case 'down':
                     memoryDiv();
-                    addBasicDiv(dataAttr);
+                    addBasicDiv(dataAttr,emNum);
+                    // fixBrowser(removeFirstDivA(target,'basic','basic'));
                     fixBrowser(removeFirstDiv('.basic'));
                     downMovement();
                     // alert(dataAttr)
@@ -329,22 +589,39 @@ function  clickHandler() {
 
                 case 'left':
                     memoryDiv();
-                    alert(dataAttr);
-                    hiddenSection(dataAttr,target);
+                    hiddenSection(dataAttr,target,emNum);
                     leftMovement(target);
+                    removeLastDivA(target,'basic','liDiv');
                     break;
 
                 case 'right':
                     memoryDiv();
-                    alert(dataAttr)
+                    hiddenSection(dataAttr,target,emNum);
+                    rightMovement(target);
+                    // fixBrowser(removeFirstDiv('.liDiv'));
+                    removeFirstDivA(target,'basic','liDiv');
                     break;
             }
 
         },false)
     }
 
-
 }
+
+
+function getEmNum(target) {
+    var a=target.parentNode;
+    var div=a.parentNode;
+    var em=div.querySelector('em');
+    console.log("EM",em);
+    console.log("EM 숫자 ",num);
+    if(em!=null){
+        var num=em.innerHTML;
+        return num;
+    }
+}
+
+
 
 function findParentClass(target,parentClsname) {
     var parentName=parentClsname;
@@ -375,7 +652,7 @@ function randomDirection(dataName) {
     var direction="";
     if(dataName=="up"||dataName=="down"){
         var numDirection=Math.round(Math.random()*10);
-        if(numDirection<5){
+        if(numDirection<=5){
             direction='left';
         }else if(numDirection>5){
             direction='right';
@@ -383,7 +660,7 @@ function randomDirection(dataName) {
     }
     else if(dataName=="left"||dataName=="right"){
         var numDirection=Math.round(Math.random()*10);
-        if(numDirection<5){
+        if(numDirection<=5){
             direction='up';
         }else if(numDirection>5){
             direction='down';
@@ -397,6 +674,8 @@ function randomDirection(dataName) {
 function upMovement() {
     var wrap=$('.wrap');
     var currentBasic=next($('.basic'));
+    console.log("배이직 섹션",currentBasic);
+
     var cHeight=currentBasic.offsetTop;
     var basic=wrap.firstElementChild;
 
@@ -405,21 +684,23 @@ function upMovement() {
     console.log("현재높이 기억"+cHeight);
 
     var height=basic.offsetTop;
-    window.scrollTo(0,-cHeight);
+
+
+    window.scrollTo(0,cHeight);
     console.log("추가높이 기억"+height);
 
     var translate3d = 'translate3d(0px, -' + cHeight + 'px, 0px)';
     console.log(translate3d);
-    // wrap.style.transform=translate3d;
-    // wrap.style.transition='all 700ms ease';
-
-
-    var translate3d = 'translate3d(0px, ' + height + 'px, 0px)';
-    console.log(translate3d);
     wrap.style.transform=translate3d;
-    wrap.style.transition='all 700ms ease';
+    wrap.style.transition='all 00ms ease';
 
-
+    setTimeout(moveDirection,1);
+    function moveDirection() {
+        var translate3d = 'translate3d(0px, -' + height + 'px, 0px)';
+        console.log(translate3d);
+        wrap.style.transform=translate3d;
+        wrap.style.transition='all 700ms ease';
+    }
 }
 
 function downMovement() {
@@ -444,30 +725,59 @@ function downMovement() {
 
 function leftMovement(target) {
     var target=target;
-    var storySldier=findParentClass(target,'story-slider')
-    var firstChild=storySldier.firstElementChild;
-    var lastChild=storySldier.lastElementChild;
-    while(lastChild && lastChild.nodeType != 1) {
-        lastChild = lastChild.previousSibling;
-    }
-    var cOffsetLeft=lastChild.offsetLeft;
+    var storySlider=findParentClass(target,'story-slider');
+
+    var firstChild=storySlider.firstElementChild;
+
+    var brotherChild=firstChild.nextElementSibling;
+    var cOffsetLeft=brotherChild.offsetLeft;
     var leftOffsetLeft=firstChild.offsetLeft;
 
-    console.log('현위치',cOffsetLeft);
-    console.log('옮길 위치',leftOffsetLeft);
 
-
-    // window.scrollTo(cOffsetLeft,0);
     var translate3d = 'translate3d('+'-'+cOffsetLeft+'px, 0px, 0px)';
-    storySldier.style.transform=translate3d;
-    storySldier.style.transition='all 0ms ease';
+    storySlider.style.transform=translate3d;
+    storySlider.style.transition='all 0ms ease';
+
+
+    setTimeout(moveDirection,1);
+    function moveDirection() {
+        var translate3d = 'translate3d('+'-'+leftOffsetLeft+'px, 0px, 0px)';
+        storySlider.style.transform=translate3d;
+        storySlider.style.transition='all 700ms ease';
+    }
+}
+
+function rightMovement(target) {
+    var target=target;
+    var storySlider=findParentClass(target,'story-slider');
+
+    var firstChild=storySlider.firstElementChild;
+    var brotherChild=firstChild.nextElementSibling;
+
+
+    var cOffsetLeft=brotherChild.offsetLeft;
+    var leftOffsetLeft=firstChild.offsetLeft;
+    console.log("원 점",leftOffsetLeft);
+    console.log('이동 ',cOffsetLeft);
+
 
     var translate3d = 'translate3d('+'-'+leftOffsetLeft+'px, 0px, 0px)';
-    storySldier.style.transform=translate3d;
-    storySldier.style.transition='all 700ms ease';
+    storySlider.style.transform=translate3d;
+    storySlider.style.transition='all 0ms ease';
 
+    setTimeout(moveDirection,1);
+    function moveDirection() {
+        var translate3d = 'translate3d('+'-'+cOffsetLeft+'px, 0px, 0px)';
+        storySlider.style.transform=translate3d;
+        storySlider.style.transition='all 700ms ease';
+    }
 
 }
+
+
+
+
+
 
 
 function prev(element){

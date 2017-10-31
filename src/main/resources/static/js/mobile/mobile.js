@@ -52,7 +52,6 @@ function next(element){
 }
 
 function createMobileMenu() {
-
     var bodyArr=document.getElementsByTagName('body');
     var body=bodyArr[0];
     var firstChild=next(body.firstChild);
@@ -60,8 +59,6 @@ function createMobileMenu() {
     header.className='menuHeader';
     createBasicMenu(header);
     body.insertBefore(header,firstChild);
-
-
 }
 
 
