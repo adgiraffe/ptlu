@@ -15,7 +15,7 @@ function releaseData(state) {
 // 문자열의 형식 질문번호-질문내용-다음갈번호-다음갈번호
 var textArr=[
     '0,당신은 정규직인가요?,1,2,,imgSrc1,imgSrc2,,,,',
-    '1,당신은 공공부문노동자 인가요?,3,4,5,../../images/storyImg/pi2.jpg,imgSrc2,imgSrc3,,' ,
+    '1,당신은 공공부문노동자 인가요?,3,4,5,(../../images/storyImg/pi2.jpg),imgSrc2,imgSrc3,,' ,
     '2,당신은 공공부문노동자 인가요?,6,7,8,imgSrc1,imgSrc2,imgSrc3,,',
     '3,당신은 노동조합원 인가요?,9,10,,imgSrc1,imgSrc2,,,',
     '4,당신은 노동조합원 인가요?,11,12,,imgSrc,imgSrc1,,,',

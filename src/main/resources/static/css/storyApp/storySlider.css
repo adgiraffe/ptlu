@@ -37,13 +37,15 @@
     /*width: 16.5%;*/
     width: 50%;
     height: 100%;
+    float: left;
     background-position: center center;
 }
 
 .no-div{
     position: relative;
     display: inline-block;
-    width: 49%;
+    float: left;
+    width: 50%;
     height: 100%;
     background-position: center center;
 }
@@ -65,12 +67,6 @@
     display: none;
 }
 
-.q-title{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform:translateX(-50%);
-}
 
 /*.selBtn{*/
     /*position: relative;*/
@@ -125,8 +121,45 @@
 }
 
 .btn-aTag{
+     position: absolute;
+     left: 50%;
+     top: 50%;
+     transform:translate(-50%,-50%);
+ }
+
+.event-div{
     position: absolute;
     left: 50%;
     top: 50%;
-    transform:translateX(-50%);
+    transform: translate(-50%,-50%);
 }
+
+
+.figure.circle{
+    /*This creates a 1px solid red border around your element(div) */
+    border:20px solid red;
+    /*background-color: #FFFFFF;*/
+    height: 200px;
+    /* border-radius 50% will make it fully rounded. */
+    border-radius: 50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius: 50%;
+    width: 200px;
+    /*transform:translate(-35%,-0%);*/
+}
+
+.figure.x{
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+}
+
+/*.yes-div>.btn-aTag{*/
+    /*padding-right: 18%;*/
+/*}*/
+
+/*.no-div>.btn-aTag{*/
+    /*padding-left: 18%;*/
+/*}*/

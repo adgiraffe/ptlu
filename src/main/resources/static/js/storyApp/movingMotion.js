@@ -37,6 +37,7 @@ var color='#';
 
 var startDiv=document.querySelector('.wrap');
 var qTitle=document.querySelector('.q-title');
+var titleContent=document.querySelector('.title-content');
 
 console.log(qTitle);
 start();
@@ -78,7 +79,7 @@ function addBasicDiv (dataAttr,emNum){
     divSection.appendChild(lrContent);
     basic.appendChild(divSection);
 
-    chzBackgroundColor(basic);
+    // chzBackgroundColor(basic);
 
 
     if (dataAttr=='up'){
@@ -183,17 +184,19 @@ function addButtonDiv(parent,dataAttr,emNum) {
     var title=dataArray[1];
 
     console.log('title',title);
-    qTitle.innerHTML=title;
+    titleContent.innerHTML=title;
     var moveDirection=dataAttr;
     var parent=parent;
 
-    if(dataArray[4]==''){
-        addTwoBtnDiv(parent,moveDirection,dataArray);
+    addTwoBtnDiv(parent,moveDirection,dataArray);
 
-    }
-    else if(dataArray[4]!=''){
-        addThreeBtnDiv(parent,moveDirection,dataArray);
-    }
+    // if(dataArray[4]==''){
+    //     addTwoBtnDiv(parent,moveDirection,dataArray);
+    //
+    // }
+    // else if(dataArray[4]!=''){
+    //     addThreeBtnDiv(parent,moveDirection,dataArray);
+    // }
 }
 
 
@@ -238,13 +241,17 @@ function addThreeBtnDiv(parent,moveDirection,dataArray) {
     var a1=document.createElement('a');
     var a2=document.createElement('a');
 
-
+    chzBackgroundColor(yesDiv);
     yesDiv.className='yes-div';
+
+    chzBackgroundColor(noDiv);
     noDiv.className='no-div';
+
+    chzBackgroundColor(unKnowDiv);
     unKnowDiv.className='unknow-div';
-    yesDiv.style.width='33%';
-    noDiv.style.width='33%';
-    unKnowDiv.style.width='33%';
+    yesDiv.style.width='33.3333%';
+    noDiv.style.width='33.3333%';
+    unKnowDiv.style.width='33.3333%';
 
     yesDiv.style.backgroundImage='url('+dataArray[5]+')';
     noDiv.style.backgroundImage='url('+dataArray[6]+')';
@@ -294,6 +301,7 @@ function addThreeBtnDiv(parent,moveDirection,dataArray) {
 
 function addTwoBtnDiv(parent,moveDirection,dataArray) {
     qTitle.style.top='50%';
+
     if(dataArray[2]==''){
         var linkDiv=document.createElement('div');
         linkDiv.className='link-div';
@@ -347,8 +355,9 @@ function addTwoBtnDiv(parent,moveDirection,dataArray) {
         btn2.innerHTML="NO";
 
         var yesDiv=document.createElement('div');
+        chzBackgroundColor(yesDiv);
         var noDiv=document.createElement('div');
-
+        chzBackgroundColor(noDiv);
         yesDiv.style.backgroundImage='url('+dataArray[6]+')';
         noDiv.style.backgroundImage='url('+dataArray[7]+')';
 
@@ -363,6 +372,12 @@ function addTwoBtnDiv(parent,moveDirection,dataArray) {
 
         var a=document.createElement('a');
         var a1=document.createElement('a');
+
+        var circle=document.createElement('div');
+        var x=document.createElement('div');
+
+        circle.className='figure circle';
+        x.className='figure x';
 
         yesDiv.className='yes-div';
         noDiv.className='no-div';
@@ -381,8 +396,14 @@ function addTwoBtnDiv(parent,moveDirection,dataArray) {
         //     addDataMove(btn1,randomDirection(moveDirection));
         // }
 
-            addDataMove(btn1,'up');
-            addDataMove(btn2,'down');
+        addDataMove(btn1,'up');
+        addDataMove(btn2,'down');
+
+        // circle.appendChild(btn1);
+        // x.appendChild(btn2);
+        a.appendChild(circle);
+        a1.appendChild(x);
+
 
         a.appendChild(btn1);
         a.className='btn-aTag';
@@ -408,26 +429,6 @@ function memoryDiv(){
     memory.divBasic=memoryDiv;
 }
 
-
-// function removeFirstDiv(elementName) {
-//     var elArray=$$(elementName);
-//     var flag=false;
-//     if(elArray.length>=3){
-//         var parentNode=elArray[0].parentNode;
-//         var selRemoveDiv=parentNode.firstChild;
-//
-//         while (selRemoveDiv&&selRemoveDiv.nodeType!=1){
-//             selRemoveDiv=selRemoveDiv.nextSibling;
-//         }
-//         console.log("selRemoveDiv");
-//         console.log(selRemoveDiv);
-//         parentNode.removeChild(selRemoveDiv);
-//
-//         flag=true;
-//     }
-//
-//     return flag;
-// }
 
 
 function removeFirstDiv(elementName) {
@@ -529,25 +530,21 @@ function removeLastDivA(target,elementName,removeDivName) {
     var elArray=parent.querySelectorAll(dot+removeDivName);
     var flag=false;
 
-    console.log("리무브",elArray);
-    if(elArray.length>=3){
-        console.log('렝스길이',elArray.length);
+     if(elArray.length>=3){
+
         var parentNode=elArray[0].parentNode;
         var selRemoveDiv=parentNode.lastChild;
 
         while (selRemoveDiv&&selRemoveDiv.nodeType!=1){
             selRemoveDiv=selRemoveDiv.previousSibling;
         }
-        console.log("selRemoveDiv");
-        console.log(selRemoveDiv);
+
         parentNode.removeChild(selRemoveDiv);
 
         flag=true;
     }
     return flag;
 }
-
-
 
 
 
@@ -584,11 +581,9 @@ function addHandler(element, method, normal, oldIE, firefox){
 
 
 function  clickHandler() {
-    var btnArray=$$('.selBtn');
+    var btnArray=$$('.event-div');
     //버튼 배열
 
-
-    console.log("클릭핸들러 실행");
     for (var i=0;i<btnArray.length;i++){
         btnArray[i].addEventListener('click',function (event){
             event.preventDefault();
@@ -596,8 +591,17 @@ function  clickHandler() {
             event.stopImmediatePropagation();
             var e = window.event || event || event.originalEvent;
             var target=e.target;
-            var dataAttr=event.srcElement.getAttribute('data-move');
+            console.log(event);
+            var eventParent=event.srcElement.parentNode;
+            var selBtn=eventParent.querySelector('.selBtn');
+            console.log(selBtn);
+
+            var dataAttr=selBtn.getAttribute('data-move');
+
+            console.log(target);
             var emNum=getEmNum(target);
+
+            console.log(dataAttr);
 
 
             console.log(emNum);
@@ -654,9 +658,10 @@ function getEmNum(target) {
     var div=a.parentNode;
     var em=div.querySelector('em');
     console.log("EM",em);
-    console.log("EM 숫자 ",num);
+
     if(em!=null){
         var num=em.innerHTML;
+        console.log("EM 숫자 ",num);
         return num;
     }
 }
@@ -751,23 +756,6 @@ function downMovement() {
     var basic=wrap.lastElementChild;
 
     var height=basic.offsetTop;
-
-    console.log('현재높이',cHeight);
-
-    console.log("변경높이",height);
-
-    // var translate3d = 'translate3d(0px, +' + height + 'px, 0px)';
-    // console.log(translate3d);
-    // wrap.style.transform=translate3d;
-    // wrap.style.transition='all 00ms ease';
-    //
-    // setTimeout(moveDirection,1);
-    // function moveDirection() {
-    //     var translate3d = 'translate3d(0px, -' + cHeight + 'px, 0px)';
-    //     console.log(translate3d);
-    //     wrap.style.transform=translate3d;
-    //     wrap.style.transition='all 700ms ease';
-    // }
 
     var translate3d = 'translate3d(0px, -' + cHeight + 'px, 0px)';
     console.log(translate3d);
