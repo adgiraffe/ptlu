@@ -2,9 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <!--<script src="https://code.jquery.com/jquery-1.11.3.js"/>-->
+    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
     <title>가입서</title>
     <link rel="stylesheet" href="../../css/storyApp/body.css"/>
     <link rel="stylesheet" href="../../css/storyApp/storySlider.css"/>
+    <link rel="stylesheet" media="screen and (min-width: 370px) and (max-width: 380px)" href="../../css/storyApp/mobile/iPhone6.css"/>
+
 </head>
 
 <body>
@@ -15,7 +18,7 @@
                 <ol class="story-slider">
                     <li class="liDiv">
                         <div class="result-div">
-                            <div class="yes-div">
+                            <div class="qDiv yes">
                                 <em class="em-link">1</em>
                                 <div class="event-div">
                                     <div class="figure circle"></div>
@@ -24,7 +27,7 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="no-div">
+                            <div class="qDiv no">
                                 <em class="em-link">2</em>
                                 <div class="event-div">
                                     <div class="figure x"></div>
@@ -47,7 +50,11 @@
         <div class="bg-img"></div>
         <div class="bg-filter"></div>
     </div>
-    <div class="title-content">당신은 정규직인가요?</div>
+    <div class="title-content">
+        <div class="qTitle-line one">
+            당신은 정규직인가요?
+        </div>
+    </div>
 </div>
 
 

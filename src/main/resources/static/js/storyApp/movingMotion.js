@@ -29,15 +29,19 @@ var dataMoveName={
 }
 
 
-var letters=['f6c9cc', 'a8c0c0', 'FEBF36', 'FF7238',
-    '6475A0', 'acc7bf', '5e5f67', 'c37070',
-    'eae160', 'bf7aa3', 'd7d967'];
+// var yesLetters=['56B9D0', 'FBBA42', 'F24C27', '3B3F42'];
+//     // 'D74B32', 'AF0064', '55237D', '004696',
+//     // 'eae160', 'bf7aa3', 'd7d967'];
+
+var yesLetters=['2E3840','4481A6','589FBF','82C5D9','CEEBF2'];
+var noLetters=['2E112D','F14057','FFB61D','540032','F0433A','C9283E','820333'];
 
 var color='#';
 
 var startDiv=document.querySelector('.wrap');
 var qTitle=document.querySelector('.q-title');
 var titleContent=document.querySelector('.title-content');
+var titleImg=document.querySelector('.bg-img');
 
 console.log(qTitle);
 start();
@@ -48,16 +52,56 @@ function start() {
 }
 
 function chzBackgroundColor(ele) {
-    var ranNum=Math.random()*10;
-    var lettersNum=Math.floor(Math.random()*10);
-    color+=letters[lettersNum];
-    ele.style.backgroundColor=color;
-    color="#";
+    var qDiv=ele;
+    console.log('넘어온 객체',qDiv);
+    var cls=qDiv.getAttribute('class');
+    console.log('클래스 이름',cls);
+
+
+    if(cls=='qDiv yes'){
+        var ranNum=Math.random()*5;
+        var lettersNum=Math.floor(Math.random()*5);
+        color+=yesLetters[lettersNum];
+        qDiv.style.backgroundColor=color;
+        color="#";
+    }else if(cls=='qDiv no'){
+        var ranNum=Math.random()*7;
+        var lettersNum=Math.floor(Math.random()*7);
+        color+=noLetters[lettersNum];
+        qDiv.style.backgroundColor=color;
+        color="#";
+    }
+
+
+    // for(var i=0;i<qDiv.length;i++){
+    //     var cls=qDiv[i].getAttribute('class');
+    //     console.log('클래스 확인 ',cls);
+    //
+    //     if(cls=='qDiv yes'){
+    //         var ranNum=Math.random()*4;
+    //         var lettersNum=Math.floor(Math.random()*4);
+    //         color+=yesLetters[lettersNum];
+    //         qDiv[i].style.backgroundColor=color;
+    //         color="#";
+    //     }else if(cls=='qDiv no'){
+    //         var ranNum=Math.random()*4;
+    //         var lettersNum=Math.floor(Math.random()*4);
+    //         color+=noLetters[lettersNum];
+    //         qDiv[i].style.backgroundColor=color;
+    //         color="#";
+    //     }
+    // }
+
+
+    // var colorCode=Math.round(Math.random()*0xffffff).toString(16);
+    // ele.style.backgroundColor=color+colorCode;
+    // console.log('색깔',colorCode);
 }
 
 
 function addBasicDiv (dataAttr,emNum){
     preventDefault(event);
+
     var direction=dataAttr;
     var divWrap=$('.wrap');
     var basic=document.createElement('div');
@@ -133,7 +177,7 @@ function hiddenSection(dataArr,target,emNum) {
         resultDiv.className='result-div';
         addButtonDiv(resultDiv,dataArr,emNum);
         li.appendChild(resultDiv);
-        chzBackgroundColor(li);
+        // chzBackgroundColor(li);
 
         parent.appendChild(li);
 
@@ -152,8 +196,10 @@ function insertLiDiv(parent,firstElchild,direction,emNum) {
     resultDiv.className='result-div';
     addButtonDiv(resultDiv,direction,emNum);
     li.appendChild(resultDiv);
-    chzBackgroundColor(li);
+    // chzBackgroundColor();
+    // chzBackgroundColor(li);
     parent.insertBefore(li,firstElchild);
+
 
 }
 
@@ -166,6 +212,7 @@ function createLiDiv(parent,direction,emNum) {
     var resultDiv=document.createElement('div');
     resultDiv.className='result-div';
 
+
     addButtonDiv(resultDiv,direction,emNum);
     li.appendChild(resultDiv);
     parent.appendChild(li);
@@ -176,15 +223,7 @@ function createLiDiv(parent,direction,emNum) {
 
 function addButtonDiv(parent,dataAttr,emNum) {
 
-    console.log(emNum);
     var dataArray=releaseData(emNum);
-
-    console.log(dataArray);
-
-    var title=dataArray[1];
-
-    console.log('title',title);
-    titleContent.innerHTML=title;
     var moveDirection=dataAttr;
     var parent=parent;
 
@@ -241,14 +280,21 @@ function addThreeBtnDiv(parent,moveDirection,dataArray) {
     var a1=document.createElement('a');
     var a2=document.createElement('a');
 
-    chzBackgroundColor(yesDiv);
-    yesDiv.className='yes-div';
+    yesDiv.className='qDiv yes';
 
-    chzBackgroundColor(noDiv);
-    noDiv.className='no-div';
+    var a=yesDiv.className;
+    console.log('클래스 네임은 ',a);
+    // chzBackgroundColor(yesDiv);
 
-    chzBackgroundColor(unKnowDiv);
-    unKnowDiv.className='unknow-div';
+    noDiv.className='qDiv np';
+
+    var b=noDiv.getAttribute('class');
+    console.log(a);
+    // chzBackgroundColor(noDiv);
+
+
+    // chzBackgroundColor(unKnowDiv);
+    unKnowDiv.className='qDiv unknown';
     yesDiv.style.width='33.3333%';
     noDiv.style.width='33.3333%';
     unKnowDiv.style.width='33.3333%';
@@ -297,6 +343,7 @@ function addThreeBtnDiv(parent,moveDirection,dataArray) {
     parent.appendChild(yesDiv);
     parent.appendChild(noDiv);
     parent.appendChild(unKnowDiv);
+    // chzBackgroundColor();
 }
 
 function addTwoBtnDiv(parent,moveDirection,dataArray) {
@@ -311,11 +358,13 @@ function addTwoBtnDiv(parent,moveDirection,dataArray) {
         btn1.className=className.btn;
 
         var a=document.createElement('a');
-        a.className='btn-aTag';
+        a.className='final';
+
 
         if(dataArray[8]==''){
-            qTitle.style.top='20%';
+            qTitle.style.top='25%';
             // btn1.setAttribute('onclick','location.href='+'"'+dataArray[9]+'"');
+            constructQtitle(dataArray)
             a.setAttribute('target','_blank')
             btn1.innerHTML='공공운수노조 가입하기'
             a.setAttribute('href',dataArray[9]);
@@ -325,13 +374,13 @@ function addTwoBtnDiv(parent,moveDirection,dataArray) {
 
         }else if(dataArray[8]!=''){
             qTitle.style.top='20%';
+            constructQtitle(dataArray)
             // btn1.setAttribute('onclick','location.href='+'"'+dataArray[8]+'"');
             btn1.innerHTML='10억기금 링크'
             a.setAttribute('href',dataArray[8]);
             a.appendChild(btn1);
 
             // btn1.setAttribute('type','button');
-
         }
 
         a.appendChild(btn1);
@@ -344,6 +393,15 @@ function addTwoBtnDiv(parent,moveDirection,dataArray) {
         // var empty=document.createTextNode(' ');
         // var btn2=document.createElement('button');
 
+
+
+        // constructQtitle(dataArray)
+
+        // var title=dataArray[1];
+        // titleContent.innerHTML=title;
+
+        constructQtitle(dataArray);
+
         var btn1=document.createElement('div');
         var empty=document.createTextNode(' ');
         var btn2=document.createElement('div');
@@ -355,11 +413,21 @@ function addTwoBtnDiv(parent,moveDirection,dataArray) {
         btn2.innerHTML="NO";
 
         var yesDiv=document.createElement('div');
-        chzBackgroundColor(yesDiv);
+
         var noDiv=document.createElement('div');
+        yesDiv.className='qDiv yes';
+        noDiv.className='qDiv no';
+        chzBackgroundColor(yesDiv);
         chzBackgroundColor(noDiv);
-        yesDiv.style.backgroundImage='url('+dataArray[6]+')';
-        noDiv.style.backgroundImage='url('+dataArray[7]+')';
+        // yesDiv.style.backgroundImage='url('+dataArray[6]+')';
+        // noDiv.style.backgroundImage='url('+dataArray[7]+')';
+
+        var eventDiv=document.createElement('div');
+        eventDiv.className='event-div';
+
+        var eventDiv1=document.createElement('div');
+        eventDiv1.className='event-div';
+
 
         var em=document.createElement('em');
         var em1=document.createElement('em');
@@ -379,9 +447,10 @@ function addTwoBtnDiv(parent,moveDirection,dataArray) {
         circle.className='figure circle';
         x.className='figure x';
 
-        yesDiv.className='yes-div';
-        noDiv.className='no-div';
 
+
+        // chzBackgroundColor(yesDiv);
+        // chzBackgroundColor(noDiv);
         // var randomNum=Math.round(Math.random()*10);
         // if(moveDirection=='up'){
         //     addDataMove(btn1,moveDirection);
@@ -401,8 +470,7 @@ function addTwoBtnDiv(parent,moveDirection,dataArray) {
 
         // circle.appendChild(btn1);
         // x.appendChild(btn2);
-        a.appendChild(circle);
-        a1.appendChild(x);
+
 
 
         a.appendChild(btn1);
@@ -410,17 +478,45 @@ function addTwoBtnDiv(parent,moveDirection,dataArray) {
         a1.appendChild(btn2);
         a1.className='btn-aTag';
 
+        eventDiv.appendChild(circle);
+        eventDiv.appendChild(a);
+
+        eventDiv1.appendChild(x);
+        eventDiv1.appendChild(a1);
 
         yesDiv.appendChild(em);
-        yesDiv.appendChild(a);
+        yesDiv.appendChild(eventDiv);
 
         noDiv.appendChild(em1);
-        noDiv.appendChild(a1);
+        noDiv.appendChild(eventDiv1);
 
         parent.appendChild(yesDiv);
         parent.appendChild(empty);
         parent.appendChild(noDiv);
     }
+}
+
+function constructQtitle(dataArray) {
+    var lineArray=titleContent.querySelectorAll('.qTitle-line');
+
+    for(var i=0;i<lineArray.length;i++){
+        titleContent.removeChild(lineArray[i]);
+    }
+
+    var dataTwoArr=dataArray[1].split('/');
+    console.log(dataTwoArr);
+    titleImg.style.backgroundImage=dataArray[5];
+
+    for(var i=0;i<dataTwoArr.length;i++){
+        var divLine=document.createElement('div');
+        divLine.className='qTitle-line';
+        divLine.innerHTML=dataTwoArr[i];
+
+        if(divLine.innerHTML!="undefined"){
+            titleContent.appendChild(divLine);
+        }
+    }
+
 }
 
 
@@ -591,20 +687,15 @@ function  clickHandler() {
             event.stopImmediatePropagation();
             var e = window.event || event || event.originalEvent;
             var target=e.target;
-            console.log(event);
             var eventParent=event.srcElement.parentNode;
             var selBtn=eventParent.querySelector('.selBtn');
-            console.log(selBtn);
 
             var dataAttr=selBtn.getAttribute('data-move');
 
-            console.log(target);
-            var emNum=getEmNum(target);
-
-            console.log(dataAttr);
+            var emNum=getEmNum(target,'qDiv');
 
 
-            console.log(emNum);
+
             switch (dataAttr){
                 case 'null':
                     memoryDiv();
@@ -653,10 +744,33 @@ function  clickHandler() {
 }
 
 
-function getEmNum(target) {
-    var a=target.parentNode;
-    var div=a.parentNode;
-    var em=div.querySelector('em');
+function getEmNum(target,parentClsName) {
+    var clsName=parentClsName;
+    console.log("clsName",clsName);
+    var getClass=target.getAttribute('class');
+    console.log("getClass",getClass);
+    var parent=target;
+    console.log("parent",parent);
+
+    // var d=target.parentNode;
+    // console.log("d",d);
+    //
+    // var f=parent.parentNode;
+    // console.log("f",f);
+
+    var arr=getClass.split(' ');
+    getClass=arr[0];
+    console.log('조각 내기',getClass);
+
+    while(getClass==null||getClass!=clsName){
+        parent=parent.parentNode;
+        console.log('와일문 부모 찾기 ',parent);
+        getClass=parent.getAttribute('class');
+        arr=getClass.split(' ');
+        getClass=arr[0];
+    }
+
+    var em=parent.querySelector('em');
     console.log("EM",em);
 
     if(em!=null){

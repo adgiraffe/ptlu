@@ -1,3 +1,4 @@
+
 .lrSection{
     display: block;
     width: 1055px;
@@ -31,7 +32,7 @@
     height: 100%;
 }
 
-.yes-div{
+.qDiv.yes{
     position: relative;
     display: inline-block;
     /*width: 16.5%;*/
@@ -41,7 +42,7 @@
     background-position: center center;
 }
 
-.no-div{
+.qDiv.no{
     position: relative;
     display: inline-block;
     float: left;
@@ -50,7 +51,7 @@
     background-position: center center;
 }
 
-.unknow-div{
+.qDiv.unknown{
     position: relative;
     display: inline-block;
     height: 100%;
@@ -76,7 +77,7 @@
 
 /*}*/
 
-.yes-div .selBtn{
+.qDiv.yes .selBtn{
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
@@ -87,7 +88,7 @@
     font-size: 16px;
 }
 
-.no-div .selBtn{
+.qDiv.no .selBtn{
     background-color: #555555;
     border: none;
     color: white;
@@ -98,7 +99,7 @@
     font-size: 16px;
 }
 
-.unknow-div .selBtn{
+.qDiv.unknown .selBtn{
     background-color: #e7e7e7;
     border: none;
     color: white;
@@ -123,7 +124,7 @@
 .btn-aTag{
      position: absolute;
      left: 50%;
-     top: 50%;
+     top: 120%;
      transform:translate(-50%,-50%);
  }
 
@@ -137,24 +138,59 @@
 
 .figure.circle{
     /*This creates a 1px solid red border around your element(div) */
-    border:20px solid red;
+    /*border:25px solid rgb(94, 95, 103);*/
+    border:25px solid #FEFEFE;
     /*background-color: #FFFFFF;*/
-    height: 200px;
+    height: 150px;
     /* border-radius 50% will make it fully rounded. */
     border-radius: 50%;
     -moz-border-radius:50%;
     -webkit-border-radius: 50%;
-    width: 200px;
+    width: 150px;
     /*transform:translate(-35%,-0%);*/
 }
 
 .figure.x{
     position: relative;
     display: inline-block;
-    width: 50px;
-    height: 50px;
+    width: 200px;
+    height: 195px;
     overflow: hidden;
 }
+
+
+.figure.x::before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    /*background: rgb(195, 112, 112);*/
+    background: #FEFEFE;
+    transform: rotate(45deg);
+    height: 30px;
+    margin-top: -12px;
+}
+
+.figure.x::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    /*background: rgb(195, 112, 112);*/
+    background: #FEFEFE;
+    transform: rotate(-45deg);
+    height: 30px;
+    margin-top: -12px;
+}
+
+.qTitle-line{
+    position: relative;
+    display: block;
+}
+
+
 
 /*.yes-div>.btn-aTag{*/
     /*padding-right: 18%;*/
