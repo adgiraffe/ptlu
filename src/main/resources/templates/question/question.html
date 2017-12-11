@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--<script src="https://code.jquery.com/jquery-1.11.3.js"/>-->
+    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+    <title>가입서</title>
+    <meta th:name="_csrf" th:content="${_csrf.token}"/>
+    <!-- default header name is X-CSRF-TOKEN -->
+    <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <link rel="stylesheet" href="../../css/question/question.css/"/>
+    <script src="https://code.jquery.com/jquery-1.11.3.js"/>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="outer">
+        <div class="inner">
+            <div class="centered">
+                <div class="text-div">A B C D E &#x00D7; 4 = E D C B A</div>
+                <div class="question-div">
+                    <form>
+                        <div>
+                            <div class="question">
+                                <input type="text" value="1" class="unary"/>
+                                <input type="text" value="1" class="unary"/>
+                                <input type="text" value="1" class="unary"/>
+                                <input type="text" value="1" class="unary"/>
+                                <input type="text" value="1" class="unary"/>
+                            </div>
+                            <span class="mathematics"> 	&#x00D7;4</span>
+                            <span class="line">----------------------</span>
+                        </div>
+                        <div>
+                            <input class="operation" type="button" value="연산하기"/>
+                            <input type="hidden" class="answer" value="연산 결과"/>
+                        </div>
+                    </form>
+                </div>
+                <div class="judgment"> 연산을 해주세요</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../../js/question/question.js"/>
+</body>
+
+</html>
