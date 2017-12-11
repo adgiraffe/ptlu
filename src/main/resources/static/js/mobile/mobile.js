@@ -3,10 +3,10 @@ var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playboo
 
 var branding={
     logoLink:"../../../../images/logo/logo1.png",
-    menuName:['홈','변영주 감독 인터뷰','권해효 배우 인터뷰','왜 공공운수노조인가?','페이지5','페이지6'],
-    menuLink:['http://so-kptu.net/#firstPage','http://so-kptu.net/#secondPage','http://so-kptu.net/#3rdPage','http://so-kptu.net/#4thpage','http://so-kptu.net/#lastPage'],
+    menuName:['홈','변영주','권해효','김보통','이정미','허지웅','박철민','왜 공공운수노조인가?'],
+    menuLink:['http://so-kptu.net/#firstPage','http://so-kptu.net/#secondPage','http://so-kptu.net/#3rdPage','http://so-kptu.net/#4thpage','http://so-kptu.net/#5thPage','http://so-kptu.net/#6thPage','http://so-kptu.net/#7thPage','http://so-kptu.net/#lastPage'],
     localHost:'http://so-kptu.net',
-    menuCount:4,
+    menuCount:8,
     originHeaderHeight:0,
     tansHeaderHeight:0,
 }
@@ -14,6 +14,7 @@ var branding={
 var aAttr={
     href:'href',
 }
+
 
 
 
@@ -198,6 +199,7 @@ function checkMenuOpen() {
     switch (name){
         case 'open':
             console.log(1);
+
 
             var menuHeader=document.getElementsByClassName('menuHeader');
 

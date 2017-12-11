@@ -73,12 +73,8 @@ public class UploadController {
 
 
     @ResponseBody
-    @RequestMapping(value = "/uploadForm",
-            method = RequestMethod.POST
-//            ,produces = "text/plain;charset=UTF-8"
-    )
+    @RequestMapping(value = "/uploadForm", method = RequestMethod.POST,produces = "text/plain;charset=UTF-8")
     public ResponseEntity<List<Image_info>> uploadAjax(List<MultipartFile> files) throws Exception {
-
 
         List <Image_info> infoList=new ArrayList<>();
 
@@ -206,17 +202,7 @@ public class UploadController {
             pathList.add(imagePath);
         }
         rliList=new ResponseEntity<>(pathList, HttpStatus.OK);
-//        List<Integer> iList=inoList;
-//        ResponseEntity<List<String>> rliList=null;
-//        List<String> sList=new ArrayList<>();
-//        for (int i: iList){
-//            String path=imageService.selectPathImage(i);
-//            System.out.print(path);
-//            sList.add(path);
-//        }
-//        System.out.print("/pathPerNo : "+sList);
-//        rliList=new ResponseEntity<>(sList,HttpStatus.OK);
-//        return rliList;
+
         return rliList;
     }
 
@@ -238,7 +224,6 @@ public class UploadController {
 
 
     @RequestMapping(value = "/insertMceContent",method = RequestMethod.POST)
-
         public String insertContent(Principal principal,@ModelAttribute("content") MceContentDTO contentDTO)throws Exception{
         contentDTO.setCreatedUser(principal.getName());
         imageService.addContent(contentDTO);

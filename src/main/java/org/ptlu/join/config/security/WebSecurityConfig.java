@@ -51,11 +51,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests().antMatchers("/css/**", "/js/**", "/images/**","/examVideo/**","/video/**").permitAll();
+        http.authorizeRequests().antMatchers("/insertMceContent","/css/**", "/js/**", "/images/**","/examVideo/**","/video/**").permitAll();
 
         http
                 .authorizeRequests()
-                    .antMatchers("/", "/home","/example/storyJoin", "/about","/join","/joinUser","/sessionfind",
+                    .antMatchers("/", "/home","/example/**", "/about","/join","/joinUser","/sessionfind",
                             "/#firstPage").permitAll()
                     .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
                     .antMatchers("/user/**").hasAnyAuthority("USER")

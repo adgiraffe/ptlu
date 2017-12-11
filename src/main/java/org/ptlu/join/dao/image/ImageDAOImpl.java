@@ -20,7 +20,7 @@ public class ImageDAOImpl implements ImageDAO {
     @Inject
     SqlSession session;
 
-    private static String imageNamespace="org.bssimin.mybatis.mapper.imageVOMapper.xml";
+    private static String imageNamespace="org.ptlu.join.mybatis.mapper.imageVOMapper.xml";
 
    @Override
     public void upLoadImage(Image_info iInfo) throws Exception {

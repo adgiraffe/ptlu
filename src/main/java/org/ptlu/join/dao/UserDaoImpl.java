@@ -20,7 +20,7 @@ public class UserDaoImpl implements UserDAO{
     @Inject
     SqlSession session;
 
-    private static String namespace="org.bssimin.mybatis.mapper.geUserMapper.xml";
+    private static String namespace="org.ptlu.join.mybatis.mapper.geUserMapper.xml";
 
     @Override
     public GeUser_info readGeUser(String geUserId) throws Exception {

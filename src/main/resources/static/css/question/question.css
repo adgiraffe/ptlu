@@ -1,0 +1,96 @@
+html{
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border: 0;
+}
+
+.outer {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+.inner {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.centered {
+    position: relative;
+    display: inline-block;
+    /*width: 100%;*/
+    padding: 1em;
+    /*color: white;*/
+    /*color:#2a48aa;*/
+}
+
+.question{
+    display: block;
+}
+
+.unary{
+    display: inline-block;
+    width: 6%;
+    background: aliceblue;
+}
+
+.mathematics{
+    padding-top: 10px;
+    display: block;
+    letter-spacing: 8px;
+    text-align: right;
+    letter-spacing: 13px;
+    padding-right: 38px;
+}
+
+.line{
+    display: block;
+    letter-spacing: -2px;
+}
+
+.answer{
+    margin-top: 10px;
+    display: inline-block;
+    width: 50%;
+    background: aliceblue;
+}
+
+.question-div{
+    width: 30%;
+    position: relative;
+    display: inline-block;
+}
+
+.text-div{
+    padding-bottom: 20px;
+}
+
+.operation{
+    display: block;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.judgment{
+    padding-top: 10px;
+}

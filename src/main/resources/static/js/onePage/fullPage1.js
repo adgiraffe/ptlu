@@ -595,7 +595,7 @@ function getNodeIndex(node) {
         if (node.nodeType != 3 || !/^\s*$/.test(node.data)) {
             ///^\s*$/ : whitespace
             //nodeType 3은 택스트노드로 구성된 노드
-            //.test(대상) 대상
+            //.question(대상) 대상
 
             //노드타임이 텍스트가 아니거나 노드의 데이터가 없으면
             //즉 요소노드일 때

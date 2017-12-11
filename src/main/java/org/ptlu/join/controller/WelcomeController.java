@@ -9,10 +9,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -162,4 +159,10 @@ public class WelcomeController {
         return "/join";
     }
 
+//    @RequestMapping(value = "/example/question",method = {RequestMethod.POST, RequestMethod.GET})
+//    public String question(@ModelAttribute String totalNum){
+//
+//        System.out.println("시발"+totalNum.length());
+//        return "/question/question";
+//    }
 }

@@ -383,15 +383,16 @@
     }
 
     .interviewHead {
-        display: inline-block;
+        display: inline-grid;
         text-align: left;
         position: relative;
         padding-bottom: 10px;
     }
 
     .interview-title {
-        display: inline-block;
-        text-align: left;
+        /*display: inline-block;*/
+        display: block;
+        text-align: center;
         position: relative;
         padding-bottom: 10px;
     }
@@ -426,7 +427,7 @@
     .textDiv-inner-right-sec02 {
         width: 100%;
         display: inline-block;
-        padding-top: 30px;
+        padding-top: 15px;
     }
 
     .textDiv-right {
