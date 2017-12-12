@@ -1,0 +1,179 @@
+
+@font-face {
+    font-family: 'Godo';
+    font-style: normal;
+    font-weight: 400;
+    src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Godo';
+    font-style: normal;
+    font-weight: 700;
+    src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff');
+}
+
+body{
+    background: #333;
+    color: white;
+    /*width: 100%;*/
+    /*height: 100%;*/
+    margin:25px;
+}
+
+.layoutGrid{
+    display: block;
+}
+.layoutLineTop{
+    width: 100%;
+}
+
+.layoutLineBottom{
+    width: 100%;
+
+}
+
+.lineTop{
+    border-top: solid;
+}
+
+.lineBottom{
+    border-bottom: solid 1px;
+    position: absolute;
+    bottom: 25px;
+    top: 0px;
+    left: 25px;
+    right: 25px;
+}
+
+.lineNav{
+    padding-top: 15px;
+}
+
+.lineNav .lineNav-title{
+    display: inline-block;
+    font-family: 'Godo', sans-serif;
+}
+
+.lineNav .lineNav-no{
+    display: inline-block;
+    float:right;
+    font-style: italic;
+}
+
+@media screen and (min-width: 355px) and (max-width: 365px){
+    .content{
+        padding-top: 3em;
+    }
+}
+
+
+@media screen and (min-width: 370px) and (max-width: 380px){
+    .content{
+        padding-top: 4em;
+    }
+}
+
+@media screen and (min-width: 760px) and (max-width: 770px){
+    .content{
+        padding-top: 15em;
+    }
+}
+
+@media screen and (min-width: 500px){
+    .content{
+        padding-top: 10em;
+    }
+}
+
+
+
+.cTop{
+
+}
+
+.cTop .cParagraph{
+    font-size: 25px;
+    font-weight: 900;
+    /* vertical-align: bottom; */
+    line-height: 28px;
+    text-align: center;
+}
+
+.cMiddle{
+    padding-top: 3.5em;
+}
+
+
+.cMiddle .cParagraph .first{
+    font-weight: 100;
+    font-size: 30px;
+    display: block;
+    letter-spacing: -1px;
+    padding-bottom: 0.2em;
+}
+
+.cMiddle .cParagraph .countNum .cNum{
+    font-size: 45px;
+    letter-spacing: -1px;
+    font-weight: 900;
+    display: inline-block;
+    width: 270px;
+}
+
+
+.cMiddle .cParagraph .countNum .currency{
+    display: inline-block;
+    font-size: 25px;
+    font-weight: 900;
+    vertical-align: text-bottom;
+    display: inline-block;
+}
+
+
+.cBottom{
+    padding-top: 3.5em;
+}
+
+
+.cBottom .cParagraph .first{
+    font-weight: 100;
+    font-size: 30px;
+    display: block;
+    letter-spacing: -1px;
+    padding-bottom: 0.2em;
+}
+
+.cBottom .cParagraph .countNum .cNum{
+    font-size: 2.5em;
+    letter-spacing: -1px;
+    font-weight: 900;
+    display: inline-block;
+    width: 270px;
+}
+
+.cBottom .cParagraph .countNum .currency{
+    display: inline-block;
+    font-size: 25px;
+    font-weight: 900;
+    vertical-align: text-bottom;
+
+}
+
+.countNum{
+    display: inline-block;
+    border: 3px solid;
+    padding: 10px;
+    width: 300px;
+}
+
+.letterLine{
+
+}
+
+.cParagraph{
+    text-align: center;
+}
+
+
+

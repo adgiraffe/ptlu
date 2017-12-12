@@ -10,8 +10,19 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class StoryController {
 
-    @RequestMapping(value ="/storyJoin",method = RequestMethod.GET)
+    @RequestMapping(value ="/infoStory",method = RequestMethod.GET)
+    public String infoStory(){
+        return "/infoStory/storyTitle";
+    }
+
+    @RequestMapping(value ="/infoStory/storyContent",method = RequestMethod.GET)
     public String storyJoin(){
-        return null;
+        return "infoStory/storyContent";
+    }
+
+
+    @RequestMapping(value = "/infoStory/storyFinal",method = RequestMethod.GET)
+    public String storyFinal(){
+        return "/infoStory/storyFinal";
     }
 }
