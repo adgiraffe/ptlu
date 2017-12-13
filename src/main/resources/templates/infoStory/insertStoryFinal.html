@@ -1,27 +1,16 @@
 <!DOCTYPE HTML >
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" >
 <head>
     <script src="https://code.jquery.com/jquery-1.11.3.js"/>
     <title>공공운수노조</title>
     <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
-    <link rel="stylesheet" href="../../css/infoStory/layout.css"/>
+    <link rel="stylesheet" href="../../css/infoStory/insertlayout.css"/>
     <!--<link rel="stylesheet" media="screen and (min-width: 370px) and (max-width: 380px)" href="../../css/infoStory"/>-->
 
 </head>
 <body>
 
-<div class="layoutGrid"  th:fragment="storyFinal" >
-    <div class="layoutLineTop">
-        <div class="lineTop">
-        </div>
-        <div class="lineNav">
-            <div class="lineNav-title">
-                그러니까, 공공운수
-            </div>
-            <div class="lineNav-no">
-            </div>
-        </div>
-    </div>
+<div class="layoutGrid" th:fragment="insertStoryFinal">
 
     <div class="content">
         <div class="cTop">
@@ -67,22 +56,8 @@
         </div>
 
     </div>
-    <span class="counter">1,234,567.00</span>
-    <span>$</span><span class="counter">1.99</span>
-    <span class="counter">12345</span>
-    <div class="layoutLineBottom">
-        <div class="lineBottom">
-        </div>
-    </div>
 </div>
-<!--<script type="text/javascript" src="../../js/infoStory/countUp.js"/>-->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
-<script src="jquery.counterup.min.js">
-    $('.counter').counterUp({
-        delay: 10,
-        time: 1000
-    });
-</script>
+<script type="text/javascript" src="../../js/infoStory/countUp.js"/>
 </body>
 
 
