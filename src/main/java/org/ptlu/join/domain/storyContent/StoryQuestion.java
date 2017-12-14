@@ -2,7 +2,7 @@ package org.ptlu.join.domain.storyContent;
 
 public class StoryQuestion {
     public int step;
-    public String qFisrtLine;
+    public String qFirstLine;
     public String qSecondLine;
     public String qThirdLine;
 
@@ -14,12 +14,12 @@ public class StoryQuestion {
         this.step = step;
     }
 
-    public String getqFisrtLine() {
-        return qFisrtLine;
+    public String getqFirstLine() {
+        return qFirstLine;
     }
 
-    public void setqFisrtLine(String qFisrtLine) {
-        this.qFisrtLine = qFisrtLine;
+    public void setqFirstLine(String qFirstLine) {
+        this.qFirstLine = qFirstLine;
     }
 
     public String getqSecondLine() {

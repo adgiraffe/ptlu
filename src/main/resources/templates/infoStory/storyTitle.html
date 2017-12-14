@@ -1,12 +1,110 @@
-<!DOCTYPE HTML>
+<!DOCTYPE HTML >
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <script src="https://code.jquery.com/jquery-1.11.3.js"/>
     <title>공공운수노조</title>
     <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
-</head>
+    <link rel="stylesheet" href="../../css/infoStory/layoutTitle.css"/>
+    <!--<link rel="stylesheet" media="screen and (min-width: 370px) and (max-width: 380px)" href="../../css/infoStory"/>-->
 
+</head>
 <body>
+<!--/*@thymesVar id="content" type="org.ptlu.join.domain.storyContent.StoryContent"*/-->
+
+<form id="uploadForm" action="/infoStory/storyContent" th:object="${content}">
+
+
+<div class="layoutLineTop">
+    <div class="lineTop">
+    </div>
+    <div class="lineNav">
+        <div class="lineNav-title">
+            그러니까, 공공운수
+        </div>
+        <div class="lineNav-no">
+            <label th:text="*{step}"></label>
+        </div>
+    </div>
+</div>
+    <div class="container">
+        <div class="outer">
+            <div class="inner">
+                <div class="layoutGrid">
+                    <div class="content">
+                        <div class="q">
+                            Q
+                        </div>
+                        <div class="letterLine first">
+                            당신은
+                        </div>
+                        <div class="letterLine second">
+                            정규직
+                        </div>
+                        <div class="letterLine third">
+                            인가요?
+                        </div>
+                    </div>
+
+                    <div class="answerGird">
+
+                        <button type="submit" onclick="nextContent()">
+                            yes
+                        </button>
+                        <button type="submit" onclick="nextContent()">
+                            no
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="layoutLineBottom">
+    <div class="lineBottom">
+    </div>
+</div>
+</form>
 
 </body>
+
+
+<script>
+    //<![CDATA[
+
+    var xmlHttp;
+
+    if(window.XMLHttpRequest){
+        xmlHttp=new XMLHttpRequest();
+    } else {
+        xmlHttp=new ActiveXObject('Microsoft.XMLHTTP');
+    }
+
+
+    function nextContent() {
+        var step=document.querySelector(".lineNav-no").innerHTML;
+        console.log(step);
+
+        xmlHttp.onreadystatechange=function () {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            }
+        }
+
+//        var step1={
+//            "step":step
+//        };
+
+//        var jsonData=JSON.stringify(step1);
+//        console.log(jsonData);
+//        var params = "step="+step1;
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+
+        //Spring Security는 header에 csrf토큰을 지정해주지 않으면 POST로 전송이 되지 않는다
+        xmlHttp.open('GET','/infoStory/readTitle',true);
+        xmlHttp.setRequestHeader(header,token);
+        xmlHttp.send("step="+step);
+    }
+
+    //]]>
+</script>
+
 </html>

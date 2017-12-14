@@ -228,7 +228,6 @@ public class UploadController {
         contentDTO.setCreatedUser(principal.getName());
         imageService.addContent(contentDTO);
         return "/frameBody/home";
-
     }
 
 

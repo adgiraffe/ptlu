@@ -159,10 +159,12 @@ public class WelcomeController {
         return "/join";
     }
 
-//    @RequestMapping(value = "/example/question",method = {RequestMethod.POST, RequestMethod.GET})
-//    public String question(@ModelAttribute String totalNum){
-//
-//        System.out.println("시발"+totalNum.length());
-//        return "/question/question";
-//    }
+    @RequestMapping(value = "/example/question",method = {RequestMethod.POST, RequestMethod.GET})
+    public String question(@ModelAttribute("totalNum") String totalNum){
+
+        System.out.println("시발"+totalNum.length());
+        return "/question/question";
+    }
+
+
 }

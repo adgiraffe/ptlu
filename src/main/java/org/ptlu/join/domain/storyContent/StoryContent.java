@@ -1,5 +1,6 @@
 package org.ptlu.join.domain.storyContent;
 
+
 public class StoryContent {
 
     public int step;

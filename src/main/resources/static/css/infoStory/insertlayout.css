@@ -20,6 +20,12 @@ body{
     /*margin:25px;*/
 }
 
+.outer1{
+    background: #333;
+    display: table;
+    width: 100%;
+    height: 100%
+}
 .layoutGrid{
     background: #333;
     color:white;
@@ -65,58 +71,58 @@ body{
     font-style: italic;
 }
 
-@media screen and (min-width: 355px) and (max-width: 365px){
-    .content{
-        padding-top: 6em;
-    }
-}
+/*@media screen and (min-width: 355px) and (max-width: 365px){*/
+    /*.content{*/
+        /*padding-top: 6em;*/
+    /*}*/
+/*}*/
 
 
-@media screen and (min-width: 370px) and (max-width: 380px){
-    .content{
-        padding-top: 7em;
-        padding-bottom: 7em;
-    }
-}
+/*@media screen and (min-width: 370px) and (max-width: 380px){*/
+    /*.content{*/
+        /*padding-top: 7em;*/
+        /*padding-bottom: 7em;*/
+    /*}*/
+/*}*/
 
-@media screen and (min-width: 410px) and (max-width: 412px){
-    .content{
-        padding-top: 7em;
-    }
-}
+/*@media screen and (min-width: 410px) and (max-width: 412px){*/
+    /*.content{*/
+        /*padding-top: 7em;*/
+    /*}*/
+/*}*/
 
-@media screen and (min-width: 413px) and (max-width: 415px){
-    .content{
-        padding-top: 9em;
-    }
-}
-
-
-@media screen and (min-width: 760px) and (max-width: 770px){
-    .content{
-        padding-top: 17em;
-    }
-}
-
-@media screen and (min-width: 771px) and (max-width: 1019px){
-    .content{
-        padding-top: 13em;
-    }
-}
-
-@media screen and (min-width: 1020px) and (max-width: 1024px){
-    .content{
-        padding-top: 27em;
-    }
-}
+/*@media screen and (min-width: 413px) and (max-width: 415px){*/
+    /*.content{*/
+        /*padding-top: 9em;*/
+    /*}*/
+/*}*/
 
 
-@media screen and (min-width: 1030px){
-    .content{
-        padding-top: 12em;
-        padding-bottom: 14em;
-    }
-}
+/*@media screen and (min-width: 760px) and (max-width: 770px){*/
+    /*.content{*/
+        /*padding-top: 17em;*/
+    /*}*/
+/*}*/
+
+/*@media screen and (min-width: 771px) and (max-width: 1019px){*/
+    /*.content{*/
+        /*padding-top: 13em;*/
+    /*}*/
+/*}*/
+
+/*@media screen and (min-width: 1020px) and (max-width: 1024px){*/
+    /*.content{*/
+        /*padding-top: 27em;*/
+    /*}*/
+/*}*/
+
+
+/*@media screen and (min-width: 1030px){*/
+    /*.content{*/
+        /*padding-top: 12em;*/
+        /*padding-bottom: 14em;*/
+    /*}*/
+/*}*/
 
 
 

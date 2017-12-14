@@ -14,16 +14,16 @@ public class StoryDAOImpl implements StoryDAO{
     @Named("db1SqlSessionTemplate")
     @Inject
     SqlSession session;
-
     private static String storyNamespace="org.ptlu.join.mybatis.mapper.storyMapper.xml";
 
     @Override
     public StoryQuestion readQuestion(int step) {
-        return null;
+        return session.selectOne(storyNamespace+".readQTitle",step);
     }
+
 
     @Override
     public StoryContent readContent(int step, String answer) {
-        return null;
+        return session.selectOne(storyNamespace+".readQTitle",step);
     }
 }

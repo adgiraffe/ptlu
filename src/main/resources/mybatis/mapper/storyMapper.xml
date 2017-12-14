@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.ptlu.join.mybatis.mapper.storyMapper.xml">
+
+<select id="readQTitle" resultType="org.ptlu.join.domain.storyContent.StoryQuestion" parameterType="int">
+    SELECT * FROM storyQuestion WHERE step=#{step}
+</select>
+
+    <select id="readQContent" resultType="org.ptlu.join.domain.storyContent.StoryContent">
+        SELECT * FROM storyContent WHERE step=#{step} and answer=#{answer}
+    </select>
+</mapper>
+
+
