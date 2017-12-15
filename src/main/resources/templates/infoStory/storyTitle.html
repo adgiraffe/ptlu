@@ -11,9 +11,8 @@
 <body>
 <!--/*@thymesVar id="content" type="org.ptlu.join.domain.storyContent.StoryContent"*/-->
 
-<form id="uploadForm" action="/infoStory/storyContent" th:object="${content}">
-
-
+<form id="uploadForm">
+    <!--action="/infoStory/storyContent"-->
 <div class="layoutLineTop">
     <div class="lineTop">
     </div>
@@ -22,7 +21,9 @@
             그러니까, 공공운수
         </div>
         <div class="lineNav-no">
-            <label th:text="*{step}"></label>
+            <!--/*@thymesVar id="question" type="org.ptlu.join.domain.storyContent.StoryQuestion"*/-->
+            <!--<label th:text="*{step}"></label>-->
+            <label th:text="${question.step}"></label>
         </div>
     </div>
 </div>
@@ -34,14 +35,13 @@
                         <div class="q">
                             Q
                         </div>
-                        <div class="letterLine first">
-                            당신은
+                        <!--/*@thymesVar id="question" type="org.ptlu.join.domain.storyContent.StoryQuestion"*/-->
+                        <div class="letterLine first" th:text="${question.qFirstLine}">
+
                         </div>
-                        <div class="letterLine second">
-                            정규직
+                        <div class="letterLine second" th:text="${question.qSecondLine}">
                         </div>
-                        <div class="letterLine third">
-                            인가요?
+                        <div class="letterLine third" th:text="${question.qThirdLine}">
                         </div>
                     </div>
 
@@ -67,44 +67,14 @@
 </body>
 
 
-<script>
-    //<![CDATA[
 
-    var xmlHttp;
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var query = [[${question.qFirstLine}]];
+    alert(query);
 
-    if(window.XMLHttpRequest){
-        xmlHttp=new XMLHttpRequest();
-    } else {
-        xmlHttp=new ActiveXObject('Microsoft.XMLHTTP');
-    }
-
-
-    function nextContent() {
-        var step=document.querySelector(".lineNav-no").innerHTML;
-        console.log(step);
-
-        xmlHttp.onreadystatechange=function () {
-            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-            }
-        }
-
-//        var step1={
-//            "step":step
-//        };
-
-//        var jsonData=JSON.stringify(step1);
-//        console.log(jsonData);
-//        var params = "step="+step1;
-        var token = $("meta[name='_csrf']").attr("content");
-        var header = $("meta[name='_csrf_header']").attr("content");
-
-        //Spring Security는 header에 csrf토큰을 지정해주지 않으면 POST로 전송이 되지 않는다
-        xmlHttp.open('GET','/infoStory/readTitle',true);
-        xmlHttp.setRequestHeader(header,token);
-        xmlHttp.send("step="+step);
-    }
-
-    //]]>
+    /*]]>*/
 </script>
+
 
 </html>

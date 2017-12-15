@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 @EnableWebSecurity
 @Controller
@@ -18,27 +20,28 @@ public class StoryController {
     StoryService storyService;
 
     @RequestMapping(value ="/infoStory",method = RequestMethod.GET)
-    public String infoStory(Model model,StoryQuestion initQuestion ,@ModelAttribute("content") StoryQuestion content) throws Exception {
+    public String infoStory(Model model,HttpSession session) throws Exception {
 
         int step;
         StoryQuestion sq = null;
-        if(initQuestion==null){
+        if(session.getAttribute("step")==null){
             step=1;
-            sq=storyService.getTitle(1);
+
+            sq=storyService.getTitle(3);
             model.addAttribute("question",sq);
 
-        }else if(initQuestion!=null) {
-
-            step=initQuestion.step;
+        }else {
+            step=2;
             sq=storyService.getTitle(step);
         }
-        System.out.println(sq);
+
 
         return "/infoStory/storyTitle";
     }
 
     @RequestMapping(value ="/infoStory/storyContent",method = RequestMethod.GET)
-    public String storyJoin(){
+    public String infoContent(@ModelAttribute("content")StoryQuestion content){
+        System.out.println(content.step);
         return "infoStory/storyContent";
     }
 
@@ -51,16 +54,16 @@ public class StoryController {
 
     @ResponseBody
     @RequestMapping(value = "/infoStory/readAjaxTitle",method = RequestMethod.GET)
-    public String ajaxReadTitle() throws Exception {
-        System.out.println("실행");
+    public String ajaxReadTitle(@RequestBody Map<String,Integer> inoList) throws Exception {
+        System.out.println(inoList);
         System.out.println("step");
-        return "/infoStory/storyContent";
+        return "/infoStory/storyTitle";
     }
 
     @RequestMapping(value = "/infoStory/readTitle",method = RequestMethod.GET)
-    public String readTitle() throws Exception {
+    public String readTitle(@ModelAttribute("step") int step) throws Exception {
         System.out.println("실행");
-        System.out.println("step");
+        System.out.println(step);
         return "/infoStory/storyContent";
     }
 
