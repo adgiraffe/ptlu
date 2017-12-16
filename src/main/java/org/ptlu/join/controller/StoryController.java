@@ -1,6 +1,7 @@
 package org.ptlu.join.controller;
 
 
+import org.ptlu.join.domain.storyContent.GetContent;
 import org.ptlu.join.domain.storyContent.StoryContent;
 import org.ptlu.join.domain.storyContent.StoryQuestion;
 import org.ptlu.join.service.storyService.StoryService;
@@ -20,17 +21,24 @@ public class StoryController {
     @Inject
     StoryService storyService;
 
+
+
     @RequestMapping(value ="/infoStory",method = RequestMethod.GET)
     public String infoStory(@ModelAttribute("content")StoryContent content,@ModelAttribute("question")StoryQuestion question,Model model) throws Exception {
-        //ModelAttrbute를 처음 들어가는 사이트 부터 호출 해줘야 그 사이트해서 해달 객체를 사용 할 수 있다.
-        int step;
-        System.out.println(question.step);
-        if(question.step==0){
+        //ModelAttrbute를 처음 들어가는 사이트 부터 호출 해줘야 그 사이트해서 해당 객체를 사용 할 수 있다.
+        //뷰로 데이터를 넘길때는 Model객체 사
+        int step=0;
+
+        if(content.step==0){
             step=1;
             question=storyService.getTitle(step);
+        } else if(content.step==3){
+            return "/infoStory/storyFinal";
         }else {
-            System.out.println(question.step);
             step=question.step;
+            System.out.println("퀘스천"+question.step);
+            step=step+1;
+            System.out.println("증가판단"+step);
             question=storyService.getTitle(step);
         }
 
@@ -39,30 +47,33 @@ public class StoryController {
     }
 
 //    @RequestMapping(value ="/infoStory",method = RequestMethod.GET)
-//    public String infoStory(@ModelAttribute("content")StoryContent content,@ModelAttribute("question")StoryQuestion question,Model model,HttpSession session) throws Exception {
-//        //ModelAttrbute를 처음 들어가는 사이트 부터 호출 해줘야 그 사이트해서 해달 객체를 사용 할 수 있다.
+//    public String infoStory(@ModelAttribute("content")StoryContent content,@ModelAttribute("question")StoryQuestion question,Model model) throws Exception {
+//        //ModelAttrbute를 처음 들어가는 사이트 부터 호출 해줘야 그 사이트해서 해당 객체를 사용 할 수 있다.
+//        //뷰로 데이터를 넘길때는 Model객체 사
 //        int step;
-//        StoryQuestion sq = null;
-//        if(session.getAttribute("step")==null){
+//        System.out.println("넘어오는"+content.step);
+//        System.out.println(question.step);
+//        if(question.step==0){
 //            step=1;
-//
-//            sq=storyService.getTitle(3);
-//            model.addAttribute("question",sq);
-//
+//            question=storyService.getTitle(step);
 //        }else {
-//            step=2;
-//            sq=storyService.getTitle(step);
+//            System.out.println(question.step);
+//            step=question.step;
+//            question=storyService.getTitle(step);
 //        }
 //
-//
+//        model.addAttribute("question",question);
 //        return "/infoStory/storyTitle";
 //    }
 
     @RequestMapping(value ="/infoStory/storyContent",method = RequestMethod.GET)
-    public String infoContent(@ModelAttribute("content")StoryContent content, Model model){
-        //ModelAttrbute를 처음 들어가는 사이트 부터 호출 해줘야 그 사이트해서 해달 객체를 사용 할 수 있다.
+    public String infoContent(@ModelAttribute("content")StoryContent content, Model model,StoryContent storyContent) throws Exception {
+        //ModelAttrbute를 처음 들어가는 사이트 부터 호출 해줘야 그 사이트해서 해당 객체를 사용 할 수 있다.
         System.out.println(content.step);
         System.out.println(content.answer);
+        storyContent=storyService.getContent(content);
+        System.out.println(storyContent.infoContent);
+        model.addAttribute("infoContent",storyContent);
         return "infoStory/storyContent";
     }
 

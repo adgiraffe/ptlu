@@ -19,7 +19,7 @@ public class StoryServiceImpl implements StoryService{
     }
 
     @Override
-    public StoryContent getContent(int step, String answer) throws Exception {
-        return storyDAO.readContent(step,answer);
+    public StoryContent getContent(StoryContent content) throws Exception {
+        return storyDAO.readContent(content);
     }
 }

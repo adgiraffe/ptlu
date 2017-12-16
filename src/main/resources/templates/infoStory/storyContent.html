@@ -1,12 +1,84 @@
-<!DOCTYPE HTML>
+<!DOCTYPE HTML >
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <script src="https://code.jquery.com/jquery-1.11.3.js"/>
     <title>공공운수노조</title>
     <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
-</head>
+    <link rel="stylesheet" href="../../css/infoStory/layoutTitle.css"/>
+    <!--<link rel="stylesheet" media="screen and (min-width: 370px) and (max-width: 380px)" href="../../css/infoStory"/>-->
 
+</head>
 <body>
-    하이
+<div class="layoutLineTop">
+    <div class="lineTop">
+    </div>
+    <div class="lineNav">
+        <div class="lineNav-title">
+            그러니까, 공공운수
+        </div>
+        <div class="lineNav-no">
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="outer">
+        <div class="inner">
+            <div class="layoutGrid">
+                <div class="content">
+                    <div class="infoTitle">
+                    </div>
+                    <div class="infoContent">
+                    </div>
+                    <div class="infoGraphic">
+
+                    </div>
+                </div>
+
+                <div class="answerGird">
+
+                    <form method="get" th:action="@{/infoStory}">
+                        <input type="hidden" th:field="${content.step}" id="hiddenStep"/>
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                        <button type="submit" onclick="getAnswer()" class="answer next">
+                           next
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="layoutLineBottom">
+    <div class="lineBottom">
+    </div>
+</div>
+
 </body>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var step=[[${infoContent.step}]]
+    var pageNum=[[${infoContent.pageNum}]]
+    var infoTitle= [[${infoContent.infoTitle}]];
+    var infoContent=[[${infoContent.infoContent}]];
+    var infoImg=[[${infoContent.infoImg}]];
+    var pageDiv=document.querySelector(".lineNav-no");
+    var titleDiv=document.querySelector(".infoTitle");
+    var contnetDiv=document.querySelector(".infoContent");
+    var graphicDiv=document.querySelector(".infoGraphic");
+
+
+    pageDiv.innerHTML=pageNum;
+    titleDiv.innerHTML=infoTitle;
+    contnetDiv.innerHTML=infoContent;
+    graphicDiv.innerHTML=infoImg;
+
+    var hiddenStep=document.querySelector("#hiddenStep");
+    hiddenStep.value=step;
+
+
+    /*]]>*/
+</script>
+
+
 </html>

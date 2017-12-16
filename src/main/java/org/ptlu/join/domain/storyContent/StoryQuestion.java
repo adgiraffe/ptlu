@@ -1,7 +1,10 @@
 package org.ptlu.join.domain.storyContent;
 
 public class StoryQuestion {
+
+    public int no;
     public int step;
+    public int pageNum;
     public String qFirstLine;
     public String qSecondLine;
     public String qThirdLine;
@@ -36,5 +39,22 @@ public class StoryQuestion {
 
     public void setqThirdLine(String qThirdLine) {
         this.qThirdLine = qThirdLine;
+    }
+
+    public int getPageNum() {
+        return pageNum;
+    }
+
+    public void setPageNum(int pageNum) {
+        this.pageNum = pageNum;
+    }
+
+
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
     }
 }

@@ -6,7 +6,7 @@
     SELECT * FROM storyQuestion WHERE step=#{step}
 </select>
 
-    <select id="readQContent" resultType="org.ptlu.join.domain.storyContent.StoryContent">
+    <select id="readQContent" resultType="org.ptlu.join.domain.storyContent.StoryContent" parameterType="org.ptlu.join.domain.storyContent.StoryContent">
         SELECT * FROM storyContent WHERE step=#{step} and answer=#{answer}
     </select>
 </mapper>

@@ -23,7 +23,7 @@ public class StoryDAOImpl implements StoryDAO{
 
 
     @Override
-    public StoryContent readContent(int step, String answer) {
-        return session.selectOne(storyNamespace+".readQTitle",step);
+    public StoryContent readContent(StoryContent content) {
+        return session.selectOne(storyNamespace+".readQContent",content);
     }
 }

@@ -6,5 +6,5 @@ import org.ptlu.join.domain.storyContent.StoryQuestion;
 
 public interface StoryService {
     public StoryQuestion getTitle(int step) throws Exception;
-    public StoryContent getContent(int step, String answer) throws Exception;
+    public StoryContent getContent(StoryContent content) throws Exception;
 }

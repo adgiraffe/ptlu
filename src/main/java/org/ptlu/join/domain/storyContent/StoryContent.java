@@ -3,7 +3,9 @@ package org.ptlu.join.domain.storyContent;
 
 public class StoryContent {
 
+    public int no;
     public int step;
+    public int pageNum;
     public String answer;
     public String infoTitle;
     public String infoContent;
@@ -41,11 +43,29 @@ public class StoryContent {
         this.infoContent = infoContent;
     }
 
+
     public String getInfoImg() {
         return infoImg;
     }
 
     public void setInfoImg(String infoImg) {
         this.infoImg = infoImg;
+    }
+
+    public int getPageNum() {
+        return pageNum;
+    }
+
+    public void setPageNum(int pageNum) {
+        this.pageNum = pageNum;
+    }
+
+
+    public int getNo() {
+        return no;
+    }
+
+    public void setNo(int no) {
+        this.no = no;
     }
 }

@@ -72,14 +72,17 @@
 <script th:inline="javascript">
     /*<![CDATA[*/
     var step=[[${question.step}]]
+    var pageNum=[[${question.pageNum}]]
     var qFirstLine = [[${question.qFirstLine}]];
     var qSecondLine=[[${question.qSecondLine}]];
     var qThirdLine=[[${question.qThirdLine}]];
-    var stepDiv=document.querySelector(".lineNav-no");
+    var pageDiv=document.querySelector(".lineNav-no");
     var fLine=document.querySelector(".first");
     var sLine=document.querySelector(".second");
     var tLine=document.querySelector(".third");
-    stepDiv.innerHTML=step;
+
+
+    pageDiv.innerHTML=pageNum;
     fLine.innerHTML=qFirstLine;
     sLine.innerHTML=qSecondLine;
     tLine.innerHTML=qThirdLine;

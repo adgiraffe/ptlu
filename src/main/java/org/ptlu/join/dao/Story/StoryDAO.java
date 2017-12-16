@@ -5,5 +5,5 @@ import org.ptlu.join.domain.storyContent.StoryQuestion;
 
 public interface StoryDAO {
     public StoryQuestion readQuestion(int step);
-    public StoryContent readContent(int step, String answer);
+    public StoryContent readContent(StoryContent content);
 }
