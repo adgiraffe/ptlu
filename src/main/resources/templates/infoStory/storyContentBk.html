@@ -9,39 +9,50 @@
 
 </head>
 <body>
-<div class="layoutLineTop"></div>
-<div class="lineNav">
-    <div class="lineNav-title">
-        그러니까, 공공운수
+<div class="layoutLineTop">
+    <div class="lineTop">
     </div>
-    <div class="lineNav-no">
+    <div class="lineNav">
+        <div class="lineNav-title">
+            그러니까, 공공운수
+        </div>
+        <div class="lineNav-no">
+        </div>
     </div>
 </div>
+<div class="container">
+    <div class="outer">
+        <div class="inner">
+            <div class="layoutGrid">
+                <div class="content">
+                    <div class="infoTitle">
+                        <div class="letterLine first"></div>
+                        <div class="letterLine second"></div>
+                    </div>
+                    <div class="infoContent">
+                    </div>
+                    <div class="infoGraphic">
+                        <img src="" class="innerImg"/>
 
-<div class="layoutGrid">
-    <div class="content">
-        <div class="infoTitle">
-            <div class="letterLine first"></div>
-            <div class="letterLine second"></div>
-        </div>
-        <div class="infoContent">
-        </div>
-        <div class="infoGraphic">
-            <img src="" class="innerImg"/>
-        </div>
-    </div>
+                    </div>
+                </div>
 
-    <div class="answerGrid">
-        <form method="get" th:action="@{/infoStory}">
-            <input type="hidden" th:field="${content.step}" id="hiddenStep"/>
-            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-            <button type="submit" onclick="getAnswer()" class="answer next">
-                next
-            </button>
-        </form>
+                <div class="answerGird">
+                    <form method="get" th:action="@{/infoStory}">
+                        <input type="hidden" th:field="${content.step}" id="hiddenStep"/>
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                        <button type="submit" onclick="getAnswer()" class="answer next">
+                           next
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <div class="layoutLineBottom">
+    <div class="lineBottom">
+    </div>
 </div>
 
 </body>

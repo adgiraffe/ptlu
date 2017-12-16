@@ -9,51 +9,61 @@
 
 </head>
 <body>
-
 <div class="layoutLineTop">
-</div>
-<div class="lineNav">
-    <div class="lineNav-title">
-        그러니까, 공공운수
+    <div class="lineTop">
     </div>
-    <div class="lineNav-no">
+    <div class="lineNav">
+        <div class="lineNav-title">
+            그러니까, 공공운수
+        </div>
+        <div class="lineNav-no">
+        </div>
     </div>
 </div>
-<div class="layoutGrid">
-    <div class="empty"></div>
-    <div class="content">
-        <div class="q">
-            Q
-        </div>
-        <div class="letterLine first">
-        </div>
-        <div class="letterLine second">
-            <div class="bolder-box">
+    <div class="container">
+        <div class="outer">
+            <div class="inner">
+                <div class="layoutGrid">
+
+                    <div class="content">
+                        <div class="q">
+                            Q
+                        </div>
+                        <div class="letterLine first">
+
+                        </div>
+                        <div class="letterLine second">
+                            <div class="bolder-box">
+
+                            </div>
+                        </div>
+                        <div class="letterLine third">
+                        </div>
+                    </div>
+
+                    <div class="answerGird">
+
+                        <form method="get" th:action="@{/infoStory/storyContent}" th:object="${content}">
+                            <input type="hidden" th:field="*{step}" id="hiddenStep"/>
+                            <input type="hidden" th:field="*{answer}" id="hiddenAnswer"/>
+                            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                            <button type="submit" onclick="getAnswer()" class="answer yes">
+                                네
+                                <div class="hideDiv">YES</div>
+                            </button>
+                            <button type="submit" class="answer no">
+                                아니오
+                                <div class="hideDiv">NO</div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="letterLine third">
-        </div>
     </div>
-
-    <div class="answerGrid">
-        <form method="get" th:action="@{/infoStory/storyContent}" th:object="${content}">
-            <input type="hidden" th:field="*{step}"  class="h" id="hiddenStep"/>
-            <input type="hidden" th:field="*{answer}"   class="h" id="hiddenAnswer"/>
-            <input type="hidden" th:name="${_csrf.parameterName}"   class="h" th:value="${_csrf.token}"/>
-
-            <button type="submit" onclick="getAnswer()" class="answer yes">
-                네
-                <div class="hideDiv">YES</div>
-            </button>
-            <button type="submit" class="answer no">
-                아니오
-                <div class="hideDiv">NO</div>
-            </button>
-            <div class="empty"></div>
-        </form>
-    </div>
-</div>
 <div class="layoutLineBottom">
+    <div class="lineBottom">
+    </div>
 </div>
 
 </body>

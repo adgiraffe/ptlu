@@ -27,31 +27,49 @@ body{
     color: white;
     width: 100%;
     height: 100%;
-    display: grid;
-    grid-template-rows: 3.5% 9.5% 83.5% 3.5%;
     /*margin:25px;*/
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border: 0;
+}
+.outer{
+    width: 100%;
+    height: 100%;
+    display: table;
+}
+
+.inner{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
 }
 
 .layoutGrid{
     position: relative;
-    display: grid;
-    grid-template-rows: 85% 15%;
-    margin-left: 25px;
-    margin-right: 25px;
+    display: inline-block;
+    width: 100%;
     /*padding: 1em*/
 
 }
 .layoutLineTop{
-    border-bottom: solid;
-    margin-left: 25px;
-    margin-right: 25px;
+    /*width: 100%;*/
+    position: absolute;
+    left: 25px;
+    right: 25px;
+    top: 25px;
 }
 
 .layoutLineBottom{
     /*width: 100%;*/
-    border-top: solid 1px;
-    margin-left: 25px;
-    margin-right: 25px;
+    position: absolute;
+    left: 25px;
+    right: 25px;
+    bottom: 25px;
+
 }
 
 .lineTop{
@@ -59,13 +77,11 @@ body{
 }
 
 .lineBottom{
-    border-top: solid 1px;
+    border-bottom: solid 1px;
 }
 
 .lineNav{
     padding-top: 15px;
-    margin-left: 25px;
-    margin-right: 25px;
 }
 
 .lineNav .lineNav-title{
@@ -133,10 +149,13 @@ body{
 /*}*/
 
 .content{
-    /*font-size: 70px;*/
-    /*font-weight: 900;*/
-    /*text-align: left;*/
+    font-size: 50px;
+    font-weight: 900;
     text-align: left;
+    padding-top: 130px;
+    padding-bottom: 130px;
+    padding-left: 25px;
+    padding-right: 25px;
 }
 
 .q{
@@ -151,32 +170,12 @@ body{
 
 }
 
-.infoTitle{
-    letter-spacing: -0.3px;
-    font-size: 25px;
-    font-weight: 900;
-    text-align: left;
-    padding-bottom: 30px;
-}
-
-.infoContent{
-    font-size: 15px;
-    font-weight: 100;
-    letter-spacing: -0.3px;
-    padding-bottom: 30px;
-}
-
-.innerImg{
-    width: 70%;
-    padding-left: 15%;
-    padding-right: 15%;
-}
-
 .bolder-box{
     display: inline-block;
     position: static;
     border: solid 3px;
-
+    /*vertical-align: middle;*/
+    /*font-size: 60px;*/
 }
 
 
@@ -192,11 +191,6 @@ body{
     margin-right: 10px;
     width: 75px;
 }
-
-.answerGrid{
-    margin: auto;
-}
-
 .hideDiv{
     display: none;
 }

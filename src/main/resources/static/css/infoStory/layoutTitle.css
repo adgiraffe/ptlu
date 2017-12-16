@@ -17,7 +17,6 @@ html{
     width: 100%;
     height: 100%;
 }
-
 body{
     margin-left: 0px;
     margin-top: 0px;
@@ -27,49 +26,41 @@ body{
     color: white;
     width: 100%;
     height: 100%;
+    display: grid;
+    grid-template-rows: 3.5% 9.5% 83.5% 3.5%;
     /*margin:25px;*/
 }
 
-.container{
-    width: 100%;
-    height: 100%;
-    position: relative;
-    border: 0;
-}
-.outer{
-    width: 100%;
-    height: 100%;
-    display: table;
-}
+/*.wrap{*/
+    /*display: grid;*/
+    /*grid-template-rows: 1% 98% 1%;*/
+/*}*/
 
-.inner{
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
+.buttonSet{
+    display: grid;
+    display: grid;
+    grid-template-columns: 25% 20% 10% 20% 25%;
 }
 
 .layoutGrid{
     position: relative;
-    display: inline-block;
-    width: 100%;
+    display: grid;
+    grid-template-rows: 20% 65% 5%;
+    margin-left: 25px;
+    margin-right: 25px;
     /*padding: 1em*/
 
 }
 .layoutLineTop{
-    /*width: 100%;*/
-    position: absolute;
-    left: 25px;
-    right: 25px;
-    top: 25px;
+    border-bottom: solid;
+    margin-left: 25px;
+    margin-right: 25px;
 }
 
 .layoutLineBottom{
-    /*width: 100%;*/
-    position: absolute;
-    left: 25px;
-    right: 25px;
-    bottom: 25px;
-
+    border-top: solid 1px;
+    margin-left: 25px;
+    margin-right: 25px;
 }
 
 .lineTop{
@@ -77,11 +68,13 @@ body{
 }
 
 .lineBottom{
-    border-bottom: solid 1px;
+    border-top: solid 1px;
 }
 
 .lineNav{
     padding-top: 15px;
+    margin-left: 25px;
+    margin-right: 25px;
 }
 
 .lineNav .lineNav-title{
@@ -152,10 +145,8 @@ body{
     font-size: 50px;
     font-weight: 900;
     text-align: left;
-    padding-top: 130px;
-    padding-bottom: 130px;
-    padding-left: 25px;
-    padding-right: 25px;
+    /*padding-left: 25px;*/
+    /*padding-right: 25px;*/
 }
 
 .q{
@@ -189,7 +180,15 @@ body{
     background: white;
     margin-left: 10px;
     margin-right: 10px;
-    width: 75px;
+    width: 80px;
+}
+
+.answerGrid{
+    margin: auto;
+}
+
+.answer{
+    margin: auto;
 }
 .hideDiv{
     display: none;
