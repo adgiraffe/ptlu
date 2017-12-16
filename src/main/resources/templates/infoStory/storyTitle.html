@@ -24,6 +24,7 @@
         <div class="outer">
             <div class="inner">
                 <div class="layoutGrid">
+
                     <div class="content">
                         <div class="q">
                             Q
@@ -32,6 +33,9 @@
 
                         </div>
                         <div class="letterLine second">
+                            <div class="bolder-box">
+
+                            </div>
                         </div>
                         <div class="letterLine third">
                         </div>
@@ -44,10 +48,12 @@
                             <input type="hidden" th:field="*{answer}" id="hiddenAnswer"/>
                             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
                             <button type="submit" onclick="getAnswer()" class="answer yes">
-                                yes
+                                네
+                                <div class="hideDiv">YES</div>
                             </button>
                             <button type="submit" class="answer no">
-                                no
+                                아니오
+                                <div class="hideDiv">NO</div>
                             </button>
                         </form>
                     </div>
@@ -78,7 +84,7 @@
     var qThirdLine=[[${question.qThirdLine}]];
     var pageDiv=document.querySelector(".lineNav-no");
     var fLine=document.querySelector(".first");
-    var sLine=document.querySelector(".second");
+    var sLine=document.querySelector(".bolder-box");
     var tLine=document.querySelector(".third");
 
 
@@ -100,7 +106,10 @@
 
     function getAnswer(event) {
         var e = window.event || event || event.originalEvent;
-        var anwer=e.target.innerText;
+        console.log(e);
+        var anwer=e.target.firstElementChild.innerText;
+        console.log(anwer);
+
         hiddenAnswer.value=anwer;
     }
 

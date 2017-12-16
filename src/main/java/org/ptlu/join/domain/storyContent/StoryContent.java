@@ -7,7 +7,8 @@ public class StoryContent {
     public int step;
     public int pageNum;
     public String answer;
-    public String infoTitle;
+    public String infoTitleFirst;
+    public String infoTitleSecond;
     public String infoContent;
     public String infoImg;
 
@@ -27,12 +28,21 @@ public class StoryContent {
         this.answer = answer;
     }
 
-    public String getInfoTitle() {
-        return infoTitle;
+
+    public String getInfoTitleFirst() {
+        return infoTitleFirst;
     }
 
-    public void setInfoTitle(String infoTitle) {
-        this.infoTitle = infoTitle;
+    public void setInfoTitleFirst(String infoTitleFirst) {
+        this.infoTitleFirst = infoTitleFirst;
+    }
+
+    public String getInfoTitleSecond() {
+        return infoTitleSecond;
+    }
+
+    public void setInfoTitleSecond(String infoTitleSecond) {
+        this.infoTitleSecond = infoTitleSecond;
     }
 
     public String getInfoContent() {

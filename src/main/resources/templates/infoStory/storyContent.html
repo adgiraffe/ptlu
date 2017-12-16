@@ -4,7 +4,7 @@
     <script src="https://code.jquery.com/jquery-1.11.3.js"/>
     <title>공공운수노조</title>
     <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
-    <link rel="stylesheet" href="../../css/infoStory/layoutTitle.css"/>
+    <link rel="stylesheet" href="../../css/infoStory/layoutContent.css"/>
     <!--<link rel="stylesheet" media="screen and (min-width: 370px) and (max-width: 380px)" href="../../css/infoStory"/>-->
 
 </head>
@@ -26,16 +26,18 @@
             <div class="layoutGrid">
                 <div class="content">
                     <div class="infoTitle">
+                        <div class="letterLine first"></div>
+                        <div class="letterLine second"></div>
                     </div>
                     <div class="infoContent">
                     </div>
                     <div class="infoGraphic">
+                        <img src="" class="innerImg"/>
 
                     </div>
                 </div>
 
                 <div class="answerGird">
-
                     <form method="get" th:action="@{/infoStory}">
                         <input type="hidden" th:field="${content.step}" id="hiddenStep"/>
                         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
@@ -59,19 +61,26 @@
     /*<![CDATA[*/
     var step=[[${infoContent.step}]]
     var pageNum=[[${infoContent.pageNum}]]
-    var infoTitle= [[${infoContent.infoTitle}]];
+    var infoTitleFisrt= [[${infoContent.infoTitleFirst}]];
+    var infoTitleSecond= [[${infoContent.infoTitleSecond}]];
     var infoContent=[[${infoContent.infoContent}]];
     var infoImg=[[${infoContent.infoImg}]];
+
     var pageDiv=document.querySelector(".lineNav-no");
-    var titleDiv=document.querySelector(".infoTitle");
+    var titleDivFLine=document.querySelector(".first");
+    var titleDivSLine=document.querySelector(".second");
     var contnetDiv=document.querySelector(".infoContent");
     var graphicDiv=document.querySelector(".infoGraphic");
 
 
     pageDiv.innerHTML=pageNum;
-    titleDiv.innerHTML=infoTitle;
+    titleDivFLine.innerHTML=infoTitleFisrt;
+    titleDivSLine.innerHTML=infoTitleSecond;
     contnetDiv.innerHTML=infoContent;
-    graphicDiv.innerHTML=infoImg;
+    graphicDiv.firstElementChild.src=infoImg;
+
+    var img=document.querySelectorAll(".infoGraphic");
+    console.log(img);
 
     var hiddenStep=document.querySelector("#hiddenStep");
     hiddenStep.value=step;
