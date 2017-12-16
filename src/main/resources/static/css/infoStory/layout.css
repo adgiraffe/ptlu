@@ -27,47 +27,29 @@ body{
     color: white;
     width: 100%;
     height: 100%;
-    /*margin:25px;*/
+    display: grid;
+    grid-template-rows: 3.5% 3.5% 89.5% 3.5%;
 }
 
-.container{
-    width: 100%;
-    height: 100%;
-    position: relative;
-    border: 0;
-}
-.outer{
-    width: 100%;
-    height: 100%;
-    display: table;
-}
-
-.inner{
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-}
 
 .layoutGrid{
     position: relative;
-    display: inline-block;
-    width: 100%;
+    display: grid;
+    grid-template-rows: 10% 90%;
+    margin-left: 25px;
+    margin-right: 25px;
     /*padding: 1em*/
 }
 .layoutLineTop{
-    /*width: 100%;*/
-    position: absolute;
-    left: 25px;
-    right: 25px;
-    top: 25px;
+    border-bottom: solid;
+    margin-left: 25px;
+    margin-right: 25px;
 }
 
 .layoutLineBottom{
-    /*width: 100%;*/
-    position: absolute;
-    left: 25px;
-    right: 25px;
-    bottom: 25px;
+    border-top: solid 1px;
+    margin-left: 25px;
+    margin-right: 25px;
 
 }
 
@@ -81,6 +63,8 @@ body{
 
 .lineNav{
     padding-top: 15px;
+    margin-left: 25px;
+    margin-right: 25px;
 }
 
 .lineNav .lineNav-title{
