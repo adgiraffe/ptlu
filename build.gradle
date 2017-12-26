@@ -55,7 +55,8 @@
 //
 //    compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.0')
 //
-//    compile('org.mariadb.jdbc:mariadb-java-client')
+////    compile('org.mariadb.jdbc:mariadb-java-client')
+//    compile group: 'mysql', name: 'mysql-connector-java', version: '6.0.6'
 //
 //
 //    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.8'
@@ -71,7 +72,7 @@
 //
 //
 //    compile 'org.imgscalr:imgscalr-lib:4.2'
-//    runtime('mysql:mysql-connector-java')
+////    runtime('mysql:mysql-connector-java')
 //
 //    providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 //
@@ -173,7 +174,9 @@ dependencies {
 
     compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.0')
 
-    compile('org.mariadb.jdbc:mariadb-java-client')
+//    compile('org.mariadb.jdbc:mariadb-java-client')
+    compile group: 'mysql', name: 'mysql-connector-java', version: '6.0.6'
+
 
 
     compile group: 'org.projectlombok', name: 'lombok', version: '1.16.8'
@@ -189,6 +192,6 @@ dependencies {
 
 
     compile 'org.imgscalr:imgscalr-lib:4.2'
-    runtime('mysql:mysql-connector-java')
+//    runtime('mysql:mysql-connector-java')
 
 }
