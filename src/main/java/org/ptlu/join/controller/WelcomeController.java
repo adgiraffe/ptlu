@@ -166,5 +166,10 @@ public class WelcomeController {
         return "/question/question";
     }
 
+    @RequestMapping(value = "/example/videoComparison",method = {RequestMethod.POST, RequestMethod.GET})
+    public String comparisonVideo(){
+        return "/example/videoSlider/videoSlider";
+    }
+
 
 }

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Audio Pan</title>
+    <style>
+        body { margin: 0; }
+        #video-compare-container {
+            display: block;
+            line-height: 0;
+        }
+        canvas, #videoUI {
+            width: 100%;
+            display: block;
+            margin: 0 auto;
+            background: url("/static/images/sliderContentImg/1.jpg");
+            background-size: cover;
+        }
+        #videoUI {
+            font-family: Helvetica Neue Regular, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: space-between;
+            background: #f5f5f5
+
+        }
+        #videoUI button {
+            padding: 1rem;
+            font-weight: 400;
+            font-size: 1.3rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            outline: none;
+        }
+        #videoUI button:hover {
+            background: #8e8b8b;
+            color: white;
+        }
+    </style>
+    <style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+
+    .en-markup-crop-options {
+        top: 18px !important;
+        left: 50% !important;
+        margin-left: -100px !important;
+        width: 200px !important;
+        border: 2px rgba(255,255,255,.38) solid !important;
+        border-radius: 4px !important;
+    }
+
+    .en-markup-crop-options div div:first-of-type {
+        margin-left: 0px !important;
+    }
+    </style>
+</head>
+<body>
+
+<canvas id="videoMerge" width="1920" height="1080">
+</canvas>
+
+<div id="video-compare-container" style="display: none;">
+    <video poster="../../../static/images/sliderContentImg/1.jpg" id="rightVideo">
+        <source src="../../video/homepage.m4v"/>
+        <source src="../../video/homepage.m4v"/>
+    </video>
+    <video poster="../../../static/images/sliderContentImg/2.jpg" id="leftVideo">
+        <source src="../../video/verticalMain.m4v"/>
+        <source src="../../video/verticalMain.m4v"/>
+    </video>
+</div>
+
+<div id="videoUI"></div>
+</body>
+<script>
+
+    //<![CDATA[
+    console.log("Test");
+    Number.prototype.clamp = function(min, max) {
+        return Math.min(Math.max(this, min), max);
+    };
+
+    var videoContainer = document.getElementById("video-compare-container"),
+        videoUI = document.getElementById("videoUI"),
+        videoMerge = document.getElementById("videoMerge"),
+        leftVideo = document.getElementById("leftVideo"),
+        rightVideo = document.getElementById("rightVideo"),
+        videoControl = document.createElement("button"),
+        videoReturn = document.createElement("button"),
+        position = 0.5,
+        vidHeight = 1080,
+        vidWidth = 1920;
+    mergeContext = videoMerge.getContext("2d");
+    videoContainer.style.display = "none";
+    videoControl.innerHTML = "Play",
+        playThroughs = 0;
+    videoUI.appendChild(videoReturn);
+    videoUI.appendChild(videoControl);
+
+    videoControl.addEventListener("click", playPause, false);
+    videoReturn.addEventListener("click", returnToStart, false);
+
+    function playPause() {
+        if (leftVideo.paused) {
+            videoControl.innerHTML = "Pause";
+            playVids();
+        } else {
+            leftVideo.pause();
+            rightVideo.pause();
+            videoControl.innerHTML = "Play";
+        }
+    }
+
+    function returnToStart() {
+        leftVideo.currentTime = 0;
+        rightVideo.currentTime = 0;
+        playVids();
+    }
+
+    function playVids() {
+        if (leftVideo.readyState > 3 && rightVideo.readyState > 3) {
+            leftVideo.play();
+            rightVideo.play();
+            if (playThroughs == 0) {
+                videoReturn.innerHTML = "Rewind";
+            }
+
+            function trackLocation(e) {
+                position = ((e.pageX - videoMerge.offsetLeft) / videoMerge.offsetWidth);
+            }
+
+            videoMerge.addEventListener("mousemove", trackLocation, false);	videoMerge.addEventListener("touchstart",trackLocation,false);
+            videoMerge.addEventListener("touchmove",trackLocation,false);
+
+            function drawLoop() {
+                mergeContext.drawImage(leftVideo, 0, 0, vidWidth, vidHeight, 0, 0, vidWidth, vidHeight);
+                mergeContext.drawImage(rightVideo, (vidWidth * position).clamp(0.01,vidWidth), 0, (vidWidth - (vidWidth * position)).clamp(0.01,vidWidth), vidHeight,(vidWidth * position).clamp(0.01,vidWidth), 0, (vidWidth - (vidWidth * position)).clamp(0.01,vidWidth), vidHeight);
+                requestAnimationFrame(drawLoop);
+            }
+            requestAnimationFrame(drawLoop);
+        }
+        playThroughs = 1;
+    }
+    //]]>
+</script>
+</html>
