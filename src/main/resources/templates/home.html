@@ -65,9 +65,12 @@
             <div th:replace="sectionPage/section06::section06"/>
         </section>
         <section id="section07" class="section">
-            <div th:replace="sectionPage/slider/slider::sliderPage"/>
+            <div th:replace="sectionPage/section07::section07"/>
         </section>
         <section id="section08" class="section">
+            <div th:replace="sectionPage/slider/slider::sliderPage"/>
+        </section>
+        <section id="section09" class="section">
             <div th:replace="infoStory/insertStoryFinal::insertStoryFinal"/>
         </section>
 
@@ -91,12 +94,12 @@
 <script type="text/javascript" src="../../js/onePage/fullPage.js"/>
 <script type="text/javascript">
     fullpage.initialize('#scrollBody', {
-        anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', '5thPage','6thpage','7thpage','8thpage','lastPage'],
+        anchors: ['firstPage', 'secondPage', '3rdPage', '4thPage', '5thPage','6thPage','7thPage','8thPage','9thPage','lastPage'],
 //        anchors: ['1', '2', '3', '4', '5'],
         menu: '#menu',
         'navigation': true,
         'navigationPosition': 'right',
-        'navigationTooltips': ['메인','영화감독 변영주','배우 권해효','만화작가 김보통','국회의원 이정미','방송인 허지웅','배우 박철민','왜 공공운수인가?',''],
+        'navigationTooltips': ['메인','영화감독 변영주','배우 권해효','만화작가 김보통','국회의원 이정미','방송인 허지웅','배우 박철민','정인용, 박경득, 이의용','왜 공공운수인가?',''],
         css3:true
     });
 </script>
