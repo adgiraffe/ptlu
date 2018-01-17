@@ -4,7 +4,7 @@ var isTouchDevice = navigator.userAgent.match(/(iPhone|iPod|iPad|Android|playboo
 var branding={
     logoLink:"../../../../images/logo/logo1.png",
     menuName:['홈','변영주','권해효','김보통','이정미','허지웅','박철민','노동자','왜 공공운수노조인가?'],
-    menuLink:['http://so-kptu.net/#firstPage','http://so-kptu.net/#secondPage','http://so-kptu.net/#3rdPage','http://so-kptu.net/#4thPage','http://so-kptu.net/#5thPage','http://so-kptu.net/#6thPage','http://so-kptu.net/#7thPage','http://so-kptu.net/#8thPage','http://so-kptu.net/#9thPage','http://so-kptu.net/#lastPage'],
+    menuLink:['#firstPage','#secondPage','#3rdPage','#4thPage','#5thPage','#6thPage','#7thPage','#8thPage','#9thPage','#lastPage'],
     localHost:'http://so-kptu.net',
     menuCount:9,
     originHeaderHeight:0,

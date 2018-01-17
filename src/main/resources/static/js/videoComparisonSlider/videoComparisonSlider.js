@@ -1,4 +1,5 @@
 
+//<![CDATA[
 console.log("Test");
 Number.prototype.clamp = function(min, max) {
     return Math.min(Math.max(this, min), max);
@@ -12,8 +13,8 @@ var videoContainer = document.getElementById("video-compare-container"),
     videoControl = document.createElement("button"),
     videoReturn = document.createElement("button"),
     position = 0.5,
-    vidHeight = 576,
-    vidWidth = 1024;
+    vidHeight = 1080,
+    vidWidth = 1920;
 mergeContext = videoMerge.getContext("2d");
 videoContainer.style.display = "none";
 videoControl.innerHTML = "Play",
@@ -65,3 +66,4 @@ function playVids() {
     }
     playThroughs = 1;
 }
+//]]>
