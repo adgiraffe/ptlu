@@ -147,6 +147,9 @@
             function drawLoop() {
                 mergeContext.drawImage(leftVideo, 0, 0, vidWidth, vidHeight, 0, 0, vidWidth, vidHeight);
                 mergeContext.drawImage(rightVideo, (vidWidth * position).clamp(0.01,vidWidth), 0, (vidWidth - (vidWidth * position)).clamp(0.01,vidWidth), vidHeight,(vidWidth * position).clamp(0.01,vidWidth), 0, (vidWidth - (vidWidth * position)).clamp(0.01,vidWidth), vidHeight);
+                let shape=new Shape(vidWidth/2,0,3,vidHeight,'#e50a15');
+                shape.draw(mergeContext);
+                shape.contains();
                 requestAnimationFrame(drawLoop);
             }
             requestAnimationFrame(drawLoop);
@@ -164,6 +167,43 @@
 
 
     }
+    
+    //]]>
+</script>
+<script>
+    //<![CDATA[
+
+    function Shape(x,y,width,height,color) {
+        this.x=x||0;
+        this.y=y||0;
+        this.width=width||1;
+        this.height=height||1;
+        this.color = color || '#AAAAAA';
+    }
+
+    Shape.prototype.draw=function (ctx) {
+        ctx.fillStyle=this.color;
+        ctx.fillRect(this.x,this.y,this.width,this.height);
+    }
+
+    Shape.prototype.contains=function (mouseX,mouseY) {
+
+        //4개의 조건이 맞을 때 true를 리턴한다
+        //아닐땐 false;
+        return  (this.x <= mouseX) && (this.x + this.w >= mouseY) &&
+            (this.y <= mouseY) && (this.y + this.h >= mouseY);
+
+    }
+    
+    
+    function CanvasState(canvas) {
+        this.canvas=canvas;
+        this.width=canvas.width;
+        this.height=canvas.height;
+        this.ctx=canvas.getContext('2d');
+
+    }
+
 
     //]]>
 </script>
