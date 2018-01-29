@@ -30,13 +30,193 @@
     <video poster="../../../static/images/sliderContentImg/1.jpg" id="rightVideo">
         <source src="../../video/homepage.m4v"/>
     </video>
+    <div id="var">
+
+    </div>
     <video poster="../../../static/images/sliderContentImg/2.jpg" id="leftVideo">
         <source src="../../video/verticalMain.m4v"/>
     </video>
 </div>
 
 <div id="videoUI"></div>
+<canvas id="canvas1" width="1920" height="1080">
+</canvas>
+
 </body>
+<script>
+    //<![CDATA[
+
+    function Shape(x,y,width,height,color) {
+        this.x=x||0;
+        this.y=y||0;
+        this.width=width||1;
+        this.height=height||1;
+        this.color = color || '#AAAAAA';
+    }
+
+    Shape.prototype.draw=function (ctx) {
+        ctx.fillStyle=this.color;
+        ctx.fillRect(this.x,this.y,this.width,this.height);
+    }
+
+    Shape.prototype.contains=function (mouseX,mouseY) {
+
+        //4개의 조건이 맞을 때 true를 리턴한다
+        //아닐땐 false;
+        //결과적으로 그려진 객체에 위에 마우스가 존재할때 true를 반환한다.
+        return  (this.x <= mouseX) &&
+            (this.x + this.w >= mouseX) &&
+            (this.y <= mouseY) &&
+            (this.y + this.h >= mouseY);
+
+    }
+
+
+    function CanvasState(canvas) {
+        this.canvas=canvas;
+        this.width=canvas.width;
+        this.height=canvas.height;
+        this.ctx=canvas.getContext('2d');
+
+        let stylePaddingLeft,stylePaddingTop,styleBorderLeft,styleBorderTop;
+
+        if(document.defaultView&&document.defaultView.getComputedStyle){
+            this.stylePaddingleft=parseInt(document.defaultView.getComputedStyle(canvas,null)['paddingLeft'],10)||0;
+            this.stylePaddingTop  = parseInt(document.defaultView.getComputedStyle(canvas, null)['paddingTop'], 10)       || 0;
+            this.styleBorderLeft  = parseInt(document.defaultView.getComputedStyle(canvas, null)['borderLeftWidth'], 10)  || 0;
+            this.styleBorderTop   = parseInt(document.defaultView.getComputedStyle(canvas, null)['borderTopWidth'], 10)   || 0;
+        }
+
+        let html=document.body.parentNode;
+        this.htmlTop=html.offsetTop;
+        this.htmlLeft=html.offsetLeft;
+
+        this.valid=false;
+        this.shapes=[];
+        this.dragging=false;
+        this.selection=null;
+        this.dragOffX=0;
+        this.dragOffY=0;
+
+        let myState=this;
+
+        canvas.addEventListener('selectstart',function (e) {
+            e.preventDefault();
+            return false;
+        },false);
+
+        canvas.addEventListener('mousedown',function (e) {
+            let mouse=myState.getMouse(e);
+            let mouseX=mouse.x;
+            let mouseY=mouse.y;
+            let shapes=myState.shapes;
+            let len=shapes.length;
+
+            for (let i=len-1; i>=0; i--){
+                if (shapes[i].contains(mouseX,mouseY)){
+                    let mySel=shapes[i];
+
+                    myState.dragOffX=mouseX-mySel.x;
+                    myState.dragOffY=mouseY-mySel.y;
+                    myState.dragging=true;
+                    myState.selection=mySel;
+                    myState.valid=false;
+
+                    return;
+                }
+            }
+
+
+            if(myState.selection){
+                myState.selection=null;
+                myState.valid=false;
+            }
+
+        },true);
+
+
+        canvas.addEventListener('mousemove',function (e) {
+            if (myState.dragging){
+                let mouse=myState.getMouse(e);
+                myState.selection.x=mouse.x-myState.dragOffX;
+                myState.selection.y=mouse.y-myState.dragOffY;
+                myState.valid=false;
+            }
+        },true);
+
+        this.selectionColor='#0000FF';
+        this.selectionWidth=5;
+        this.interval=30;
+        setInterval(function () {
+            myState.draw();
+        },myState.interval);
+    }
+
+    CanvasState.prototype.addShape=function (shape) {
+        this.shapes.push(shape);
+        this.valid=false;
+    }
+
+
+    CanvasState.prototype.clear=function () {
+        this.ctx.clearRect(0,0,this.width,this.height);
+    }
+
+    CanvasState.prototype.draw=function () {
+        if(!this.valid){
+            let ctx=this.ctx;
+            let shapes=this.shapes;
+            this.clear();
+
+            let l=shapes.length;
+            for(let i=0;i<l;i++){
+                let shape=shapes[i];0
+                if (shape.x>this.width||shape.y>this.height||shape.x+shape.width<0||shape.y+shape.height<0)
+                    continue;
+                shapes[i].draw(ctx);
+            }
+
+            if(this.selection!=null){
+                ctx.strokeStyle=this.selectionColor;
+                ctx.lineWidth=this.selectionWidth;
+                let mySel=this.selection;
+                ctx.strokeRect(mySel.x,mySel.y,mySel.width,mySel.height);
+            }
+
+            this.valid;
+        }
+    }
+
+    CanvasState.prototype.getMouse=function (e) {
+        let element=this.canvas,
+            offsetX=0,
+            offsetY=0,
+            mouseX,
+            mouseY;
+
+        if(element.offsetParent!==undefined){
+            do{
+                offsetX+=element.offsetLeft;
+                offsetY+=element.offsetTop;
+            }while ((element=element.offsetParent));
+        }
+
+        offsetX += this.stylePaddingleft + this.styleBorderLeft + this.htmlLeft;
+        offsetY += this.stylePaddingTop + this.styleBorderTop + this.htmlTop;
+
+        mouseX=e.pageX-offsetX;
+        mouseY=e.pageY-offsetY;
+
+        return {x: mouseX, y:mouseY};
+
+    }
+
+
+
+
+
+    //]]>
+</script>
 <script>
 
     //<![CDATA[
@@ -44,6 +224,10 @@
         return Math.min(Math.max(this, min), max);
     };
 
+    let mouseDownValid=false;
+    let clickOffsetNum=0.05;//선택영역넓
+    let selectVarWidth=3;
+    let selectVarColor='#e50a15';
     let videoContainer = document.getElementById("video-compare-container"),
         videoUI = document.getElementById("videoUI"),
         videoMerge = document.getElementById("videoMerge"),
@@ -58,7 +242,12 @@
         rightVidCurrentTime=0,
         vidHeight = 1080,
         vidWidth = 1920;
+
+
     let mergeContext = videoMerge.getContext("2d");
+
+    // let mergeContext=new CanvasState(videoMerge);
+
     videoContainer.style.display = "none";
     videoControl.innerHTML = "Play";
     let playThroughs = 0;
@@ -138,18 +327,46 @@
 
 
             function trackLocation(e) {
-              position = ((e.pageX - videoMerge.offsetLeft) / videoMerge.offsetWidth);
+                if(mouseDownValid){
+                    position = ((e.pageX - videoMerge.offsetLeft) / videoMerge.offsetWidth).clamp(.0, 1.);
+                    console.log(position);
+                }
             }
 
-            videoMerge.addEventListener("mousemove", trackLocation, false);	videoMerge.addEventListener("touchstart",trackLocation,false);
+            function mouseDownEvent(e) {
+                let clickOffset = ((e.pageX - videoMerge.offsetLeft) / videoMerge.offsetWidth).clamp(.0, 1.);
+                console.log(clickOffset,'clickOffest');
+                console.log((clickOffset>position-0.1)&&(clickOffset<position+0.1),'aaa');
+
+                if((clickOffset>position-clickOffsetNum)&&(clickOffset<position+clickOffsetNum)){
+                    mouseDownValid=true;
+                    selectVarWidth=15;
+                    selectVarColor='#6CE501';
+                }
+
+                console.log(mouseDownValid);
+            }
+
+            function mouseUpEvent(e) {
+                mouseDownValid=false;
+                selectVarWidth=3;
+                selectVarColor='#e50a15';
+                console.log(mouseDownValid);
+            }
+
+
+            videoMerge.addEventListener("mousemove", trackLocation, false);
+            videoMerge.addEventListener("touchstart",trackLocation,false);
             videoMerge.addEventListener("touchmove",trackLocation,false);
+            videoMerge.addEventListener('mousedown',mouseDownEvent,false);
+            videoMerge.addEventListener('mouseup',mouseUpEvent,false);
 
             function drawLoop() {
                 mergeContext.drawImage(leftVideo, 0, 0, vidWidth, vidHeight, 0, 0, vidWidth, vidHeight);
                 mergeContext.drawImage(rightVideo, (vidWidth * position).clamp(0.01,vidWidth), 0, (vidWidth - (vidWidth * position)).clamp(0.01,vidWidth), vidHeight,(vidWidth * position).clamp(0.01,vidWidth), 0, (vidWidth - (vidWidth * position)).clamp(0.01,vidWidth), vidHeight);
-                let shape=new Shape(vidWidth/2,0,3,vidHeight,'#e50a15');
+                let shape=new Shape(vidWidth *position-(selectVarWidth/2),0,selectVarWidth,vidHeight,selectVarColor);
                 shape.draw(mergeContext);
-                shape.contains();
+
                 requestAnimationFrame(drawLoop);
             }
             requestAnimationFrame(drawLoop);
@@ -167,44 +384,10 @@
 
 
     }
-    
-    //]]>
-</script>
-<script>
-    //<![CDATA[
 
-    function Shape(x,y,width,height,color) {
-        this.x=x||0;
-        this.y=y||0;
-        this.width=width||1;
-        this.height=height||1;
-        this.color = color || '#AAAAAA';
-    }
-
-    Shape.prototype.draw=function (ctx) {
-        ctx.fillStyle=this.color;
-        ctx.fillRect(this.x,this.y,this.width,this.height);
-    }
-
-    Shape.prototype.contains=function (mouseX,mouseY) {
-
-        //4개의 조건이 맞을 때 true를 리턴한다
-        //아닐땐 false;
-        return  (this.x <= mouseX) && (this.x + this.w >= mouseY) &&
-            (this.y <= mouseY) && (this.y + this.h >= mouseY);
-
-    }
-    
-    
-    function CanvasState(canvas) {
-        this.canvas=canvas;
-        this.width=canvas.width;
-        this.height=canvas.height;
-        this.ctx=canvas.getContext('2d');
-
-    }
 
 
     //]]>
 </script>
+
 </html>
